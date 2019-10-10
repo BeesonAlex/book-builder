@@ -1,0 +1,26 @@
+
+.tracksearch {
+    background-color: darkgrey;
+
+    .tracksearch__wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .tracksearch__title {
+            font-size: 2rem;
+        }
+
+        .tracksearch__search {
+            height: 3rem;
+            width: 15.3125rem;
+            border: 1px solid grey;
+            border-radius: 0.3125rem;
+            padding-left: 3rem;
+            background: url('../../assets/icons/Icon-search.svg') no-repeat;
+            background-position: 1rem 50%;
+            background-color: lightgrey;
+            color: black;
+        }
+    }
+}
