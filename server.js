@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const serverRoutes = require('./routes/server-routes');
 const lastFmRoutes = require('./routes/lastfm-routes');
 const cors = require('cors')
@@ -6,6 +7,7 @@ const app = express();
 const port = process.env.PORT || 8080;
 const mongoose = require('mongoose');
 require('dotenv').config();
+
 
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
 
@@ -22,6 +24,9 @@ app.use(express.json());
 
 app.use('/users', serverRoutes);
 app.use('/data', lastFmRoutes);
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.listen(port, () => {
     console.log(`listening on http://localhost:${port}`);

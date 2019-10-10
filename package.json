@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "develop": "npx nodemon server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "Alex Beeson",
   "license": "ISC",
