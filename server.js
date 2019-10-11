@@ -39,10 +39,6 @@ app.use(express.json());
 app.use('/users', serverRoutes);
 app.use('/data', lastFmRoutes);
 
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build')));
-
-
 
 
 // Shopify Routes
@@ -122,7 +118,7 @@ app.get('/shopify', (req, res) => {
 
         request.get(shopRequestUrl, { headers: shopRequestHeaders })
         .then((shopResponse) => {
-          res.end(shopResponse);
+          res.status(200).end(shopResponse);
         })
         .catch((error) => {
           res.status(error.statusCode).send(error.error.error_description);
@@ -142,7 +138,8 @@ app.get('/shopify', (req, res) => {
 // End Shopify Routes
 
 
-
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.listen(port, () => {
     console.log(`listening on http://localhost:${port}`);
