@@ -20,7 +20,7 @@ const scopes = process.env.SHOPIFY_SCOPES;
 const forwardingAddress = process.env.FORWARDING_ADDRESS;
 //
 
-const originUrls = 'https://serene-journey-89429.herokuapp.com/' || 'http://localhost:3000';
+const originUrls = process.env.FORWARDING_ADDRESS;
 
 require('dotenv').config();
 
