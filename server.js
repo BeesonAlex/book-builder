@@ -20,6 +20,8 @@ const scopes = process.env.SHOPIFY_SCOPES;
 const forwardingAddress = process.env.FORWARDING_ADDRESS;
 //
 
+const originUrls = 'https://serene-journey-89429.herokuapp.com/' || 'http://localhost:3000';
+
 require('dotenv').config();
 
 
@@ -30,7 +32,7 @@ db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('Connected to Book Builder Database'))
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: originUrls,
 }));
 
 app.use(express.urlencoded({ extended: false }));
