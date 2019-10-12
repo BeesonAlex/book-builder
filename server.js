@@ -20,20 +20,38 @@ const scopes = process.env.SHOPIFY_SCOPES;
 const forwardingAddress = process.env.FORWARDING_ADDRESS;
 //
 
-const originUrls = process.env.FORWARDING_ADDRESS;
-
 require('dotenv').config();
 
-
+// Database Middleware
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
 
 const db = mongoose.connection
 db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('Connected to Book Builder Database'))
 
-app.use(cors({
-    origin: originUrls,
-}));
+
+
+// CORS Middleware
+
+app.use(cors({origin: verifyOrigin}));
+
+// Origin verification generator
+function* verifyOrigin (ctx) {
+    // Get requesting origin hostname
+    var origin = ctx.headers.origin;
+
+    // List of valid origins
+    var validOrigins = ['http://localhost:3000', 'https://serene-journey-89429.herokuapp.com', 'https://music-book.myshopify.com/'];
+
+    // Make sure it's a valid origin
+    if (validOrigins.indexOf(origin) != -1) {
+       // Set the header to the requested origin 
+        ctx.set('Access-Control-Allow-Origin', origin);
+    }        
+}
+
+//
+
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -136,12 +154,19 @@ app.get('/shopify', (req, res) => {
   });
 
 
+  app.get('/proxy', (req, res) => {
+  res.express.static(path.join(__dirname, 'client/build'))
+  });
+
 
 // End Shopify Routes
 
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
+
+//
+
 
 app.listen(port, () => {
     console.log(`listening on http://localhost:${port}`);
