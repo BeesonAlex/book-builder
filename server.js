@@ -155,7 +155,7 @@ app.get('/shopify', (req, res) => {
 
 
   app.get('/proxy', (req, res) => {
-    res.sendFile(path.join(__dirname + '/index.html'));
+    res.sendFile(path.join(__dirname, 'client/public', 'index.html'));
   });
 
 
