@@ -33,22 +33,7 @@ db.once('open', () => console.log('Connected to Book Builder Database'))
 
 // CORS Middleware
 
-app.use(cors({origin: verifyOrigin}));
-
-// Origin verification generator
-function* verifyOrigin (ctx) {
-    // Get requesting origin hostname
-    var origin = ctx.headers.origin;
-
-    // List of valid origins
-    var validOrigins = ['http://localhost:3000', 'https://serene-journey-89429.herokuapp.com', 'https://music-book.myshopify.com/'];
-
-    // Make sure it's a valid origin
-    if (validOrigins.indexOf(origin) != -1) {
-       // Set the header to the requested origin 
-        ctx.set('Access-Control-Allow-Origin', origin);
-    }        
-}
+app.use(cors());
 
 //
 
