@@ -139,9 +139,9 @@ app.get('/shopify', (req, res) => {
   });
 
 
-//   app.get('/proxy', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, 'client/build'));
-//   });
+  app.get('/proxy', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client/build'));
+  });
 
 
 // End Shopify Routes
