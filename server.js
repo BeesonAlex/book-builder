@@ -155,7 +155,7 @@ app.get('/shopify', (req, res) => {
 
 
   app.get('/proxy', (req, res) => {
-  res.express.static(path.join(__dirname, 'client/build'))
+  res.sendFile(path.join(__dirname + '/client/src/index.js'));
   });
 
 
