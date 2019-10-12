@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const serverRoutes = require('./routes/server-routes');
 const lastFmRoutes = require('./routes/lastfm-routes');
-const cors = require('cors')
+const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 8080;
 const mongoose = require('mongoose');
@@ -15,7 +15,7 @@ const querystring = require('querystring');
 const request = require('request-promise');
 
 const apiKey = process.env.SHOPIFY_API_KEY;
-const apiSecret = process.env.SHOPIFY_API_SECRET;
+const apiSecret = process.env.SHOPIFY_SECRET_KEY;
 const scopes = process.env.SHOPIFY_SCOPES;
 const forwardingAddress = process.env.FORWARDING_ADDRESS;
 //
