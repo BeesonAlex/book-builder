@@ -139,8 +139,8 @@ app.get('/shopify', (req, res) => {
   });
 
 
-  app.get('*', (req, res) => {
-    res.set('Content-Type', 'application/liquid').sendFile(path.join(__dirname, 'client/build/index.html'));
+  app.get('/proxy', (req, res) => {
+    res.set('Content-Type', 'text/javascript').sendFile(path.join(__dirname, 'client/build/index.html'));
   });
 
 
