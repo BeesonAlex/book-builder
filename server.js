@@ -144,15 +144,16 @@ app.get('/shopify', (req, res) => {
     // Serve static files from the React app
     app.use(express.static(path.join(__dirname, 'client/build')));
 
-    //
+      }
 
   app.get('/proxy', (req, res) => {
     res.set('Content-Type', 'application/liquid').sendFile(path.resolve(__dirname, '/client/build/index.html'));
   });
 
 // End Shopify Routes
-  }
 
+
+  
 app.listen(port, () => {
     console.log(`listening on http://localhost:${port}`);
 });
