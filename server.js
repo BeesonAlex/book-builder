@@ -144,10 +144,10 @@ app.get('/shopify', (req, res) => {
     // Serve static files from the React app
     app.use(express.static(path.join(__dirname, 'client/build')));
 
-      }
+    }
 
-  app.get('/*', (req, res) => {
-    res.set('Content-Type', 'application/liquid').sendFile(path.resolve(__dirname, '/client/build/index.html'));
+  app.get('/', (req, res) => {
+    res.set('Content-Type', 'application/liquid').sendFile(path.join(__dirname, '/client/build/index.html'));
   });
 
 // End Shopify Routes
