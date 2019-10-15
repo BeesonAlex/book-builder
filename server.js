@@ -23,20 +23,19 @@ db.once('open', () => console.log('Connected to Book Builder Database'))
 app.use(cors());
 
 
-
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+
 
 app.use('/users', serverRoutes);
 app.use('/data', lastFmRoutes);
 app.use('/shopify', shopifyRoutes);
-
-
-if (process.env.NODE_ENV === 'production') {
-
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build')));
-}
 
 
 app.listen(port, () => {
