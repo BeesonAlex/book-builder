@@ -8,6 +8,7 @@
     "start": "node server.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
+  "homepage": "https://serene-journey-89429.herokuapp.com/",
   "author": "Alex Beeson",
   "license": "ISC",
   "dependencies": {
