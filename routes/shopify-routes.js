@@ -109,12 +109,9 @@ router.get('/', (req, res) => {
 
 
   router.get('/proxy', (req, res) => {
-      if (req) {
-          console.log('req completed');
-      }
-      console.log('sending file')
-    // res.set('Content-Type', 'application/liquid').sendFile(path.join(__dirname, '/client/build/index.html'));
-    res.render('client/build/index.html')
+
+    res.set('Content-Type', 'application/liquid').sendFile(path.join(__dirname, '/client/build/index.html'));
+
   });
 
 
