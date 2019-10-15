@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const router = Router();
+const path = require('path');
 
 // Shopify OAuth
 const crypto = require('crypto');
