@@ -140,7 +140,7 @@ app.get('/shopify', (req, res) => {
 
 
   app.get('/proxy', (req, res) => {
-    res.set('Content-Type', 'application/liquid').sendFile(path.join(__dirname, '/server.js'));
+    res.set('Content-Type', 'application/liquid').sendFile(path.join(__dirname, '/client/build'));
   });
 
 
