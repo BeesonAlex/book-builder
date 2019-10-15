@@ -139,19 +139,19 @@ app.get('/shopify', (req, res) => {
   });
 
 
-  app.get('/proxy', (req, res) => {
-    res.set('Content-Type', 'application/liquid').sendFile(path.join(__dirname, '/client/build'));
+  if (process.env.NODE_ENV === 'production') {
+
+    // Serve static files from the React app
+    app.use(express.static(path.join(__dirname, 'client/build')));
+
+    //
+
+  app.get('/*', (req, res) => {
+    res.set('Content-Type', 'application/liquid').sendFile(path.resolve(__dirname, '/client/build/index.html'));
   });
 
-
 // End Shopify Routes
-
-
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build')));
-
-//
-
+  }
 
 app.listen(port, () => {
     console.log(`listening on http://localhost:${port}`);
