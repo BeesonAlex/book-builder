@@ -112,12 +112,16 @@ router.get('/', (req, res) => {
     res.set('Content-Type', 'application/liquid').sendFile(path.join(__dirname, '../client/build/index.html'));
   });
 
-  router.get('/proxy/static/css/:file', (req, res) => {
+  router.get('/proxy/apps/book-builder/static/css/:file', (req, res) => {
     res.set('Content-Type', 'text/css').sendFile(path.join(__dirname, `../client/build/static/css/${req.params.file}`));
+    console.log('css-url:', req.url)
+    console.log('css-path:', req.path)
   });
 
-  router.get('/proxy/static/js/:file', (req, res) => {
+  router.get('/proxy/apps/book-builder/static/js/:file', (req, res) => {
     res.set('Content-Type', 'text/javascript').sendFile(path.join(__dirname, `../client/build/static/js/${req.params.file}`));
+    console.log('js-url:', req.url)
+    console.log('js-path:', req.path)
   });
 
 
