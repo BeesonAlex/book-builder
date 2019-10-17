@@ -110,16 +110,16 @@ router.get('/', (req, res) => {
 
   router.get('/proxy', (req, res) => {
     res.set('Content-Type', 'application/liquid').sendFile(path.join(__dirname, '../client/build/index.html'));
-
+    console.log(req)
   });
 
-  router.get('/proxy/static/css', (req, res) => {
-    res.set('Content-Type', 'text/css').sendFile(path.join(__dirname, `${req.url}`));
+  router.get('/proxy/static/css/:file', (req, res) => {
+    res.set('Content-Type', 'text/css').sendFile(path.join(__dirname, `../client/build/static/${req.params.file}`));
     console.log(req.url)
   });
 
-  router.get('/proxy/static/js', (req, res) => {
-    res.set('Content-Type', 'text/javascript').sendFile(path.join(__dirname, `${req.url}`));
+  router.get('/proxy/static/js/:file', (req, res) => {
+    res.set('Content-Type', 'text/javascript').sendFile(path.join(__dirname, `../client/build/static/${req.params.file}`));
     console.log(req.url)
   });
 
