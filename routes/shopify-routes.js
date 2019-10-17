@@ -110,7 +110,7 @@ router.get('/', (req, res) => {
 
   router.get('/proxy', (req, res) => {
 
-    res.set('Content-Type', 'application/liquid').sendFile('https://serene-journey-89429.herokuapp.com/client/build/index.html');
+    res.set('Content-Type', 'application/liquid').sendFile(path.join(__dirname, 'index.html'));
 
   });
 
