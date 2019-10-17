@@ -29,11 +29,7 @@ app.use(express.json());
 
 
 // // Serve static files from the React app
-// app.use(express.static(path.join(__dirname, 'client/build')));
-
-// Serve static files from the React app
-app.use(express.static(__dirname));
-
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 
 app.use('/users', serverRoutes);
