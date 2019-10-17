@@ -109,9 +109,18 @@ router.get('/', (req, res) => {
 
 
   router.get('/proxy', (req, res) => {
-
     res.set('Content-Type', 'application/liquid').sendFile(path.join(__dirname, '../client/build/index.html'));
 
+  });
+
+  router.get('/proxy/static/css', (req, res) => {
+    res.set('Content-Type', 'text/css').sendFile(path.join(__dirname, `${req.url}`));
+    console.log(req.url)
+  });
+
+  router.get('/proxy/static/js', (req, res) => {
+    res.set('Content-Type', 'text/javascript').sendFile(path.join(__dirname, `${req.url}`));
+    console.log(req.url)
   });
 
 
