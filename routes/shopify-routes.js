@@ -108,7 +108,7 @@ router.get('/', (req, res) => {
   });
 
 
-  router.get('/proxy/*', (req, res) => {
+  router.get('/proxy', (req, res) => {
 
     res.set('Content-Type', 'application/liquid').sendFile(path.join(__dirname, '../client/build/index.html'));
 
