@@ -15,15 +15,15 @@ function App() {
      <BrowserRouter>
      <Switch>
        <Route path="/" exact component={Header} />
-       <Route path="/:id" component={BookNavigation} />
+       <Route path="/:userid" component={BookNavigation} />
     </Switch> 
     </BrowserRouter>
     <BrowserRouter>
       <Switch>
       <Route path="/" exact component={Splash} />
-      <Route path="/:bookid" exact component={BookHome} />
-      <Route path="/:bookid/track-search" exact component={TrackSearch} />
-      <Route path="/:bookid/pages/:pageid/track/:track/artist/:artist/page-editor" exact component={PageEditor} />
+      <Route path="/:userid/book/:bookid" exact component={BookHome} />
+      <Route path="/:userid/book/:bookid/page/:pageid/track-search" exact component={TrackSearch} />
+      <Route path="/:userid/book/:bookid/page/:pageid/editor" exact component={PageEditor} />
       </Switch>
     </BrowserRouter>
     </div>

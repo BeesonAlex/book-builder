@@ -19,12 +19,7 @@ const userSchema = new Schema({
         unique: true,
         default: 'beeson.alexander@gmail.com',
     },
-    numberOfBooks: {
-        type: Number,
-        required: true,
-    },
-    books: [bookSchema],
-    pages: [pageSchema]
+    books: [],
 })
 
 const User = mongoose.model('User', userSchema);

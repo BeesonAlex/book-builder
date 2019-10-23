@@ -18,7 +18,7 @@ export class TrackSearch extends Component {
         const id = event.target.search__criteria.value
  
         axios
-            .get(`http://localhost:8080/data/${id}`)
+            .get(`https://serene-journey-89429.herokuapp.com/data/${id}`)
             .then(res => {
                 this.setState({
                     isSearched: true,

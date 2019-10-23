@@ -33,6 +33,15 @@ router.post('/', async (req, res) => {
         name: req.body.name,
         email: req.body.email,
         numberOfBooks: 1,
+        books: [
+            {
+                _id: req.body.books._id,
+                title: req.body.books.title,
+                contentUrl: null,
+                coverUrl: null,
+                pages: [],
+            }
+        ]
     })
     try {
         const newUser = await user.save()
@@ -46,14 +55,17 @@ router.post('/', async (req, res) => {
 
 // Update User
 router.patch('/:id', getUser, async (req, res) => {
+    if (req.body._id != res.user._id) {
+        res.user._id = req.body._id
+    }
     if (req.body.name != null) {
         res.user.name = req.body.name
     }
     if (req.body.email != null) {
         res.user.email = req.body.email
     }
-    if (req.body.numberOfBooks != null) {
-        res.user.numberOfBooks = req.body.numberOfBooks
+    if (req.body.books.length != res.user.numberOfBooks) {
+        req.body.books.length = res.user.numberOfBooks
     }
     if (req.body.books != res.user.books) {
         res.user.books = req.body.books
@@ -76,7 +88,7 @@ router.patch('/:id', getUser, async (req, res) => {
 router.delete('/:id', getUser, async (req, res) => {
     try {
         await res.user.remove()
-        res.json({ message: 'Deleted Subscriber'})
+        res.json({ message: 'Deleted User'})
     } catch (error) {
         res.status(500).json({ message: error.message })
     }

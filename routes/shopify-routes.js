@@ -2,7 +2,6 @@ const { Router } = require('express');
 const router = Router();
 const path = require('path');
 
-// Shopify OAuth
 const crypto = require('crypto');
 const cookie = require('cookie');
 const nonce = require('nonce')();
@@ -13,9 +12,9 @@ const apiKey = process.env.SHOPIFY_API_KEY;
 const apiSecret = process.env.SHOPIFY_SECRET_KEY;
 const scopes = process.env.SHOPIFY_SCOPES;
 const forwardingAddress = process.env.FORWARDING_ADDRESS;
-//
 
-// Shopify Routes
+
+// Create OAuth
 
 router.get('/', (req, res) => {
     const shop = req.query.shop;
@@ -35,7 +34,7 @@ router.get('/', (req, res) => {
     }
   });
 
-
+// OAuth Callback
   router.get('/callback', (req, res) => {
     const { shop, hmac, code, state } = req.query;
     const stateCookie = cookie.parse(req.headers.cookie).state;
@@ -108,6 +107,8 @@ router.get('/', (req, res) => {
   });
 
 
+
+  // App Proxy Routes
   router.get('/proxy', (req, res) => {
     res.set('Content-Type', 'application/liquid').sendFile(path.join(__dirname, '../client/build/index.html'));
     console.log('Proxy URL hit')
@@ -124,6 +125,22 @@ router.get('/', (req, res) => {
     console.log(req.url)
     console.log('Proxy JS Hit')
   });
+
+
+
+  // Storefront Routes
+
+//   router.get('/storefront/user', (req, res) => {
+
+//   });
+
+//   router.get('/storefront/product', (req, res) => {
+
+//   });
+
+//   router.post('/storefront/order', (req, res) => {
+
+//   });
 
 
 

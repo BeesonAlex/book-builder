@@ -8,23 +8,7 @@ const bookSchema = new Schema({
     _id: {
         type: String,
         required: true,
-    },
-    authorId: {
-        type: String,
-        required: true,
-    },
-    author: {
-        type: String,
-        required: true,
-    },
-    email: {
-        type: String,
-        required: true,
-
-    },
-    numberOfPages: {
-        type: Number,
-        required: true,
+        unique: true,
     },
     title: {
         type: String,
@@ -39,6 +23,11 @@ const bookSchema = new Schema({
         required: false,
     },
     pages: [pageSchema],
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
+    }
 })
 
 // const Book = mongoose.model('Book', bookSchema);

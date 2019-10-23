@@ -12,7 +12,7 @@ export class PageEditor extends Component {
 
     const { artist, track } = this.props.match.params
 
-    axios.get(`http://localhost:8080/data/track/${artist}/${track}`)
+    axios.get(`https://serene-journey-89429.herokuapp.com/data/track/${artist}/${track}`)
     .then(res => {
         this.setState({
             trackDetails: res.data,
