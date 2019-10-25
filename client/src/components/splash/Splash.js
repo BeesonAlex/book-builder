@@ -1,56 +1,79 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import uuidv1 from 'uuid/v1';
+import BookPreview from './BookPreview';
 
 export class Splash extends Component {
 
     state = {
-        isLoggedIn: false,
-        loggedInUser: {
-            _id: '',
-            name: '',
-            email: '',
-            books: []
-        },
+        ...this.props.appState
+        
     }
 
     componentDidMount() {
 
-        const customerId = window.customerId;
-
-        if (window.customerID) {
-            axios.get(`https://serene-journey-89429.herokuapp.com/users/${customerId}`)
-                .then(res => {
-                this.setState({
-                    loggedInUser: res.data,
-                    isLoggedIn: true,
-                });
-            });
-        }
+        this.setState({
+            ...this.props.appState
+        })
     }
+
 
     onSubmitHandler = event => {
         event.preventDefault();
         
- 
-        this.setState({
-            loggedInUser: {
-            _id: uuidv1(),
-            name: 'Guest',
-            email: event.target.email__address.value,
-            title: event.target.book__title.value,
-            }
-        }, () => {
+        if (this.state.isLoggedIn) {
 
-        this.props.history.push({
-         pathname: `${this.state.loggedInUser._id}/book/${uuidv1()}`,
-         state: {loggedInUser: this.state.loggedInUser}
-        })
-        });
+            this.setState({
+                loggedInUser: {
+                _id: this.state.loggedInUser._id,
+                name: this.state.loggedInUser.name,
+                email: this.state.loggedInUser.email,
+                books: this.state.loggedInUser.books,
+                },
+                activeBook: {
+                    _id: uuidv1(),
+                    title: event.target.book__title.value,
+                    contentUrl: null,
+                    coverUrl: null,
+                    pages: [],
+                    },
+                activePage: {}
+            }, () => {
+                this.props.updateAppState(this.state)
+                this.props.history.push({
+                 pathname: `${this.state.loggedInUser._id}/book/${this.state.activeBook._id}`,
+                })
+                });
+
+        } else {
+
+            this.setState({
+                loggedInUser: {
+                _id: uuidv1(),
+                name: 'Guest',
+                email: event.target.email__address.value,
+                books: [],
+                },
+                activeBook: {
+                    _id: uuidv1(),
+                    title: event.target.book__title.value,
+                    contentUrl: null,
+                    coverUrl: null,
+                    pages: [],
+                    },
+                activePage: {}
+            }, () => {
+            this.props.updateAppState(this.state)
+            this.props.history.push({
+             pathname: `${this.state.loggedInUser._id}/book/${this.state.activeBook._id}`,
+            })
+            });
+        }
     };
 
 
     render() {
+        console.log(this.state)
         return (
             <div className="splash">
                 <div className="splash__content-header">
@@ -62,7 +85,12 @@ export class Splash extends Component {
                     </form>
                 </div>
                 <div className="splash__user-books-wrapper">
-                    {this.state.isLoggedIn ? `User's Books will go here.` : 'Log in to see your Saved Books!'}
+                    {
+                        this.state.loggedInUser.books > 0 ?  
+                        this.state.loggedInUser.books.map(book => {
+                            return <BookPreview key={book._id} id={book.id} title={book.title} pages={book.pages} numPages={book.pages.length} />
+                        }) : 'Log in to see your Saved Books!'
+                        }
                 </div>
             </div>
         )

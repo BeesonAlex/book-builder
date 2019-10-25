@@ -26,7 +26,7 @@ const pageSchema = new Schema({
         type: String,
         required: false,
     },
-    contentUrl: {
+    pageContentUrl: {
         type: String,
         required: false,
     },

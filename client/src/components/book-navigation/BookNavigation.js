@@ -9,7 +9,7 @@ export class BookNavigation extends Component {
                 </div>
                 <div className="header__mid-wrapper">
                     <p className="header__left-button">Previous</p>
-                    <p className="header__page-number">Page 1</p>
+                    <p className="header__page-number">{this.state.loggedInUser.activePage.pageNumber}</p>
                     <p className="header__right-button">Next</p>
                 </div>
                 <div className="header__right-wrapper">

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+// import { Link } from 'react-router-dom';
 import './TrackSearch.scss';
 import axios from 'axios';
 import TrackListItem from './TrackListItem';
+
 
 
 
@@ -11,6 +13,14 @@ export class TrackSearch extends Component {
         isSearched: false,
         searchedTrack:'',
         returnedTracks: [],
+        ...this.props.appState
+    }
+
+    componentDidMount() {
+
+        this.setState({
+            ...this.props.appState
+        })
     }
 
     onSubmitHandler = event => {
@@ -25,12 +35,12 @@ export class TrackSearch extends Component {
                     searchedTrack: id,
                     returnedTracks: res.data,
               });
-              
             });
     };
 
 
     render() {
+        console.log(this.state)
         return (
             <div className="tracksearch">
                 <div className="tracksearch__wrapper">
@@ -41,13 +51,12 @@ export class TrackSearch extends Component {
                         </form>
                 </div>
                 <div className="tracksearch__listings">
-                {
+                {   this.state.returnedTracks ?
                     this.state.returnedTracks.map(track => {
-                        return <TrackListItem key={track.listeners} artist={track.artist} name={track.name}/>
-                    })
-
-
-
+                        return (
+                            <TrackListItem state={this.state} key={track.listeners} artist={track.artist} name={track.name} clickHandler={this.onClickHandler}/>
+                    )})
+                : 'Search for a track to Continue'
                 }
                 </div>
             </div>
@@ -56,3 +65,13 @@ export class TrackSearch extends Component {
 }
 
 export default TrackSearch
+
+
+// () => {
+//     console.log(this.state)
+//     this.props.history.push({
+//      pathname: `/${this.state.loggedInUser._id}/book/${this.state.loggedInUser.activeBook._id}/page/${this.state.loggedInUser.activePage._id}/editor`,
+//      state: this.state,
+//     })
+//     });
+// };

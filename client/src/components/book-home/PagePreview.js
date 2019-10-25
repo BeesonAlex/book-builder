@@ -1,16 +1,21 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 export class PagePreview extends Component {
     render() {
         return (
-            <Link to={this.props.uid}>
+            <>
             <div className="pagepreview">
-            <h3 className="pagepreview__song-title">{this.props.title}</h3>
+            <h3 className="pagepreview__song-title">{this.props.track}</h3>
             <p className="pagepreview__song-artist">{this.props.artist}</p>    
-            <p className="pagepreview__complete">{this.props.isComplete}</p>    
+            <p className="pagepreview__page-number">{this.props.pageNumber}</p>
+            {
+                this.props.thoughts ?
+                <p className="pagepreview__complete">completed!</p>
+                : null    
+            }    
             </div>
-            </Link>
+            </>
         )
     }
 }

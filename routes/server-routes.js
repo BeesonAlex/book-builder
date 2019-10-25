@@ -70,9 +70,9 @@ router.patch('/:id', getUser, async (req, res) => {
     if (req.body.books != res.user.books) {
         res.user.books = req.body.books
     }
-    if (req.body.pages != res.user.pages) {
-        res.user.pages = req.body.pages
-    }
+    // if (req.body.pages != res.user.pages) {
+    //     res.user.pages = req.body.pages
+    // }
 
     try {
         const updatedUser = await res.user.save()
