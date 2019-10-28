@@ -24,7 +24,7 @@ export class TrackListItem extends Component {
 
         return (
             <Link to={{
-                pathname: `/${this.props.state.loggedInUser._id}/book/${this.props.state.activeBook._id}/page/${this.props.state.activePage._id}/editor`,
+                pathname: `/tools/${this.props.state.loggedInUser._id}/book/${this.props.state.activeBook._id}/page/${this.props.state.activePage._id}/editor`,
                 state: this.state,
             }}>
             <div className="tracklist-item">
