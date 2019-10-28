@@ -67,7 +67,6 @@ onSubmitHandler = event => {
         }, () => {
 
             this.props.updateAppState(this.state)
-            this.props.saveUser(this.state.loggedInUser)
             this.props.history.push(`/tools/${this.state.loggedInUser._id}/book/${this.state.activeBook._id}`)
         })
     });
