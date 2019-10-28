@@ -111,19 +111,16 @@ router.get('/', (req, res) => {
   // App Proxy Routes
   router.get('/proxy', (req, res) => {
     res.set('Content-Type', 'application/liquid').sendFile(path.join(__dirname, '../client/build/index.html'));
-    console.log('Proxy URL hit')
   });
 
   router.get('/proxy/static/css/:file', (req, res) => {
     res.set('Content-Type', 'text/css').sendFile(path.join(__dirname, `../client/build/static/css/${req.params.file}`));
     console.log(req.url)
-    console.log('Proxy CSS Hit')
   });
 
   router.get('/proxy/static/js/:file', (req, res) => {
     res.set('Content-Type', 'text/javascript').sendFile(path.join(__dirname, `../client/build/static/js/${req.params.file}`));
     console.log(req.url)
-    console.log('Proxy JS Hit')
   });
 
 

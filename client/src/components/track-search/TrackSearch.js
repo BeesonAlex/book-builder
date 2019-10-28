@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 import './TrackSearch.scss';
 import axios from 'axios';
 import TrackListItem from './TrackListItem';
@@ -65,13 +64,3 @@ export class TrackSearch extends Component {
 }
 
 export default TrackSearch
-
-
-// () => {
-//     console.log(this.state)
-//     this.props.history.push({
-//      pathname: `/${this.state.loggedInUser._id}/book/${this.state.loggedInUser.activeBook._id}/page/${this.state.loggedInUser.activePage._id}/editor`,
-//      state: this.state,
-//     })
-//     });
-// };

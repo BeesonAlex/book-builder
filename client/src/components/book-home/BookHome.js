@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PagePreview from './PagePreview';
-// import { Link } from 'react-router-dom';
 import uuidv1 from 'uuid/v1';
 
 export class BookHome extends Component {
@@ -61,6 +60,8 @@ export class BookHome extends Component {
                 email: this.state.loggedInUser.email,
                 books: userBooks,
         }
+    }, () => {
+        this.props.saveUser(this.state.loggedInUser)
     });
     }
 

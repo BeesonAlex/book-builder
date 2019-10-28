@@ -1,11 +1,6 @@
 const { Router } = require('express');
 const router = Router();
 const User = require('../models/user');
-// const userList = require('../sample-data/sampleData');
-// const url = `http://localhost:8080`;
-// const Book = require('../models/book');
-// const Page = require('../models/page');
-// const shortid = require('shortid');
 
 
 // Users //
@@ -22,26 +17,18 @@ router.get('/', async (req, res) => {
 
 // Get a Single User
 router.get('/:id', getUser, (req, res) => {
-    res.send(res.user)
+    res.status(200).send(res.user)
 })
 
 
 // Create New User
 router.post('/', async (req, res) => {
     const user = new User({
-        _id: req.body.id,
+        _id: req.body._id,
         name: req.body.name,
         email: req.body.email,
         numberOfBooks: 1,
-        books: [
-            {
-                _id: req.body.books._id,
-                title: req.body.books.title,
-                contentUrl: null,
-                coverUrl: null,
-                pages: [],
-            }
-        ]
+        books: req.body.books,
     })
     try {
         const newUser = await user.save()
@@ -55,6 +42,8 @@ router.post('/', async (req, res) => {
 
 // Update User
 router.patch('/:id', getUser, async (req, res) => {
+
+
     if (req.body._id != res.user._id) {
         res.user._id = req.body._id
     }
@@ -67,12 +56,9 @@ router.patch('/:id', getUser, async (req, res) => {
     if (req.body.books.length != res.user.numberOfBooks) {
         req.body.books.length = res.user.numberOfBooks
     }
-    if (req.body.books != res.user.books) {
+    if (JSON.stringify(req.body.books) != JSON.stringify(res.user.books)) {
         res.user.books = req.body.books
     }
-    // if (req.body.pages != res.user.pages) {
-    //     res.user.pages = req.body.pages
-    // }
 
     try {
         const updatedUser = await res.user.save()
@@ -99,7 +85,7 @@ router.delete('/:id', getUser, async (req, res) => {
 async function getUser(req, res, next) {
 
     try {
-        user = await User.findById(req.params.id)
+        user = await User.findById(req.params._id)
         if (user == null) {
             return res.status(404).json({ message: 'User cannot be found' })
         }
@@ -109,16 +95,6 @@ async function getUser(req, res, next) {
         res.user = user
         next()
     }    
-
-
-
-
-// Books //
-
-
-
-
-// Pages //
 
 
 

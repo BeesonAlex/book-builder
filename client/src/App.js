@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Switch, BrowserRouter, Route } from "react-router-dom";
 import Header from "./components/header/Header";
-// import BookNavigation from "./components/book-navigation/BookNavigation";
 import Splash from "./components/splash/Splash";
 import BookHome from "./components/book-home/BookHome";
 import TrackSearch from "./components/track-search/TrackSearch";
@@ -43,6 +42,35 @@ const customerId = window.customerId;
 // Function for Saving User
 saveUser = (user) => {
   // get user - if they don't exist create one, if they do - update the user
+  axios
+    .get(`https://serene-journey-89429.herokuapp.com/users/${user._id}`)
+    .then(res => {
+     
+      if (res.user._id) {
+
+        axios
+          .patch(`https://serene-journey-89429.herokuapp.com/users/${user._id}`, {
+            
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            numberOfBooks: user.numberOfBooks,
+            books: user.books,
+        })
+
+      } else if (!res.user._id) {
+
+        axios
+          .post(`https://serene-journey-89429.herokuapp.com/users/${user._id}`, {
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            numberOfBooks: user.numberOfBooks,
+            books: user.books,
+        })
+      }
+
+    });
 }
 
 

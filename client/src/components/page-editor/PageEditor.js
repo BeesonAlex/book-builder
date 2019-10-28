@@ -67,6 +67,7 @@ onSubmitHandler = event => {
         }, () => {
 
             this.props.updateAppState(this.state)
+            this.props.saveUser(this.state.loggedInUser)
             this.props.history.push(`/${this.state.loggedInUser._id}/book/${this.state.activeBook._id}`)
         })
     });
@@ -75,8 +76,6 @@ onSubmitHandler = event => {
 
 
     render() {
-        console.log(this.props.history)
-        console.log(this.props.location)
         if (this.state.isLoading) {
             return <p>loading...</p>
         } else {
