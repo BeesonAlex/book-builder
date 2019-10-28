@@ -52,8 +52,14 @@ saveUser = (user) => {
             numberOfBooks: user.numberOfBooks,
             books: user.books,
         })
+        .then(res => {
 
-      } else if (!window.customerId) {
+        })
+        .catch(err => {
+          console.log(err);
+        })
+
+      } else if (window.customerId == undefined) {
 
         axios
           .post(`https://serene-journey-89429.herokuapp.com/users/`, {
@@ -63,9 +69,14 @@ saveUser = (user) => {
             numberOfBooks: user.numberOfBooks,
             books: user.books,
         })
+        .then(res => {
+
+        })
+        .catch(err => {
+          console.log(err);
+        })
+
       }
-
-
 }
 
 
