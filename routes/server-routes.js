@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 })
 
 // Get a Single User
-router.get('/:id', getUser, (req, res) => {
+router.get('/:email', getUser, (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); 
@@ -56,7 +56,7 @@ router.post('/', async (req, res) => {
 
 
 // Update User
-router.patch('/:id', getUser, async (req, res) => {
+router.patch('/:email', getUser, async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); 
@@ -89,7 +89,7 @@ router.patch('/:id', getUser, async (req, res) => {
 
 
 // Delete User
-router.delete('/:id', getUser, async (req, res) => {
+router.delete('/:email', getUser, async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); 
@@ -112,7 +112,7 @@ async function getUser(req, res, next) {
     res.setHeader('Access-Control-Allow-Credentials', true); 
 
     try {
-        user = await User.findById(req.params.id)
+        user = await User.findOne({email: `${req.params.email}`}, function(err, obj) { console.log(obj); });
         if (user == null) {
             return res.status(404).json({ message: 'User cannot be found' })
         }

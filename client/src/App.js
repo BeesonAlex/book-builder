@@ -25,10 +25,10 @@ export class App extends Component {
 // Component Did Mount - Check whether Logged In or Guest
 componentDidMount() {
 
-const customerId = window.customerId;
+const customerEmail = window.customerEmail;
 
-  if (window.customerId) {
-      axios.get(`https://serene-journey-89429.herokuapp.com/users/${customerId}`)
+  if (window.customerEmail) {
+      axios.get(`https://serene-journey-89429.herokuapp.com/users/${customerEmail}`)
           .then(res => {
           this.setState({
               loggedInUser: res.data,
@@ -42,7 +42,7 @@ const customerId = window.customerId;
 // Function for Saving User
 saveUser = (user) => {
   // get user - if they don't exist create one, if they do - update the user
-      if (window.customerId) {
+      if (window.customerEmail) {
 
         axios
           .patch(`https://serene-journey-89429.herokuapp.com/users/${user._id}`, {
@@ -59,7 +59,7 @@ saveUser = (user) => {
           console.log(err);
         })
 
-      } else if (window.customerId == undefined) {
+      } else if (window.customerEmail == undefined) {
 
         axios
           .post(`https://serene-journey-89429.herokuapp.com/users/`, {
