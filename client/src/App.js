@@ -81,6 +81,7 @@ updateAppState = (componentState) => {
 
   render() {
     console.log(window.customerId)
+    console.log(window.location.pathname)
     return (
     <div className="App">
     <Header appState={this.state} />

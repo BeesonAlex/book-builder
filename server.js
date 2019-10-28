@@ -19,7 +19,9 @@ app.use(cors(corsOptions));
 
 
 // Database Middleware
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
+var mongooseURL = process.env.DATABASE_URL;
+
+mongoose.connect(mongooseURL, { useNewUrlParser: true });
 
 const db = mongoose.connection
 db.on('error', (error) => console.error(error))
