@@ -32,8 +32,8 @@ export class Splash extends Component {
                 activeBook: {
                     _id: uuidv1(),
                     title: event.target.book__title.value,
-                    contentUrl: null,
-                    coverUrl: null,
+                    contentUrl: '',
+                    coverUrl: '',
                     pages: [],
                     },
                 activePage: {}
@@ -56,8 +56,8 @@ export class Splash extends Component {
                 activeBook: {
                     _id: uuidv1(),
                     title: event.target.book__title.value,
-                    contentUrl: null,
-                    coverUrl: null,
+                    contentUrl: '',
+                    coverUrl: '',
                     pages: [],
                     },
                 activePage: {}

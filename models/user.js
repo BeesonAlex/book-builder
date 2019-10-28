@@ -7,7 +7,6 @@ const userSchema = new Schema({
     _id: {
         type: String,
         required: true,
-        default: '1',
     },
     name: {
         type: String,
@@ -17,7 +16,6 @@ const userSchema = new Schema({
         type: String,
         required: true,
         unique: true,
-        default: 'beeson.alexander@gmail.com',
     },
     books: [],
 })
