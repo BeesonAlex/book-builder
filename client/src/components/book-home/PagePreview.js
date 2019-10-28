@@ -11,7 +11,7 @@ export class PagePreview extends Component {
             {
                 this.props.thoughts ?
                 <p className="pagepreview__complete">completed!</p>
-                : null    
+                : ''    
             }    
             </div>
             </>

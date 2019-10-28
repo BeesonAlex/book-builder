@@ -65,10 +65,10 @@ router.patch('/:id', getUser, async (req, res) => {
     if (req.body._id != res.user._id) {
         res.user._id = req.body._id
     }
-    if (req.body.name != null) {
+    if (req.body.name != '') {
         res.user.name = req.body.name
     }
-    if (req.body.email != null) {
+    if (req.body.email != '') {
         res.user.email = req.body.email
     }
     if (req.body.books.length != res.user.numberOfBooks) {
@@ -94,7 +94,7 @@ router.delete('/:id', getUser, async (req, res) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); 
     res.setHeader('Access-Control-Allow-Credentials', true); 
-    
+
     try {
         await res.user.remove()
         res.json({ message: 'Deleted User'})

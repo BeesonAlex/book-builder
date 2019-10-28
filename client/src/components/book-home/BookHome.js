@@ -81,7 +81,7 @@ export class BookHome extends Component {
                     this.state.activeBook.pages.map(page => {
                                 return <PagePreview key={page._id} track={page.track} pageNumber={page.pageNumber} albumArt={page.albumArt} artist={page.artist} thoughts={page.thoughts} pageContentUrl={page.pageContentUrl} />
                             })
-                            : null
+                            : ''
                             }
                 </div>
             </div>
