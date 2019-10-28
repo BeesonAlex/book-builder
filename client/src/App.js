@@ -27,7 +27,7 @@ componentDidMount() {
 
 const customerId = window.customerId;
 
-  if (window.customerID) {
+  if (window.customerId) {
       axios.get(`https://serene-journey-89429.herokuapp.com/users/${customerId}`)
           .then(res => {
           this.setState({
@@ -42,11 +42,7 @@ const customerId = window.customerId;
 // Function for Saving User
 saveUser = (user) => {
   // get user - if they don't exist create one, if they do - update the user
-  axios
-    .get(`https://serene-journey-89429.herokuapp.com/users/${user._id}`)
-    .then(res => {
-     
-      if (res.user._id) {
+      if (window.customerId) {
 
         axios
           .patch(`https://serene-journey-89429.herokuapp.com/users/${user._id}`, {
@@ -58,10 +54,10 @@ saveUser = (user) => {
             books: user.books,
         })
 
-      } else if (!res.user._id) {
+      } else if (!window.customerId) {
 
         axios
-          .post(`https://serene-journey-89429.herokuapp.com/users/${user._id}`, {
+          .post(`https://serene-journey-89429.herokuapp.com/users/`, {
             _id: user._id,
             name: user.name,
             email: user.email,
@@ -70,7 +66,7 @@ saveUser = (user) => {
         })
       }
 
-    });
+
 }
 
 
@@ -85,7 +81,7 @@ updateAppState = (componentState) => {
 
 
   render() {
-
+    console.log(window.customerId)
     return (
     <div className="App">
     <Header appState={this.state} />
