@@ -46,7 +46,6 @@ saveUser = (user) => {
 
         axios
           .patch(`https://serene-journey-89429.herokuapp.com/users/${user._id}`, {
-            
             _id: user._id,
             name: user.name,
             email: user.email,

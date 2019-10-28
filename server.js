@@ -10,17 +10,20 @@ const mongoose = require('mongoose');
 
 require('dotenv').config();
 
+// CORS Middleware
+var corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
+  }
+app.use(cors(corsOptions));
+
+
 // Database Middleware
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
 
 const db = mongoose.connection
 db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('Connected to Book Builder Database'))
-
-
-
-// CORS Middleware
-app.use(cors());
 
 
 app.use(express.urlencoded({ extended: false }));
