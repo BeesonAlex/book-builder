@@ -45,7 +45,7 @@ saveUser = (user) => {
       if (window.customerEmail) {
 
         axios
-          .patch(`https://serene-journey-89429.herokuapp.com/users/${user._id}`, {
+          .patch(`https://serene-journey-89429.herokuapp.com/users/${user.email}`, {
             _id: user._id,
             name: user.name,
             email: user.email,
