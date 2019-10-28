@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
         _id: req.body._id,
         name: req.body.name,
         email: req.body.email,
-        numberOfBooks: 1,
+        numberOfBooks: req.body.numberOfBooks,
         books: req.body.books,
     })
     try {
