@@ -11,7 +11,7 @@ const getSearchResults = (req, res) => {
     var searchCriteria = req.params.id;
 
     axios
-    .get(`http://ws.audioscrobbler.com/2.0/?method=track.search&track=${encodeURI(searchCriteria)}&api_key=${apiKey}&format=json`)
+    .get(`http://ws.audioscrobbler.com/2.0/?method=track.search&track=${encodeURIComponent(searchCriteria)}&api_key=${apiKey}&format=json`)
     .then(response => {
             var responseData = response.data.results.trackmatches.track;
             res.json(responseData)
@@ -27,7 +27,7 @@ const getTrack = (req, res) => {
     var { track, artist } = req.params;
 
     axios
-        .get(`http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${apiKey}&artist=${encodeURI(artist)}&track=${encodeURI(track)}&format=json`)
+        .get(`http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${apiKey}&artist=${encodeURIComponent(artist)}&track=${encodeURIComponent(track)}&format=json`)
         .then(response => {
             responseData = response.data.track;
             res.json(responseData)
