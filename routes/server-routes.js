@@ -6,11 +6,7 @@ const User = require('../models/user');
 // Users //
 
 // Get All Users
-router.get('/', async (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); 
-    res.setHeader('Access-Control-Allow-Credentials', true); 
+router.get('/', async (req, res) => { 
 
     try {
         const users = await User.find()
@@ -22,10 +18,6 @@ router.get('/', async (req, res) => {
 
 // Get a Single User
 router.get('/:email', getUser, (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); 
-    res.setHeader('Access-Control-Allow-Credentials', true); 
 
     res.status(200).send(res.user)
 })
@@ -33,10 +25,6 @@ router.get('/:email', getUser, (req, res) => {
 
 // Create New User
 router.post('/', async (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); 
-    res.setHeader('Access-Control-Allow-Credentials', true); 
 
     const user = new User({
         _id: req.body._id,
@@ -57,10 +45,6 @@ router.post('/', async (req, res) => {
 
 // Update User
 router.patch('/:email', getUser, async (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); 
-    res.setHeader('Access-Control-Allow-Credentials', true); 
 
     if (req.body._id != res.user._id) {
         res.user._id = req.body._id
@@ -90,10 +74,6 @@ router.patch('/:email', getUser, async (req, res) => {
 
 // Delete User
 router.delete('/:email', getUser, async (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); 
-    res.setHeader('Access-Control-Allow-Credentials', true); 
 
     try {
         await res.user.remove()
@@ -106,10 +86,6 @@ router.delete('/:email', getUser, async (req, res) => {
 
 // MIDDLEWARE | Get a User
 async function getUser(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); 
-    res.setHeader('Access-Control-Allow-Credentials', true); 
 
     try {
         user = await User.findOne({email: `${req.params.email}`}, function(err, obj) { console.log(obj); });
