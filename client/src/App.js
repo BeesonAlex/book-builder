@@ -48,6 +48,7 @@ const shopifyUser = {
                   books: this.state.loggedInUser.books,
               })
             });
+            console.log(this.state)
           })
           .catch(err => {
             axios
@@ -58,7 +59,7 @@ const shopifyUser = {
                 numberOfBooks: '',
                 books: []
               })
-              
+
             this.setState({
               loggedInUser: {
                 id: shopifyUser.shopifyId,
@@ -68,6 +69,7 @@ const shopifyUser = {
               },
               isLoggedIn: true,
           })
+          console.log(this.state)
           })
         }
 };
