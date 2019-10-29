@@ -27,7 +27,7 @@ router.get('/:email', getUser, async (req, res) => {
 router.post('/', async (req, res) => {
 
     const user = new User({
-        _id: req.body._id,
+        id: req.body.id,
         name: req.body.name,
         email: req.body.email,
         numberOfBooks: req.body.numberOfBooks,
@@ -46,8 +46,8 @@ router.post('/', async (req, res) => {
 // Update User
 router.patch('/:email', getUser, async (req, res) => {
 
-    if (req.body._id != res.user._id) {
-        res.user._id = req.body._id
+    if (req.body.id != res.user.id) {
+        res.user.id = req.body.id
     }
     if (req.body.name != '') {
         res.user.name = req.body.name

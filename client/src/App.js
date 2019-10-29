@@ -13,7 +13,7 @@ export class App extends Component {
   state = {
     isLoggedIn: false,
     loggedInUser: {
-        _id: '',
+        id: '',
         name: '',
         email: '',
         books: [],
@@ -46,7 +46,7 @@ saveUser = (user) => {
 
         axios
           .patch(`https://serene-journey-89429.herokuapp.com/users/${user.email}`, {
-            _id: user._id,
+            id: user.id,
             name: user.name,
             email: user.email,
             numberOfBooks: user.numberOfBooks,
@@ -63,7 +63,7 @@ saveUser = (user) => {
 
         axios
           .post(`https://serene-journey-89429.herokuapp.com/users/`, {
-            _id: user._id,
+            id: user.id,
             name: user.name,
             email: user.email,
             numberOfBooks: user.numberOfBooks,

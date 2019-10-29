@@ -32,7 +32,7 @@ onSubmitHandler = event => {
     this.setState({
 
         activePage: {
-            _id: this.state.activePage._id,
+            id: this.state.activePage.id,
             pageNumber: this.state.activeBook.pages.length + 1,
             track: `${this.state.trackDetails.name}`,
             albumArt: `${Object.values(this.state.trackDetails.album.image[3])[0]}`,
@@ -46,7 +46,7 @@ onSubmitHandler = event => {
         const activePages = this.state.activeBook.pages;
 
         const targetPage = activePages.findIndex(page => {
-            return page._id === this.state.activePage._id;
+            return page.id === this.state.activePage.id;
         });
 
         if (targetPage !== -1) {
@@ -58,7 +58,7 @@ onSubmitHandler = event => {
 
         this.setState({
             activeBook: {
-                _id: this.state.activeBook._id,
+                id: this.state.activeBook.id,
                 title: this.state.activeBook.title,
                 contentUrl: this.state.activeBook.contentUrl,
                 coverUrl: this.state.activeBook.coverUrl,
@@ -67,7 +67,7 @@ onSubmitHandler = event => {
         }, () => {
 
             this.props.updateAppState(this.state)
-            this.props.history.push(`/tools/${this.state.loggedInUser._id}/book/${this.state.activeBook._id}`)
+            this.props.history.push(`/tools/${this.state.loggedInUser.id}/book/${this.state.activeBook.id}`)
         })
     });
 }

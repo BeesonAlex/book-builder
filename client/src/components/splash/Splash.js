@@ -24,13 +24,13 @@ export class Splash extends Component {
 
             this.setState({
                 loggedInUser: {
-                _id: this.state.loggedInUser._id,
+                id: this.state.loggedInUser.id,
                 name: this.state.loggedInUser.name,
                 email: this.state.loggedInUser.email,
                 books: this.state.loggedInUser.books,
                 },
                 activeBook: {
-                    _id: uuidv1(),
+                    id: uuidv1(),
                     title: event.target.book__title.value,
                     contentUrl: '',
                     coverUrl: '',
@@ -40,7 +40,7 @@ export class Splash extends Component {
             }, () => {
                 this.props.updateAppState(this.state)
                 this.props.history.push({
-                 pathname: `${this.state.loggedInUser._id}/book/${this.state.activeBook._id}`,
+                 pathname: `${this.state.loggedInUser.id}/book/${this.state.activeBook.id}`,
                 })
                 });
 
@@ -48,13 +48,13 @@ export class Splash extends Component {
 
             this.setState({
                 loggedInUser: {
-                _id: uuidv1(),
+                id: uuidv1(),
                 name: 'Guest',
                 email: event.target.email__address.value,
                 books: [],
                 },
                 activeBook: {
-                    _id: uuidv1(),
+                    id: uuidv1(),
                     title: event.target.book__title.value,
                     contentUrl: '',
                     coverUrl: '',
@@ -64,7 +64,7 @@ export class Splash extends Component {
             }, () => {
             this.props.updateAppState(this.state)
             this.props.history.push({
-             pathname: `${this.state.loggedInUser._id}/book/${this.state.activeBook._id}`,
+             pathname: `${this.state.loggedInUser.id}/book/${this.state.activeBook.id}`,
             })
             });
         }
@@ -87,7 +87,7 @@ export class Splash extends Component {
                     {
                         this.state.loggedInUser.books > 0 ?  
                         this.state.loggedInUser.books.map(book => {
-                            return <BookPreview key={book._id} id={book.id} title={book.title} pages={book.pages} numPages={book.pages.length} />
+                            return <BookPreview key={book.id} id={book.id} title={book.title} pages={book.pages} numPages={book.pages.length} />
                         }) : 'Log in to see your Saved Books!'
                         }
                 </div>

@@ -20,7 +20,7 @@ export class BookHome extends Component {
 
         this.setState({
                 activePage: {
-                    _id: uuidv1(),
+                    id: uuidv1(),
                     pageNumber: this.state.activeBook.pages.length + 1,
                     track: "",
                     albumArt: "",
@@ -31,7 +31,7 @@ export class BookHome extends Component {
         }, () => {
         this.props.updateAppState(this.state)
         this.props.history.push({
-         pathname: `${this.props.match.params.bookid}/page/${this.state.activePage._id}/track-search`,
+         pathname: `${this.props.match.params.bookid}/page/${this.state.activePage.id}/track-search`,
         })
         });
     };
@@ -43,7 +43,7 @@ export class BookHome extends Component {
     const userBooks = this.state.loggedInUser.books;
 
     const targetBook = userBooks.findIndex(book => {
-       return book._id === this.state.activeBook._id;
+       return book.id === this.state.activeBook.id;
     });
 
     if (targetBook !== -1) {
@@ -55,7 +55,7 @@ export class BookHome extends Component {
 
     this.setState({
             loggedInUser: {
-                _id: this.state.loggedInUser._id,
+                id: this.state.loggedInUser.id,
                 name: this.state.loggedInUser.name,
                 email: this.state.loggedInUser.email,
                 books: userBooks,
@@ -79,7 +79,7 @@ export class BookHome extends Component {
                 <div className="bookhome__pages-wrapper">
                 { this.state.activeBook.pages ?
                     this.state.activeBook.pages.map(page => {
-                                return <PagePreview key={page._id} track={page.track} pageNumber={page.pageNumber} albumArt={page.albumArt} artist={page.artist} thoughts={page.thoughts} pageContentUrl={page.pageContentUrl} />
+                                return <PagePreview key={page.id} track={page.track} pageNumber={page.pageNumber} albumArt={page.albumArt} artist={page.artist} thoughts={page.thoughts} pageContentUrl={page.pageContentUrl} />
                             })
                             : ''
                             }
