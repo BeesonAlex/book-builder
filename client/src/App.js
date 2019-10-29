@@ -32,14 +32,14 @@ const shopifyUser = {
 }
 // If the user is logged in, get their book-builder details, then ensure their database record is consistent with Shopify
   if (window.customerEmail) {
-      axios.get(`https://serene-journey-89429.herokuapp.com/users/${customerEmail}`)
+      axios.get(`https://serene-journey-89429.herokuapp.com/users/${shopifyUser.shopifyEmail}`)
           .then(res => {
             this.setState({
                 loggedInUser: res.data,
                 isLoggedIn: true,
             }, () => {
               axios
-                .patch(`https://serene-journey-89429.herokuapp.com/users/${user.email}`, {
+                .patch(`https://serene-journey-89429.herokuapp.com/users/${shopifyUser.shopifyEmail}`, {
                   id: shopifyUser.shopifyId,
                   name: shopifyUser.shopifyName,
                   email: shopifyUser.shopifyEmail,
