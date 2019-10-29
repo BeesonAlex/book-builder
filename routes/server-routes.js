@@ -25,7 +25,7 @@ router.get('/:email', getUser, async (req, res) => {
 
 // Create New User
 router.post('/', async (req, res) => {
-
+    console.log('received the request', req.body)
     const user = new User({
         id: req.body.id,
         name: req.body.name,
