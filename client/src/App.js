@@ -51,7 +51,12 @@ const shopifyUser = {
           })
           .catch(err => {
             this.setState({
-              loggedInUser: res.data,
+              loggedInUser: {
+                id: shopifyUser.shopifyId,
+                name: shopifyUser.shopifyName,
+                email: shopifyUser.shopifyEmail,
+                books: []
+              },
               isLoggedIn: true,
           }, ()=> {
             axios
