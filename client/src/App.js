@@ -53,7 +53,7 @@ saveUser = (user) => {
             books: user.books,
         })
         .then(res => {
-
+          console.log('successfully patched user')
         })
         .catch(err => {
           console.log(err);
@@ -70,7 +70,7 @@ saveUser = (user) => {
             books: user.books,
         })
         .then(res => {
-
+          console.log('successfully created user')
         })
         .catch(err => {
           console.log(err);

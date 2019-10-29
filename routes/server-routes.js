@@ -17,10 +17,19 @@ router.get('/', async (req, res) => {
 })
 
 // Get a Single User
-router.get('/:email', getUser, (req, res) => {
+router.get('/:email', (req, res) => {
 
-    res.status(200).send(res.user)
-})
+        try {
+        user = await User.findOne({email: `${req.params.email}`}, function(err, obj) { console.log(obj); });
+        if (user == null) {
+            return res.status(404).json({ message: 'User cannot be found' })
+        }
+    } catch (error) {
+        return res.status(500).json({ message: error.message })
+    }
+        res.user = user;
+        res.status(200).send(res.user)
+    })
 
 
 // Create New User
