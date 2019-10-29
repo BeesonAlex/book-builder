@@ -25,26 +25,38 @@ export class App extends Component {
 // Component Did Mount - Check whether Logged In or Guest
 componentDidMount() {
 
-const customerEmail = window.customerEmail;
-
+const shopifyUser = {
+  shopifyEmail: window.customerEmail,
+  shopifyName: window.customerName,
+  shopifyId: window.customerId
+}
+// If the user is logged in, get their book-builder details, then ensure their database record is consistent with Shopify
   if (window.customerEmail) {
       axios.get(`https://serene-journey-89429.herokuapp.com/users/${customerEmail}`)
           .then(res => {
-          this.setState({
-              loggedInUser: res.data,
-              isLoggedIn: true,
-          });
-      });
-  }
+            this.setState({
+                loggedInUser: res.data,
+                isLoggedIn: true,
+            }, () => {
+              axios
+                .patch(`https://serene-journey-89429.herokuapp.com/users/${user.email}`, {
+                  id: shopifyUser.shopifyId,
+                  name: shopifyUser.shopifyName,
+                  email: shopifyUser.shopifyEmail,
+                  numberOfBooks: this.state.loggedInUser.numberOfBooks,
+                  books: this.state.loggedInUser.books,
+              })
+            });
+          })
+        }
 };
 
 
 // Function for Saving User
 saveUser = (user) => {
-  console.log(user)
   // get user - if they don't exist create one, if they do - update the user
       if (window.customerEmail) {
-        console.log(user.email, 'user is logged in')
+        console.log(user.email, 'user exists')
         axios
           .patch(`https://serene-journey-89429.herokuapp.com/users/${user.email}`, {
             id: user.id,
@@ -54,7 +66,7 @@ saveUser = (user) => {
             books: user.books,
         })
         .then(res => {
-          console.log('successfully patched user')
+          console.log('successfully updated user')
         })
         .catch(err => {
           console.log(err);
@@ -74,11 +86,21 @@ saveUser = (user) => {
           .post(`https://serene-journey-89429.herokuapp.com/users/`, newUser)
           .then(res => {
             console.log('successfully created user')
+            axios
+              .post(`https://serene-journey-89429.herokuapp.com/shopify/storefront/customers`, {
+                name: newUser.name,
+                email: newUser.email,
+              })
+              .then(res => {
+
+              })
+              .catch(err => {
+                console.log(err)
+              })
           })
           .catch(err => {
             console.log(err);
           })
-
       }
 }
 
@@ -86,7 +108,6 @@ saveUser = (user) => {
 
 // Function for Saving State at the App Level
 updateAppState = (componentState) => {
-
   this.setState({
     ...componentState
   })
@@ -94,8 +115,6 @@ updateAppState = (componentState) => {
 
 
   render() {
-    console.log(window.customerId)
-    console.log(window.location.pathname)
     return (
     <div className="App">
     <Header appState={this.state} />

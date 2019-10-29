@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 const path = require('path');
+const axios = require('axios');
 
 const crypto = require('crypto');
 const cookie = require('cookie');
@@ -127,9 +128,20 @@ router.get('/', (req, res) => {
 
   // Storefront Routes
 
-//   router.get('/storefront/user', (req, res) => {
+  router.post('/storefront/customers', (req, res) => {
+    const fullName = req.body.name.split(' ')
 
-//   });
+
+    axios
+      .post('https://music-book.myshopify.com/admin/api/2019-10/customers.json', {
+        customer: {
+          first_name: fullName[0],
+          last_name: fullName[1],
+          email: req.body.email,
+          send_email_invite: true
+        }
+      })
+  });
 
 //   router.get('/storefront/product', (req, res) => {
 
