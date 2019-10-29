@@ -41,9 +41,10 @@ const customerEmail = window.customerEmail;
 
 // Function for Saving User
 saveUser = (user) => {
+  console.log(user)
   // get user - if they don't exist create one, if they do - update the user
       if (window.customerEmail) {
-
+        console.log(user.email, 'user is logged in')
         axios
           .patch(`https://serene-journey-89429.herokuapp.com/users/${user.email}`, {
             id: user.id,
@@ -60,7 +61,7 @@ saveUser = (user) => {
         })
 
       } else if (window.customerEmail == undefined) {
-
+        console.log(user.email, 'user does not exist')
         axios
           .post(`https://serene-journey-89429.herokuapp.com/users/`, {
             id: user.id,
