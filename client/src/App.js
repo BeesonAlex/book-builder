@@ -7,7 +7,7 @@ import TrackSearch from "./components/track-search/TrackSearch";
 import PageEditor from "./components/page-editor/PageEditor";
 import axios from 'axios';
 import './App.css';
-import { runInNewContext } from 'vm';
+
 
 export class App extends Component {
 
@@ -50,15 +50,6 @@ const shopifyUser = {
             });
           })
           .catch(err => {
-            this.setState({
-              loggedInUser: {
-                id: shopifyUser.shopifyId,
-                name: shopifyUser.shopifyName,
-                email: shopifyUser.shopifyEmail,
-                books: []
-              },
-              isLoggedIn: true,
-          }, ()=> {
             axios
               .post(`https://serene-journey-89429.herokuapp.com/users/`, {
                 id: shopifyUser.shopifyId,
@@ -67,6 +58,15 @@ const shopifyUser = {
                 numberOfBooks: '',
                 books: []
               })
+              
+            this.setState({
+              loggedInUser: {
+                id: shopifyUser.shopifyId,
+                name: shopifyUser.shopifyName,
+                email: shopifyUser.shopifyEmail,
+                books: []
+              },
+              isLoggedIn: true,
           })
           })
         }
