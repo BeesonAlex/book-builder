@@ -81,6 +81,7 @@ router.get('/', (req, res) => {
 
         request.post(accessTokenRequestUrl, { json: accessTokenPayload })
         .then((accessTokenResponse) => {
+          process.env.SHOPIFY_ACCESS_TOKEN = accessTokenResponse.access_token;
           const accessToken = accessTokenResponse.access_token;
 
         // Use access token to make API call to 'shop' endpoint
@@ -127,6 +128,9 @@ router.get('/', (req, res) => {
 
 
   // Storefront Routes
+  const shopRequestHeaders = {
+    'X-Shopify-Access-Token': process.env.SHOPIFY_ACCESS_TOKEN,
+  };
 
   router.post('/storefront/customers', (req, res) => {
     const fullName = req.body.name.split(' ')
@@ -140,7 +144,8 @@ router.get('/', (req, res) => {
           email: req.body.email,
           send_email_invite: true
         }
-      })
+      }, { headers: shopRequestHeaders }
+      )
   });
 
 //   router.get('/storefront/product', (req, res) => {
