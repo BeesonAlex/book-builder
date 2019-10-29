@@ -62,20 +62,22 @@ saveUser = (user) => {
 
       } else if (window.customerEmail == undefined) {
         console.log(user.email, 'user does not exist')
+        const newUser = {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          numberOfBooks: user.numberOfBooks,
+          books: user.books,
+        }
+
         axios
-          .post(`https://serene-journey-89429.herokuapp.com/users/`, {
-            id: user.id,
-            name: user.name,
-            email: user.email,
-            numberOfBooks: user.numberOfBooks,
-            books: user.books,
-        })
-        .then(res => {
-          console.log('successfully created user')
-        })
-        .catch(err => {
-          console.log(err);
-        })
+          .post(`https://serene-journey-89429.herokuapp.com/users/`, newUser)
+          .then(res => {
+            console.log('successfully created user')
+          })
+          .catch(err => {
+            console.log(err);
+          })
 
       }
 }
