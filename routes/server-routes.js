@@ -26,21 +26,21 @@ router.get('/:email', getUser, async (req, res) => {
 // Create New User
 router.post('/', async (req, res) => {
     console.log('received the request', req.body)
-    const user = new User({
+    const newUser = new User({
         id: req.body.id,
         name: req.body.name,
         email: req.body.email,
         numberOfBooks: req.body.numberOfBooks,
         books: req.body.books,
     })
-    try {
-        const newUser = await user.save()
-        res.status(201).json(newUser)
-    } catch (error) {
-        res.status(400).json({ message: error.message })
+        
+    await newUser
+        .save()
+        .then(user => res.status(201).json(user))
+        .catch (error => console.log(error))
     }
 
-})
+)
 
 
 // Update User
