@@ -156,6 +156,7 @@ router.get('/', (req, res) => {
       .catch(err => {
         console.log(err)
       })
+      res.token = activeAccessToken
       next()
     }    
 
@@ -163,7 +164,7 @@ router.get('/', (req, res) => {
   router.post('/storefront/customers', fetchActiveToken, async (req, res) => {
     
     const shopRequestHeaders = {
-      'X-Shopify-Access-Token': activeAccessToken,
+      'X-Shopify-Access-Token': res.token,
     };
     console.log(shopRequestHeaders)
 
