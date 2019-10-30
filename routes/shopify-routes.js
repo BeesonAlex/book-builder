@@ -83,7 +83,7 @@ router.get('/', (req, res) => {
         request.post(accessTokenRequestUrl, { json: accessTokenPayload })
         .then((accessTokenResponse) => {
           const accessToken = accessTokenResponse.access_token;
-          shopifyAccessToken = accessTokenResponse.access_token;
+          shopifyAccessToken = accessToken;
 
         // Use access token to make API call to 'shop' endpoint
         
