@@ -140,16 +140,18 @@ router.get('/', (req, res) => {
 
   // Storefront Routes
   router.get('/token', (req, res) => {
-    shop = Shop.findOne({shopName: `music-book.myshopify.com`}, function(err, obj) { console.log(obj); });
+    shop = Shop.findOne({shopName: `music-book.myshopify.com`}, function(err, obj) { console.log('returned token from api',obj); });
     res.status(200).send(shop.shopAccessToken)
   })
 
     // Middleware to fetch the storefront's permanent token
   async function fetchActiveToken(req, res, next) {
-      const activeAccessToken = await axios
+      const activeAccessToken = '';
+      await axios
       .get('https://serene-journey-89429.herokuapp.com/shopify/token')
       .then(response => {
-        res.activeAccessToken = activeAccessToken.data.shopAccessToken
+        console.log(response.data)
+        activeAccessToken = response.data;
       })
       .catch(err => {
         console.log(err)
@@ -161,7 +163,7 @@ router.get('/', (req, res) => {
   router.post('/storefront/customers', fetchActiveToken, async (req, res) => {
     
     const shopRequestHeaders = {
-      'X-Shopify-Access-Token': await res.activeAccessToken,
+      'X-Shopify-Access-Token': activeAccessToken,
     };
 
     const fullName = req.body.name.split(' ')
