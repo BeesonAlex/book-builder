@@ -140,7 +140,7 @@ router.get('/', (req, res) => {
 
   // Storefront Routes
   router.get('/token', (req, res) => {
-    shop = Shop.findOne({shopName: `https://music-book.myshopify.com`}, function(err, obj) { console.log(obj); });
+    shop = Shop.findOne({shopName: `music-book.myshopify.com`}, function(err, obj) { console.log(obj); });
     res.shop = shop
     res.status(200).send(res.shop)
   })
@@ -182,7 +182,7 @@ router.get('/', (req, res) => {
       .catch(err => { console.log(err) })
   });
 
-  
+
 //   router.get('/storefront/product', (req, res) => {
 
 //   });
