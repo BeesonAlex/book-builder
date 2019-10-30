@@ -13,7 +13,6 @@ const apiKey = process.env.SHOPIFY_API_KEY;
 const apiSecret = process.env.SHOPIFY_SECRET_KEY;
 const scopes = process.env.SHOPIFY_SCOPES;
 const forwardingAddress = process.env.FORWARDING_ADDRESS;
-const shopifyAccessToken = '';
 
 
 // Create OAuth
@@ -83,7 +82,6 @@ router.get('/', (req, res) => {
         request.post(accessTokenRequestUrl, { json: accessTokenPayload })
         .then((accessTokenResponse) => {
           const accessToken = accessTokenResponse.access_token;
-          shopifyAccessToken = accessToken;
 
         // Use access token to make API call to 'shop' endpoint
         
@@ -129,9 +127,6 @@ router.get('/', (req, res) => {
 
 
   // Storefront Routes
-  const storefrontRequestHeaders = {
-    'X-Shopify-Access-Token': shopifyAccessToken,
-  };
 
   router.post('/storefront/customers', (req, res) => {
     const fullName = req.body.name.split(' ')
@@ -145,7 +140,7 @@ router.get('/', (req, res) => {
           email: req.body.email,
           send_email_invite: true
         }
-      }, { headers: storefrontRequestHeaders }
+      }
       )
   });
 
