@@ -2,6 +2,7 @@ const { Router } = require('express');
 const router = Router();
 const path = require('path');
 const axios = require('axios');
+const Shop = require('../models/shop');
 
 const crypto = require('crypto');
 const cookie = require('cookie');
@@ -83,6 +84,17 @@ router.get('/', (req, res) => {
         .then((accessTokenResponse) => {
           const accessToken = accessTokenResponse.access_token;
 
+          const newShop = new Shop({
+            shopName: shop,
+            shopAccessToken: accessToken,
+            isActive: true,
+        })
+
+        newShop
+          .save()
+          .then(shop => { console.log('saved the shop') })
+          .catch(err => { console.log(err)})
+
         // Use access token to make API call to 'shop' endpoint
         
         const shopRequestUrl = 'https://' + shop + '/admin/api/2019-10/shop.json';
@@ -127,11 +139,35 @@ router.get('/', (req, res) => {
 
 
   // Storefront Routes
+  router.get('/token', (req, res) => {
+    shop = Shop.findOne({shopName: `https://music-book.myshopify.com`}, function(err, obj) { console.log(obj); });
+    res.shop = shop
+    res.status(200).send(res.shop)
+  })
+
+  fetchActiveToken = () => {
+    const activeAccessToken = ''
+    
+    axios
+      .get('https://serene-journey-89429.herokuapp.com/shopify/token')
+      .then(res => {
+        activeAccessToken = res.data.shopAccessToken;
+        return activeAccessToken
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+
+
+  
 
   router.post('/storefront/customers', (req, res) => {
+    const shopRequestHeaders = {
+      'X-Shopify-Access-Token': fetchActiveToken(),
+    };
     const fullName = req.body.name.split(' ')
-
-
     axios
       .post('https://music-book.myshopify.com/admin/api/2019-10/customers.json', {
         customer: {
@@ -140,10 +176,13 @@ router.get('/', (req, res) => {
           email: req.body.email,
           send_email_invite: true
         }
-      }
+      }, { headers: shopRequestHeaders }
       )
+      .then(res => { console.log('successfully created customer in Shopify')})
+      .catch(err => { console.log(err) })
   });
 
+  
 //   router.get('/storefront/product', (req, res) => {
 
 //   });
