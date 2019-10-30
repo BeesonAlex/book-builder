@@ -82,7 +82,6 @@ router.get('/', (req, res) => {
 
         request.post(accessTokenRequestUrl, { json: accessTokenPayload })
         .then((accessTokenResponse) => {
-          process.env.SHOPIFY_ACCESS_TOKEN = accessTokenResponse.access_token;
           const accessToken = accessTokenResponse.access_token;
           shopifyAccessToken = accessTokenResponse.access_token;
 
@@ -130,7 +129,7 @@ router.get('/', (req, res) => {
 
 
   // Storefront Routes
-  const shopRequestHeaders = {
+  const storefrontRequestHeaders = {
     'X-Shopify-Access-Token': shopifyAccessToken,
   };
 
@@ -146,7 +145,7 @@ router.get('/', (req, res) => {
           email: req.body.email,
           send_email_invite: true
         }
-      }, { headers: shopRequestHeaders }
+      }, { headers: storefrontRequestHeaders }
       )
   });
 
