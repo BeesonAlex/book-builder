@@ -13,7 +13,7 @@ const apiKey = process.env.SHOPIFY_API_KEY;
 const apiSecret = process.env.SHOPIFY_SECRET_KEY;
 const scopes = process.env.SHOPIFY_SCOPES;
 const forwardingAddress = process.env.FORWARDING_ADDRESS;
-const shopifyAccessToken = ''
+const shopifyAccessToken = '';
 
 
 // Create OAuth
