@@ -146,16 +146,22 @@ router.get('/', (req, res) => {
 
     // Middleware to fetch the storefront's permanent token
   async function fetchActiveToken(req, res, next) {
-      const activeAccessToken = await axios.get('https://serene-journey-89429.herokuapp.com/shopify/token')
+      const activeAccessToken = await axios
+      .get('https://serene-journey-89429.herokuapp.com/shopify/token')
+      .then(response => {
         res.activeAccessToken = activeAccessToken.data.shopAccessToken
-        next()
+      })
+      .catch(err => {
+        console.log(err)
+      })
+      next()
     }    
 
 
   router.post('/storefront/customers', fetchActiveToken, async (req, res) => {
     
     const shopRequestHeaders = {
-      'X-Shopify-Access-Token': res.activeAccessToken,
+      'X-Shopify-Access-Token': await res.activeAccessToken,
     };
 
     const fullName = req.body.name.split(' ')
