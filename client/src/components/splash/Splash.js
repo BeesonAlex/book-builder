@@ -77,19 +77,27 @@ export class Splash extends Component {
             <div className="splash">
                 <div className="splash__content-header">
                     <h1 className="splash__title">Welcome to the Book Editor!</h1>
+                    {
+                        this.state.isLoggedIn ? 
+                    <form className="splash__form" onSubmit={this.onSubmitHandler}>
+                        <input className="splash__form--email splash__form" type="text" name="book__title" placeholder="Enter a Title"></input>
+                        <button className="splash__form--button submit-button" type="submit">Create New Book</button>
+                    </form>
+                    :
                     <form className="splash__form" onSubmit={this.onSubmitHandler}>
                         <input className="splash__form--email splash__form" type="text" name="email__address" placeholder="Enter an e-Mail"></input>
                         <input className="splash__form--email splash__form" type="text" name="name" placeholder="Enter Your Name"></input>
                         <input className="splash__form--email splash__form" type="text" name="book__title" placeholder="Enter a Title"></input>
-                        <button className="splash__form--button submit-button" type="submit">Create New Book</button>
+                        <button className="splash__form--button submit-button" type="submit">Create Your First Book</button>
                     </form>
+                    }
                 </div>
                 <div className="splash__user-books-wrapper">
                     {
-                        this.state.loggedInUser.books > 0 ?  
+                        this.state.isLoggedIn ?  
                         this.state.loggedInUser.books.map(book => {
                             return <BookPreview key={book.id} id={book.id} title={book.title} pages={book.pages} numPages={book.pages.length} />
-                        }) : 'Log in to see your Saved Books!'
+                        }) : 'No saved books!'
                         }
                 </div>
             </div>

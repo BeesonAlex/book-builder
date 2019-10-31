@@ -39,9 +39,7 @@ router.post('/', async (req, res) => {
         .then(user => res.status(201).json(user))
         .catch (error => console.log(error))
     }
-
 )
-
 
 // Update User
 router.patch('/:email', getUser, async (req, res) => {
@@ -55,8 +53,8 @@ router.patch('/:email', getUser, async (req, res) => {
     if (req.body.email != '') {
         res.user.email = req.body.email
     }
-    if (req.body.books.length != res.user.numberOfBooks) {
-        req.body.books.length = res.user.numberOfBooks
+    if (req.body.numberOfBooks != res.user.numberOfBooks) {
+        res.user.numberOfBooks = req.body.numberOfBooks
     }
     if (JSON.stringify(req.body.books) != JSON.stringify(res.user.books)) {
         res.user.books = req.body.books
@@ -68,9 +66,7 @@ router.patch('/:email', getUser, async (req, res) => {
     } catch (error) {
         res.status(400).json({ message: error.message })
     }
-
 })
-
 
 // Delete User
 router.delete('/:email', getUser, async (req, res) => {
@@ -98,7 +94,6 @@ async function getUser(req, res, next) {
         res.user = user
         next()
     }    
-
 
 
 module.exports = router;

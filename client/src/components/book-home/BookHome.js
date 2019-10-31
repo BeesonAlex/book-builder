@@ -59,7 +59,7 @@ export class BookHome extends Component {
                 name: this.state.loggedInUser.name,
                 email: this.state.loggedInUser.email,
                 books: userBooks,
-        }
+            }
     }, () => {
         this.props.saveUser(this.state.loggedInUser)
     });
