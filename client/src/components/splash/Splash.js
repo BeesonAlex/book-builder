@@ -49,7 +49,7 @@ export class Splash extends Component {
             this.setState({
                 loggedInUser: {
                 id: uuidv1(),
-                name: 'Guest',
+                name: event.target.name.value,
                 email: event.target.email__address.value,
                 books: [],
                 },
@@ -79,6 +79,7 @@ export class Splash extends Component {
                     <h1 className="splash__title">Welcome to the Book Editor!</h1>
                     <form className="splash__form" onSubmit={this.onSubmitHandler}>
                         <input className="splash__form--email splash__form" type="text" name="email__address" placeholder="Enter an e-Mail"></input>
+                        <input className="splash__form--email splash__form" type="text" name="name" placeholder="Enter Your Name"></input>
                         <input className="splash__form--email splash__form" type="text" name="book__title" placeholder="Enter a Title"></input>
                         <button className="splash__form--button submit-button" type="submit">Create New Book</button>
                     </form>
