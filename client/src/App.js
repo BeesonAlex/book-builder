@@ -59,17 +59,18 @@ const shopifyUser = {
                 numberOfBooks: '',
                 books: []
               })
-
-            this.setState({
-              loggedInUser: {
-                id: shopifyUser.shopifyId,
-                name: shopifyUser.shopifyName,
-                email: shopifyUser.shopifyEmail,
-                books: []
-              },
-              isLoggedIn: true,
-          })
-          console.log(this.state)
+              .then(res => {
+                this.setState({
+                  loggedInUser: {
+                    id: shopifyUser.shopifyId,
+                    name: shopifyUser.shopifyName,
+                    email: shopifyUser.shopifyEmail,
+                    books: []
+                  },
+                  isLoggedIn: true,
+                })
+                console.log(this.state)
+              })
           })
         }
 };
@@ -78,7 +79,7 @@ const shopifyUser = {
 // Function for Saving User
 saveUser = (user) => {
   // get user - if they don't exist create one, if they do - update the user
-      if (window.customerEmail) {
+      if (this.state.isLoggedIn === true) {
         console.log(user.email, 'user exists')
         axios
           .patch(`https://serene-journey-89429.herokuapp.com/users/${user.email}`, {
@@ -95,7 +96,7 @@ saveUser = (user) => {
           console.log(err);
         })
 
-      } else if (window.customerEmail === undefined) {
+      } else if (this.state.isLoggedIn === false) {
         console.log(user.email, 'user does not exist')
         const newUser = {
           id: user.id,
