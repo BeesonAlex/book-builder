@@ -20,7 +20,8 @@ export class App extends Component {
         books: [],
     },
     activeBook: {},
-    activePage: {}
+    activePage: {},
+    isLoading: true,
 }
 
 // Component Did Mount - Check whether Logged In or Guest
@@ -39,6 +40,7 @@ console.log(shopifyUser)
             this.setState({
                 loggedInUser: res.data,
                 isLoggedIn: true,
+                isLoading: false
             }, () => {
               axios
                 .patch(`https://serene-journey-89429.herokuapp.com/users/${shopifyUser.shopifyEmail}`, {
@@ -69,6 +71,7 @@ console.log(shopifyUser)
                     books: []
                   },
                   isLoggedIn: true,
+                  isLoading: false,
                 })
                 console.log(this.state)
               })
@@ -140,6 +143,9 @@ updateAppState = (componentState) => {
 
 
   render() {
+    if (this.state.isLoading) {
+      return '...loading'
+    } else {
     return (
     <div className="App">
     <Header appState={this.state} />
@@ -153,6 +159,7 @@ updateAppState = (componentState) => {
     </BrowserRouter>
     </div>
     )
+    }
   }
 }
 

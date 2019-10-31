@@ -6,14 +6,12 @@ export class Splash extends Component {
 
     state = {
         ...this.props.appState,
-        isLoading: true
     }
 
     componentDidMount() {
 
         this.setState({
             ...this.props.appState,
-            isLoading: false
         })
     }
 
@@ -75,10 +73,6 @@ export class Splash extends Component {
     render() {
         console.log(this.state)
 
-        if (this.state.isLoading) {
-            return '... Loading'
-        } else {
-
         return (
             <div className="splash">
                 <div className="splash__content-header">
@@ -108,7 +102,6 @@ export class Splash extends Component {
                 </div>
             </div>
         )
-        }
     }
 }
 
