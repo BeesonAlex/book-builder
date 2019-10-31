@@ -31,6 +31,7 @@ const shopifyUser = {
   shopifyName: window.customerName,
   shopifyId: window.customerId
 }
+console.log(shopifyUser)
 // If the user is logged in, get their book-builder details, then ensure their database record is consistent with Shopify
   if (window.customerEmail) {
       axios.get(`https://serene-journey-89429.herokuapp.com/users/${shopifyUser.shopifyEmail}`)
