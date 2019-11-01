@@ -75,7 +75,7 @@ export class Splash extends Component {
             activeBook: targetBook,
         }, () => {
             this.props.history.push({
-                pathname: `${this.state.loggedInUser.id}/book/${this.state.activeBook.id}`,
+                pathname: `${this.state.loggedInUser.id}/book/${id}`,
             })
         });
     }

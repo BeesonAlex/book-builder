@@ -71,7 +71,7 @@ export class BookHome extends Component {
             activePage: targetPage,
         }, () => {
             this.props.history.push({
-                pathname: `${this.state.loggedInUser.id}/book/${this.state.activeBook.id}/page/${this.state.activePage.id}/editor`,
+                pathname: `${this.state.loggedInUser.id}/book/${this.state.activeBook.id}/page/${id}/editor`,
             })
         });
     }
