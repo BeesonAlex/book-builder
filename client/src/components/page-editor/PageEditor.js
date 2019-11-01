@@ -71,7 +71,9 @@ onSubmitHandler = event => {
             trackDetails: {},
             isSearched: false,
             searchedTrack:'',
-            returnedTracks: []
+            returnedTracks: [],
+            name: '',
+            artist: ''
         }, () => {
 
             this.props.updateAppState(this.state)
