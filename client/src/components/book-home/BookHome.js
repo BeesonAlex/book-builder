@@ -66,9 +66,7 @@ export class BookHome extends Component {
     }
 
     onPagePreviewClick = (id) => {
-        const targetPage = this.activeBook.pages.find(page => {
-            page.id == id
-        })
+        const targetPage = this.activeBook.pages.find(page => page.id == id)
         this.setState({
             activePage: targetPage,
         }, () => {

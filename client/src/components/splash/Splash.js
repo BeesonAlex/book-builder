@@ -70,9 +70,7 @@ export class Splash extends Component {
     };
 
     onBookPreviewClick = (id) => {
-        const targetBook = this.state.loggedInUser.books.find(book => {
-            book.id == id
-        })
+        const targetBook = this.state.loggedInUser.books.find(book => book.id == id)
         this.setState({
             activeBook: targetBook,
         }, () => {
