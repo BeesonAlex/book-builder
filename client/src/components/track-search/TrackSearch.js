@@ -53,7 +53,7 @@ export class TrackSearch extends Component {
                 {   this.state.returnedTracks ?
                     this.state.returnedTracks.map(track => {
                         return (
-                            <TrackListItem state={this.state} key={track.listeners} artist={track.artist} name={track.name} clickHandler={this.onClickHandler}/>
+                            <TrackListItem state={this.state} key={track.listeners} artist={track.artist} name={track.name} />
                     )})
                 : 'Search for a track to Continue'
                 }

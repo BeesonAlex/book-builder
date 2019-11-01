@@ -4,20 +4,20 @@ import { Link } from 'react-router-dom';
 export class TrackListItem extends Component {
 
     state = {
-        artist: this.props.artist,
         name: this.props.name,
-        ...this.props.appState
+        artist: this.props.artist,
+        ...this.props.state
     }
 
     componentDidMount() {
 
         this.setState({
-            ...this.props.appState
+            ...this.props.state
         })
     }
 
     render() {
-
+        console.log(this.state)
         if (!this.props.state.loggedInUser) {
             return '... Loading'
         } else {
