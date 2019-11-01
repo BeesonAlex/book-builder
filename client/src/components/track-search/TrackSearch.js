@@ -46,6 +46,17 @@ export class TrackSearch extends Component {
             });
     };
 
+    onTrackListItemClick = (name, artist) => {
+        this.setState({
+            name,
+            artist
+        }, () => {
+            this.props.history.push({
+                pathname: `${this.state.loggedInUser.id}/book/${this.state.activeBook.id}/page/${id}/editor`,
+            })
+        });
+    }
+
 
     render() {
         console.log(this.state)
@@ -62,7 +73,7 @@ export class TrackSearch extends Component {
                 {   this.state.returnedTracks ?
                     this.state.returnedTracks.map(track => {
                         return (
-                            <TrackListItem state={this.state} key={track.listeners} artist={track.artist} name={track.name} />
+                            <TrackListItem key={track.listeners} onTrackListItemClick={this.onTrackListItemClick} artist={track.artist} name={track.name} />
                     )})
                 : 'Search for a track to Continue'
                 }
