@@ -11,7 +11,6 @@ export class PageEditor extends Component {
     
     componentDidMount() {
         this.setState({
-            ...this.props.location.state,
             isLoading: true
         })
 
