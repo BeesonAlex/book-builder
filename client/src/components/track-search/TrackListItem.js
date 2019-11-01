@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export class TrackListItem extends Component {
 
     render() {
-        if (!this.props.state.returnedTracks) {
+        if (!this.props.name) {
             return '... Loading'
         } else {
 
