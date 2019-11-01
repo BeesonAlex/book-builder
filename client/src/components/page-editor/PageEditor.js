@@ -15,7 +15,7 @@ export class PageEditor extends Component {
             trackLoading: true
         })
 
-    const { artist, name } = this.props.location.state
+    const { artist, name } = this.state
 
     axios.get(`https://serene-journey-89429.herokuapp.com/data/track/${artist}/${name}`)
     .then(res => {
