@@ -7,7 +7,7 @@ export class BookPreview extends Component {
             <div className="bookpreview__wrapper" onclick={this.onClickHandler}>
                 <h3 className="bookpreview__title">{this.props.title}</h3>
                 <p className="bookpreview__pages">{this.props.numPage}</p>
-                <button className="bookpreview__edit-button" id={this.props.id} onClick={this.props.onBookPreviewClick(this.id)}>Edit</button>
+                <button className="bookpreview__edit-button" id={this.props.id} onClick={() => this.props.onBookPreviewClick(this.id)}>Edit</button>
             </div>
         )
     }
