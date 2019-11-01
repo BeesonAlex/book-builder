@@ -69,6 +69,19 @@ export class Splash extends Component {
         }
     };
 
+    onBookPreviewClick = (id) => {
+        const targetBook = this.state.loggedInUser.books.find(book => {
+            book.id == id
+        })
+        this.setState({
+            activeBook = targetBook,
+        }, () => {
+            this.props.history.push({
+                pathname: `${this.state.loggedInUser.id}/book/${this.state.activeBook.id}`,
+            })
+        });
+    }
+
 
     render() {
         console.log(this.state)
@@ -96,7 +109,7 @@ export class Splash extends Component {
                     {
                         this.state.isLoggedIn ?  
                         this.state.loggedInUser.books.map(book => {
-                            return <BookPreview key={book.id} id={book.id} title={book.title} pages={book.pages} numPages={book.pages.length} />
+                            return <BookPreview key={book.id} id={book.id} title={book.title} pages={book.pages} onBookPreviewClick={this.onBookPreviewClick} numPages={book.pages.length} />
                         }) : 'No saved books!'
                         }
                 </div>

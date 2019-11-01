@@ -65,6 +65,19 @@ export class BookHome extends Component {
     });
     }
 
+    onPagePreviewClick = (id) => {
+        const targetPage = this.activeBook.pages.find(page => {
+            page.id == id
+        })
+        this.setState({
+            activePage = targetPage,
+        }, () => {
+            this.props.history.push({
+                pathname: `${this.state.loggedInUser.id}/book/${this.state.activeBook.id}/page/${this.state.activePage.id}/editor`,
+            })
+        });
+    }
+
 
     render() {
         console.log(this.state)
@@ -79,7 +92,7 @@ export class BookHome extends Component {
                 <div className="bookhome__pages-wrapper">
                 { this.state.activeBook.pages ?
                     this.state.activeBook.pages.map(page => {
-                                return <PagePreview key={page.id} track={page.track} pageNumber={page.pageNumber} albumArt={page.albumArt} artist={page.artist} thoughts={page.thoughts} pageContentUrl={page.pageContentUrl} />
+                                return <PagePreview onPagePreviewClick={this.onPagePreviewClick} key={page.id} id={page.id} track={page.track} pageNumber={page.pageNumber} albumArt={page.albumArt} artist={page.artist} thoughts={page.thoughts} pageContentUrl={page.pageContentUrl} />
                             })
                             : ''
                             }

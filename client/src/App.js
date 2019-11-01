@@ -76,6 +76,10 @@ console.log(shopifyUser)
                 console.log(this.state)
               })
           })
+        } else {
+          this.setState({
+            isLoading: false,
+          })
         }
 };
 
