@@ -52,7 +52,7 @@ export class TrackSearch extends Component {
             artist
         }, () => {
             this.props.history.push({
-                pathname: `/${this.state.loggedInUser.id}/book/${this.state.activeBook.id}/page/${this.state.activePage.id}/editor`,
+                pathname: `/tools/${this.state.loggedInUser.id}/book/${this.state.activeBook.id}/page/${this.state.activePage.id}/editor`,
             })
         });
     }
