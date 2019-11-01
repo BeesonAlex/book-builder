@@ -51,6 +51,7 @@ export class TrackSearch extends Component {
             name,
             artist
         }, () => {
+            this.props.updateAppState(this.state)
             this.props.history.push({
                 pathname: `/tools/${this.state.loggedInUser.id}/book/${this.state.activeBook.id}/page/${this.state.activePage.id}/editor`,
             })
