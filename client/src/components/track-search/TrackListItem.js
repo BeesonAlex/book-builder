@@ -11,6 +11,8 @@ export class TrackListItem extends Component {
 
     componentDidMount() {
         this.setState({
+            name: this.props.name,
+            artist: this.props.artist,
             ...this.props.state
         })
     }
