@@ -42,7 +42,7 @@ export class TrackSearch extends Component {
                     isSearched: true,
                     searchedTrack: id,
                     returnedTracks: res.data,
-              });
+                });
             });
     };
 

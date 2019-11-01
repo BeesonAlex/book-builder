@@ -66,7 +66,12 @@ onSubmitHandler = event => {
                 contentUrl: this.state.activeBook.contentUrl,
                 coverUrl: this.state.activeBook.coverUrl,
                 pages: activePages,
-            }
+            },
+            trackLoading: true,
+            trackDetails: {},
+            isSearched: false,
+            searchedTrack:'',
+            returnedTracks: []
         }, () => {
 
             this.props.updateAppState(this.state)
