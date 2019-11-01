@@ -74,6 +74,7 @@ export class Splash extends Component {
         this.setState({
             activeBook: targetBook,
         }, () => {
+            this.props.updateAppState(this.state)
             this.props.history.push({
                 pathname: `${this.state.loggedInUser.id}/book/${id}`,
             })
