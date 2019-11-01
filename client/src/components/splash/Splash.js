@@ -71,6 +71,7 @@ export class Splash extends Component {
 
     onBookPreviewClick = (id) => {
         const targetBook = this.state.loggedInUser.books.find(book => book.id === id)
+        console.log(targetBook)
         this.setState({
             activeBook: targetBook,
         }, () => {
