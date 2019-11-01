@@ -75,6 +75,9 @@ console.log(shopifyUser)
                 })
                 console.log(this.state)
               })
+              .catch(err => {
+                console.log(err)
+              })
           })
         } else {
           this.setState({

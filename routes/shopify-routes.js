@@ -165,7 +165,7 @@ router.get('/', (req, res) => {
       }, { headers: shopRequestHeaders }
       )
       .then(res => { res.status(200).send('successfully created customer in Shopify')})
-      .catch(err => { res.status(err.status).send(err) })
+      .catch(err => { console.log(err) })
 
   });
 
