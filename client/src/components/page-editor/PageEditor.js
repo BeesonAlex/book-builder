@@ -6,12 +6,12 @@ export class PageEditor extends Component {
     state = {
     isLoading: true,
     trackDetails: {},
-    ...this.props.appState
+    ...this.props.location.state
     }    
     
     componentDidMount() {
         this.setState({
-            ...this.props.appState
+            ...this.props.location.state
         })
 
     const { artist, name } = this.props.location.state
