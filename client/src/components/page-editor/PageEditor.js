@@ -76,6 +76,7 @@ onSubmitHandler = event => {
 
 
     render() {
+        console.log(this.state)
         if (this.state.isLoading) {
             return <p>loading...</p>
         } else {

@@ -17,8 +17,7 @@ export class TrackListItem extends Component {
     }
 
     render() {
-        console.log(this.state)
-        if (!this.props.state.loggedInUser) {
+        if (!this.props.state.returnedTracks) {
             return '... Loading'
         } else {
 
