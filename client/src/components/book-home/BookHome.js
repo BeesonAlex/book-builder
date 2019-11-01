@@ -70,7 +70,7 @@ export class BookHome extends Component {
             page.id == id
         })
         this.setState({
-            activePage = targetPage,
+            activePage: targetPage,
         }, () => {
             this.props.history.push({
                 pathname: `${this.state.loggedInUser.id}/book/${this.state.activeBook.id}/page/${this.state.activePage.id}/editor`,
