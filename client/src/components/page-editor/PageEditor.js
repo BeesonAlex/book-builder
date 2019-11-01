@@ -12,10 +12,12 @@ export class PageEditor extends Component {
     componentDidMount() {
         this.setState({
             ...this.props.location.state,
-            trackLoading: true
+            trackLoading: true,
+            artist: this.props.location.state.artist,
+            name: this.props.location.state.name
         })
 
-    const { artist, name } = this.state
+    const { artist, name } = this.props.location.state
 
     axios.get(`https://serene-journey-89429.herokuapp.com/data/track/${artist}/${name}`)
     .then(res => {
