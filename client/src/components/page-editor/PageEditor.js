@@ -4,14 +4,15 @@ import axios from 'axios';
 export class PageEditor extends Component {
 
     state = {
-    isLoading: true,
+    trackLoading: true,
     trackDetails: {},
     ...this.props.location.state
     }    
     
     componentDidMount() {
         this.setState({
-            isLoading: true
+            ...this.props.location.state,
+            trackLoading: true
         })
 
     const { artist, name } = this.props.location.state
@@ -20,10 +21,12 @@ export class PageEditor extends Component {
     .then(res => {
         this.setState({
             trackDetails: res.data,
-            isLoading: false,
+            trackLoading: false,
         });
-    });
-
+    })
+    .catch(err => {
+        console.log(err)
+    })
 }
 
 
@@ -76,7 +79,7 @@ onSubmitHandler = event => {
 
     render() {
         console.log(this.state)
-        if (this.state.isLoading) {
+        if (this.state.trackLoading) {
             return <p>loading...</p>
         } else {
 
