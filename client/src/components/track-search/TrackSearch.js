@@ -22,6 +22,15 @@ export class TrackSearch extends Component {
         })
     }
 
+    componentWillUnmount() {
+
+        this.setState({
+            isSearched: false,
+            searchedTrack:'',
+            returnedTracks: [],
+        })
+    }
+
     onSubmitHandler = event => {
         event.preventDefault();
         const id = event.target.search__criteria.value
