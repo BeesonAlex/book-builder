@@ -11,7 +11,8 @@ export class PageEditor extends Component {
     
     componentDidMount() {
         this.setState({
-            ...this.props.location.state
+            ...this.props.location.state,
+            isLoading: true
         })
 
     const { artist, name } = this.props.location.state
