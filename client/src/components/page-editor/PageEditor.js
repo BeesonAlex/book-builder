@@ -8,7 +8,7 @@ export class PageEditor extends Component {
     trackDetails: {},
     ...this.props.appState
     }    
-    
+
     componentDidMount() {
         this.setState({
             ...this.props.appState,
@@ -17,14 +17,14 @@ export class PageEditor extends Component {
 
         const artist = this.props.appState.artist || this.state.activePage.artist
         const name = this.props.appState.name || this.state.activePage.track
-        console.log(artist)
-        console.log(name)
 
     axios.get(`https://serene-journey-89429.herokuapp.com/data/track/${artist}/${name}`)
     .then(res => {
         this.setState({
             trackDetails: res.data,
             trackLoading: false,
+        }, () => {
+            Object.values(this.state.trackDetails.album.image[3])[0].replace('300x300', '1200x1200')
         });
     })
     .catch(err => {
@@ -111,7 +111,7 @@ onSubmitHandler = event => {
                     <div className="pageditor__text-wrapper">
                         <h1 className="pageeditor__song-title">{this.state.trackDetails.name}</h1>
                         <h2 className="pageeditor__artist-title">{this.state.trackDetails.artist.name}</h2>
-                        <input className="pageeditor__thoughts" type="text" name="thoughts" placeholder="Write your thoughts..."></input>
+                        <input className="pageeditor__thoughts" type="text" name="thoughts" placeholder="Write your thoughts...">{this.state.activePage.thoughts || ''}</input>
                     </div>
                     <button type="submit">Save and Close</button>
                     </form>
