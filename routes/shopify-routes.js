@@ -173,15 +173,15 @@ router.get('/', (req, res) => {
 // AJAX API call to create a new cart with the custom book
 router.post('/cart', fetchActiveToken, async (req, res) => {
 
-  determineVariantId = () => {
-    if ((req.pages.length > 0) && (req.pages.length <= 10)) {
-      return x
-    } else if ((req.pages.length > 11) && (req.pages.length <= 50)) {
-      return y
-    }
-  }
+  // determineVariantId = () => {
+  //   if ((req.pages.length > 0) && (req.pages.length <= 10)) {
+  //     return x
+  //   } else if ((req.pages.length > 11) && (req.pages.length <= 50)) {
+  //     return y
+  //   }
+  // }
 
-  const variantId = determineVariantId()
+  const variantId = 31160253481057;
   
   const shopRequestHeaders = {
     'X-Shopify-Access-Token': res.token,
