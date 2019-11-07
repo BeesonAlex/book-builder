@@ -4,6 +4,7 @@ const axios = require('axios');
 
 const apiKey = process.env.PDF_API_KEY;
 const apiSecret = process.env.PDF_SECRET_KEY;
+const workspace = process.env.PDF_WORKSPACE;
 
 const pageTemplate = 58821;
 
@@ -13,7 +14,7 @@ router.post('/', async (req, res) => {
     const pdfRequestHeaders = {
       'X-Auth-Key': apiKey,
       'X-Auth-Secret': apiSecret,
-      'X-Auth-Workspace': 'beeson.alexander@gmail.com',
+      'X-Auth-Workspace': workspace,
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     };
