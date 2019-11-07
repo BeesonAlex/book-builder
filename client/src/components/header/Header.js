@@ -50,7 +50,13 @@ export class Header extends Component {
                     this.props.saveUser(this.state.loggedInUser)
 
                     axios
-                        .post(`https://serene-journey-89429.herokuapp.com/cart/`, this.state.activeBook)
+                        .post(`/cart/add.js`, {
+                            quantity: 1,
+                            id: 31160253481057,
+                            properties: {
+                              ...this.state.activeBook
+                            }
+                        })
                         .then(res => {
                             console.log(res.data)
                         })
