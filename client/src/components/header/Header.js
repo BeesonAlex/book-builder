@@ -16,8 +16,6 @@ export class Header extends Component {
 
     onCompleteHandler = () => {
 
-        // if (this.checkBookSaveStatus() === true ) {
-
             const userBooks = this.state.loggedInUser.books;
 
             const targetBook = userBooks.findIndex(book => {
@@ -64,10 +62,6 @@ export class Header extends Component {
             .catch(err => {
                 console.log(err)
             })
-
-        // } else {
-        //     alert('Please save your book before continuing')
-        // }
     }
 
     render() {
