@@ -16,19 +16,6 @@ export class Header extends Component {
 
     onCompleteHandler = () => {
 
-            const userBooks = this.state.loggedInUser.books;
-
-            const targetBook = userBooks.findIndex(book => {
-               return book.id === this.state.activeBook.id;
-            });
-        
-            if (targetBook !== -1) {
-                userBooks[targetBook] = this.state.activeBook;
-        
-            } else if (targetBook === -1) {
-                userBooks.push(this.state.activeBook);
-            }
-
         axios
             .post(`https://serene-journey-89429.herokuapp.com/pdf/`, this.state.activeBook)
             .then(res => {
@@ -39,16 +26,8 @@ export class Header extends Component {
                         contentUrl: res.data,
                         coverUrl: this.state.activeBook.coverUrl,
                         pages: this.state.activeBook.pages
-                    },
-                    loggedInUser: {
-                        id: this.state.loggedInUser.id,
-                        name: this.state.loggedInUser.name,
-                        email: this.state.loggedInUser.email,
-                        books: userBooks,
                     }
                 }, () => {
-                    this.props.saveUser(this.state.loggedInUser)
-
                     axios
                         .post(`/cart/add.js`, {
                             quantity: 1,
