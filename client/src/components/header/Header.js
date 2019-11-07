@@ -16,7 +16,7 @@ export class Header extends Component {
 
     onCompleteHandler = () => {
 
-        if (this.checkBookSaveStatus() === true ) {
+        // if (this.checkBookSaveStatus() === true ) {
 
             const userBooks = this.state.loggedInUser.books;
 
@@ -65,9 +65,9 @@ export class Header extends Component {
                 console.log(err)
             })
 
-        } else {
-            alert('Please save your book before continuing')
-        }
+        // } else {
+        //     alert('Please save your book before continuing')
+        // }
     }
 
     render() {
@@ -78,7 +78,7 @@ export class Header extends Component {
                 </div>
                 <div className="header__right-wrapper">
                 {
-                    this.state.activeBook.pages.length >= 1 ? <button onClick={this.onCompleteHandler} className="header__submit-button">Complete Book</button> : ''
+                    this.state.activeBook ? <button onClick={this.onCompleteHandler} className="header__submit-button">Complete Book</button> : ''
                 }
                 </div>
             </div>
