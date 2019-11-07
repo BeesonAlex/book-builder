@@ -23,6 +23,8 @@ export class PageEditor extends Component {
         this.setState({
             trackDetails: res.data,
             trackLoading: false,
+        }, () => {
+            Object.values(this.state.trackDetails.album.image[3])[0].replace('300x300', '1200x1200')
         });
     })
     .catch(err => {
@@ -109,7 +111,7 @@ onSubmitHandler = event => {
                     <div className="pageditor__text-wrapper">
                         <h1 className="pageeditor__song-title">{this.state.trackDetails.name}</h1>
                         <h2 className="pageeditor__artist-title">{this.state.trackDetails.artist.name}</h2>
-                        <input className="pageeditor__thoughts" type="text" name="thoughts" placeholder="Write your thoughts...">{this.state.activePage.thoughts || ''}</input>
+                        <input className="pageeditor__thoughts" type="text" name="thoughts" placeholder={this.state.activePage.thoughts || "Write your thoughts..."}></input>
                     </div>
                     <button type="submit">Save and Close</button>
                     </form>
