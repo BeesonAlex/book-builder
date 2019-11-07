@@ -147,6 +147,7 @@ router.get('/', (req, res) => {
       next()
     }    
 
+    // Create a new customer when they save their book
   router.post('/storefront/customers', fetchActiveToken, async (req, res) => {
     
     const shopRequestHeaders = {
@@ -169,14 +170,47 @@ router.get('/', (req, res) => {
 
   });
 
+// AJAX API call to create a new cart with the custom book
+router.post('/cart', fetchActiveToken, async (req, res) => {
 
-//   router.get('/storefront/product', (req, res) => {
+  determineVariantId = () => {
+    if ((req.pages.length > 0) && (req.pages.length <= 10)) {
+      return x
+    } else if ((req.pages.length > 11) && (req.pages.length <= 50)) {
+      return y
+    }
+  }
 
-//   });
+  const variantId = determineVariantId()
+  
+  const shopRequestHeaders = {
+    'X-Shopify-Access-Token': res.token,
+  };
 
-//   router.post('/storefront/order', (req, res) => {
+  axios
+  .post('https://music-book.myshopify.com/cart/add.js', {
+    quantity: 1,
+    id: variantId,
+    properties: {
+      ...req.body
+    }
+  }, { headers: shopRequestHeaders }
+  )
+  .then(reso => { 
+    cartResponse = reso.data.response
+    res.send(cartResponse)
+  })
+  .catch(err => {
+     console.log(err) 
+  })
 
-//   });
+
+});
+
+// Register Webhook to listen for new orders with custom books
+// router.post('/storefront/order', (req, res) => {
+
+// });
 
 
 

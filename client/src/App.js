@@ -29,7 +29,8 @@ componentDidMount() {
 
 const shopifyUser = {
   shopifyEmail: window.customerEmail,
-  shopifyName: window.customerName,
+  shopifyFirstName: window.customerFirstName,
+  shopifyLastName: window.customerLastName,
   shopifyId: window.customerId
 }
 console.log(shopifyUser)
@@ -45,7 +46,7 @@ console.log(shopifyUser)
               axios
                 .patch(`https://serene-journey-89429.herokuapp.com/users/${shopifyUser.shopifyEmail}`, {
                   id: shopifyUser.shopifyId,
-                  name: shopifyUser.shopifyName,
+                  name: `${shopifyUser.shopifyFirstName} ${shopifyUser.shopifyLastName}`,
                   email: shopifyUser.shopifyEmail,
                   numberOfBooks: this.state.loggedInUser.numberOfBooks,
                   books: this.state.loggedInUser.books,
@@ -57,7 +58,7 @@ console.log(shopifyUser)
             axios
               .post(`https://serene-journey-89429.herokuapp.com/users/`, {
                 id: shopifyUser.shopifyId,
-                name: shopifyUser.shopifyName,
+                name: `${shopifyUser.shopifyFirstName} ${shopifyUser.shopifyLastName}`,
                 email: shopifyUser.shopifyEmail,
                 numberOfBooks: '',
                 books: []
@@ -66,7 +67,7 @@ console.log(shopifyUser)
                 this.setState({
                   loggedInUser: {
                     id: shopifyUser.shopifyId,
-                    name: shopifyUser.shopifyName,
+                    name: `${shopifyUser.shopifyFirstName} ${shopifyUser.shopifyLastName}`,
                     email: shopifyUser.shopifyEmail,
                     books: []
                   },
@@ -155,7 +156,7 @@ updateAppState = (componentState) => {
     } else {
     return (
     <div className="App">
-    <Header appState={this.state} />
+    <Header appState={this.state} saveUser={this.saveUser} updateAppState={this.updateAppState} />
     <BrowserRouter>
       <Switch>
       <Route path="/tools/book-builder/" exact render={(props) => <Splash {...props} appState={this.state} saveUser={this.saveUser} updateAppState={this.updateAppState} />} />

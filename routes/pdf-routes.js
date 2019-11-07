@@ -1,6 +1,5 @@
 const { Router } = require('express');
 const router = Router();
-const path = require('path');
 const axios = require('axios');
 
 const apiKey = process.env.PDF_API_KEY;
@@ -9,7 +8,7 @@ const apiSecret = process.env.PDF_SECRET_KEY;
 const pageTemplate = 58821;
 
 
-router.post('/', getUser, async (req, res) => {
+router.post('/', async (req, res) => {
     
     const pdfRequestHeaders = {
       'X-Auth-Key': apiKey,
@@ -18,14 +17,19 @@ router.post('/', getUser, async (req, res) => {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     };
-
-    const bookTitle = req.book.title
-
-    const book = req.book.pages.map()
-
+    const bookTitle = req.title
+    const book = req.pages
+    const bookResponse = ''
+    
     axios
-      .post(`https://us1.pdfgeneratorapi.com/api/v3/templates/${pageTemplate}/output?name=${bookTitle}?format=pdf&output=url`, book, { headers: pdfRequestHeaders })
-      .then(res => { res.status(200).send(res.response, 'successfully created book pdf in Shopify')})
-      .catch(err => { console.log(err) })
-
+    .post(`https://us1.pdfgeneratorapi.com/api/v3/templates/${pageTemplate}/output?name=${bookTitle}?format=pdf&output=url`, book, { headers: pdfRequestHeaders })
+    .then(reso => { 
+      bookResponse = reso.data.response
+      res.send(bookResponse)
+    })
+    .catch(err => { 
+        console.log(err) 
+    })
   });
+
+  module.exports = router;
