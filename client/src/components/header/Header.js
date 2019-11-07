@@ -13,19 +13,6 @@ export class Header extends Component {
         })
     }
 
-    checkBookSaveStatus = () => {
-        const targetBook = this.state.loggedInUser.books.find(book => {
-            return book.id === this.state.activeBook.id
-        })
-
-        if (JSON.stringify(targetBook) === JSON.stringify(this.state.activeBook)) {
-            return true
-        } else if (JSON.stringify(targetBook) !== JSON.stringify(this.state.activeBook)) {
-            return false
-        } else {
-            return null
-        }
-    }
 
     onCompleteHandler = () => {
 
@@ -90,11 +77,8 @@ export class Header extends Component {
                     <h1 className="header__title">Book Builder</h1>
                 </div>
                 <div className="header__right-wrapper">
-                {    
-                    this.checkBookSaveStatus() ? <p className="header__save-status">Book Saved</p> : <p className="header__save-status">Unsaved Changes</p>
-                }
                 {
-                    this.state.activeBook ? <button onClick={this.onCompleteHandler} className="header__submit-button">Complete Book</button> : ''
+                    this.state.activeBook.pages.length >= 1 ? <button onClick={this.onCompleteHandler} className="header__submit-button">Complete Book</button> : ''
                 }
                 </div>
             </div>
