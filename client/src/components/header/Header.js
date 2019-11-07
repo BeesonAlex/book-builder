@@ -14,7 +14,7 @@ export class Header extends Component {
     }
 
     checkBookSaveStatus = () => {
-        const targetBook = this.state.loggedInUser.find(book => {
+        const targetBook = this.state.loggedInUser.books.find(book => {
             return book.id === this.state.activeBook.id
         })
 
