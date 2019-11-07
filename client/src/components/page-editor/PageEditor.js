@@ -23,8 +23,6 @@ export class PageEditor extends Component {
         this.setState({
             trackDetails: res.data,
             trackLoading: false,
-        }, () => {
-            Object.values(this.state.trackDetails.album.image[3])[0].replace('300x300', '1200x1200')
         });
     })
     .catch(err => {
