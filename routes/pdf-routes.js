@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
     };
     const bookTitle = req.title
     const book = req.pages
-    const bookResponse = ''
+    let bookResponse = ''
     
     axios
     .post(`https://us1.pdfgeneratorapi.com/api/v3/templates/${pageTemplate}/output?name=${bookTitle}?format=pdf&output=url`, book, { headers: pdfRequestHeaders })

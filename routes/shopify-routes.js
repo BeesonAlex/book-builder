@@ -197,7 +197,8 @@ router.post('/cart', fetchActiveToken, async (req, res) => {
   }, { headers: shopRequestHeaders }
   )
   .then(reso => { 
-    cartResponse = reso.data.response
+    let cartResponse = reso.data.response
+    console.log('cartresponse', cartresponse)
     res.send(cartResponse)
   })
   .catch(err => {
