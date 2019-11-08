@@ -65,7 +65,7 @@ export class Header extends Component {
                 </div>
                 <div className="header__right-wrapper">
                 {
-                    this.state.activeBook ? <button onClick={this.onCompleteHandler} className="header__submit-button">Complete Book</button> : ''
+                    this.state.activeBook.id ? <button onClick={this.onCompleteHandler} className="header__submit-button">Complete Book</button> : ''
                 }
                 </div>
             </div>
