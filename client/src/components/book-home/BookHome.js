@@ -24,6 +24,7 @@ export class BookHome extends Component {
                     pageNumber: this.state.activeBook.pages.length + 1,
                     track: "",
                     albumArt: "",
+                    album: "",
                     artist: "",
                     thoughts: "",
                     pageContentUrl: "",
@@ -91,7 +92,7 @@ export class BookHome extends Component {
                 <div className="bookhome__pages-wrapper">
                 { this.state.activeBook.pages ?
                     this.state.activeBook.pages.map(page => {
-                                return <PagePreview onPagePreviewClick={this.onPagePreviewClick} key={page.id} id={page.id} track={page.track} pageNumber={page.pageNumber} albumArt={page.albumArt} artist={page.artist} thoughts={page.thoughts} pageContentUrl={page.pageContentUrl} />
+                                return <PagePreview onPagePreviewClick={this.onPagePreviewClick} key={page.id} id={page.id} track={page.track} pageNumber={page.pageNumber} albumArt={page.albumArt} artist={page.artist} album={page.album}  thoughts={page.thoughts} pageContentUrl={page.pageContentUrl} />
                             })
                             : ''
                             }
