@@ -98,6 +98,9 @@ onSubmitHandler = event => {
     });
 }
 
+textChangeHandler = event => {
+    setValue(event.target.value)
+}
 
 
     render() {
@@ -125,7 +128,7 @@ onSubmitHandler = event => {
                         <h1 className="pageeditor__song-title">{this.state.trackDetails.name}</h1>
                         <h2 className="pageeditor__artist-title">{this.state.trackDetails.artist}</h2>
                         <h2 className="pageeditor__artist-title">{this.state.trackDetails.album}</h2>
-                        <input className="pageeditor__thoughts" type="text" name="thoughts" placeholder="Write your thoughts..." value={this.state.activePage.thoughts || ''}></input>
+                        <input className="pageeditor__thoughts" type="text" name="thoughts" placeholder="Write your thoughts..." value={this.state.activePage.thoughts || ''} onChange={this.textChangeHandler}></input>
                     </div>
                     <button type="submit">Save and Close</button>
                     </form>
