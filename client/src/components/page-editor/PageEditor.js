@@ -22,9 +22,21 @@ export class PageEditor extends Component {
     .then(res => {
         this.setState({
             trackDetails: res.data,
-            trackLoading: false,
         }, () => {
-            this.state.trackDetails.album.image[3][0].replace('300x300', '1200x1200')
+            // must increase size of album art
+            let editedTrackDetails = {
+                name: this.state.trackDetails.name,
+                artist: this.state.trackDetails.artist.name,
+                album: this.state.trackDetails.album.name,
+                albumArt: Object.values(this.state.trackDetails.album.image[3])[0].replace('300x300', '1200x1200')
+            }
+            this.setState({
+                trackDetails: {
+                    ...editedTrackDetails
+                },
+                trackLoading: false,
+            })
+            
         });
     })
     .catch(err => {
@@ -41,8 +53,8 @@ onSubmitHandler = event => {
             id: this.state.activePage.id,
             pageNumber: this.state.activeBook.pages.length + 1,
             track: `${this.state.trackDetails.name}`,
-            albumArt: `${Object.values(this.state.trackDetails.album.image[3])[0]}`,
-            artist: `${this.state.trackDetails.artist.name}`,
+            albumArt: `${this.state.trackDetails.albumArt}`,
+            artist: `${this.state.trackDetails.artist}`,
             thoughts: event.target.thoughts.value,
             pageContentUrl: this.state.activePage.pageContentUrl,
         }
@@ -106,11 +118,11 @@ onSubmitHandler = event => {
                 </div>
             </div>
             <div className="pageeditor">
-                <div className="pageeditor__editor-wrapper" style={{ backgroundImage: `url(${Object.values(this.state.trackDetails.album.image[3])[0]})`}}>
+                <div className="pageeditor__editor-wrapper" style={{ backgroundImage: `url(${this.state.trackDetails.albumArt})`}}>
                 <form className="pageeditor__form" onSubmit={this.onSubmitHandler}>
                     <div className="pageditor__text-wrapper">
                         <h1 className="pageeditor__song-title">{this.state.trackDetails.name}</h1>
-                        <h2 className="pageeditor__artist-title">{this.state.trackDetails.artist.name}</h2>
+                        <h2 className="pageeditor__artist-title">{this.state.trackDetails.artist}</h2>
                         <input className="pageeditor__thoughts" type="text" name="thoughts" placeholder="Write your thoughts..." value={this.state.activePage.thoughts || ''}></input>
                     </div>
                     <button type="submit">Save and Close</button>
