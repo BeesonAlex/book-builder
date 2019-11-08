@@ -13,6 +13,15 @@ export class Header extends Component {
         })
     }
 
+    shouldComponentUpdate() {
+
+        if (this.props.appState !== this.state) {
+            this.setState({
+                ...this.props.appState
+            })
+        }
+    }
+
     onCompleteHandler = () => {
         this.setState({
             ...this.props.appState
