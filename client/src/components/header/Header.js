@@ -33,7 +33,11 @@ export class Header extends Component {
                             quantity: 1,
                             id: 31160253481057,
                             properties: {
-                              ...this.state.activeBook
+                              title: this.state.activeBook.title,
+                              contentUrl: this.state.activeBook.contentUrl,
+                              coverUrl: '',
+                              author: this.state.loggedInUser.name,
+                              email: this.state.loggedInUser.email
                             }
                         })
                         .then(res => {

@@ -170,44 +170,6 @@ router.get('/', (req, res) => {
 
   });
 
-// AJAX API call to create a new cart with the custom book
-router.post('/cart', fetchActiveToken, async (req, res) => {
-
-  // determineVariantId = () => {
-  //   if ((req.pages.length > 0) && (req.pages.length <= 10)) {
-  //     return x
-  //   } else if ((req.pages.length > 11) && (req.pages.length <= 50)) {
-  //     return y
-  //   }
-  // }
-
-  const variantId = 31160253481057;
-  
-  const shopRequestHeaders = {
-    'X-Shopify-Access-Token': res.token,
-  };
-
-  axios
-  .post('https://music-book.myshopify.com/cart/add.js', {
-    quantity: 1,
-    id: variantId,
-    properties: {
-      ...req.body
-    }
-  }, { headers: shopRequestHeaders }
-  )
-  .then(reso => { 
-    let cartResponse = reso.data.response
-    console.log('cartresponse', cartresponse)
-    res.send(cartResponse)
-  })
-  .catch(err => {
-     console.log(err) 
-  })
-
-
-});
-
 // Register Webhook to listen for new orders with custom books
 // router.post('/storefront/order', (req, res) => {
 
