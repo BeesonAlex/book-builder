@@ -10,6 +10,7 @@ const pageTemplate = 58821;
 
 
 router.post('/', async (req, res) => {
+    console.log('req.body', req.body)
     
     const pdfRequestHeaders = {
       'X-Auth-Key': apiKey,
@@ -18,7 +19,7 @@ router.post('/', async (req, res) => {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     };
-    const bookTitle = req.title
+    const bookTitle = req.body.title
     const book = req.body.pages
     let bookResponse = ''
     

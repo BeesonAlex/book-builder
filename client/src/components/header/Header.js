@@ -28,6 +28,7 @@ export class Header extends Component {
                         pages: this.state.activeBook.pages
                     }
                 }, () => {
+                    console.log(this.state)
                     axios
                         .post(`/cart/add.js`, {
                             quantity: 1,
@@ -54,6 +55,7 @@ export class Header extends Component {
     }
 
     render() {
+        console.log(this.state)
         return (
             <div className="header">
                 <div className="header__left-wrapper">
