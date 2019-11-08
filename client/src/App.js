@@ -140,8 +140,6 @@ saveUser = (user) => {
       }
 }
 
-
-
 // Function for Saving State at the App Level
 updateAppState = (componentState) => {
   this.setState({
