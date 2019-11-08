@@ -99,7 +99,7 @@ onSubmitHandler = event => {
 }
 
 textChangeHandler = event => {
-    setValue(event.target.value)
+    this.value = event.target.value;
 }
 
 
