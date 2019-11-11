@@ -13,15 +13,6 @@ export class Header extends Component {
         })
     }
 
-    shouldComponentUpdate() {
-
-        if (this.props.appState !== this.state) {
-            this.setState({
-                ...this.props.appState
-            })
-        }
-    }
-
     onCompleteHandler = () => {
         this.setState({
             ...this.props.appState
@@ -64,6 +55,16 @@ export class Header extends Component {
                 })
         })
     }
+
+    static getDerivedStateFromProps(props, state) {
+        // Any time the current user, page or book changes, re-spread appstate to this.state
+        if (props.appState.activeBook.id !== state.activeBook.id || props.appState.activePage.id !== state.activePage.id || props.appState.loggedInUser.id !== state.loggedInUser.id) {
+          return {
+            ...props.appState
+          };
+        }
+        return null;
+      }
 
     render() {
         console.log(this.state)

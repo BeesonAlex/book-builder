@@ -87,7 +87,6 @@ console.log(shopifyUser)
         }
 };
 
-
 // Function for Saving User
 saveUser = (user) => {
   // get user - if they don't exist create one, if they do - update the user
