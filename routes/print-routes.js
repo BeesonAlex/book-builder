@@ -69,7 +69,7 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
         }
   });
   
-  function validateWebhook (req, res, next){
+  async function validateWebhook (req, res, next){
     // We'll compare the hmac to our own hash
   const hmac = req.get('X-Shopify-Hmac-Sha256')
 
