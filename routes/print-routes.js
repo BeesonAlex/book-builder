@@ -75,6 +75,7 @@ async function validateWebhook (req, res, next){
   const hmac = req.get('X-Shopify-Hmac-Sha256')
 
   // Use raw-body to get the body (buffer)
+  try {
   const body = await getRawBody(req)
 
   // Create a hash using the body and our key
@@ -82,6 +83,11 @@ async function validateWebhook (req, res, next){
     .createHmac('sha256', process.env.SHOPIFY_WEBHOOK_SECRET)
     .update(body, 'utf8', 'hex')
     .digest('base64')
+  
+} catch (e) {
+    console.log('Something went wrong:')
+    console.log(e)
+}
 
   // Compare our hash to Shopify's hash
   if (hash === hmac) {
