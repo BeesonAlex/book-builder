@@ -37,7 +37,7 @@ export class Header extends Component {
                                 properties: {
                                   title: this.state.activeBook.title,
                                   contentUrl: this.state.activeBook.contentUrl,
-                                  coverUrl: this.state.activebook.coverUrl,
+                                  coverUrl: 'https://drive.google.com/file/d/19SrfpNdKh9huLoABWeLYpC2PXyjs9Hj-/view?usp=sharing',
                                   author: this.state.loggedInUser.name,
                                   email: this.state.loggedInUser.email
                                 }
