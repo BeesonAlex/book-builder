@@ -74,7 +74,12 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
   const hmac = req.get('X-Shopify-Hmac-Sha256')
 
   // Use raw-body to get the body (buffer)
-  const body = await getRawBody(req)
+  try {
+    const body = await getRawBody(req)
+  } catch (e) {
+    console.log('Something went wrong:')
+    console.log(e)
+  }
 
   // Create a hash using the body and our key
   const hash = crypto
