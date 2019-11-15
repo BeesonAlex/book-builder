@@ -2,7 +2,10 @@ const { Router } = require('express');
 const router = Router();
 const axios = require('axios');
 const crypto = require('crypto');
-const getRawBody = require('raw-body')
+const bodyparser = require('body-parser')
+
+app.use('/webhook', bodyParser.raw({ type: 'application/json' }))
+app.use(bodyParser.json())
 
 // Register Webhook to listen for new orders with custom books
 router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
@@ -73,14 +76,10 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
     // We'll compare the hmac to our own hash
   const hmac = req.get('X-Shopify-Hmac-Sha256')
 
-  // Use raw-body to get the body (buffer)
-
-    const body = await getRawBody(req)
-
   // Create a hash using the body and our key
   const hash = crypto
     .createHmac('sha256', process.env.SHOPIFY_WEBHOOK_SECRET)
-    .update(body, 'utf8', 'hex')
+    .update(req.body, 'utf8', 'hex')
     .digest('base64')
 
   // Compare our hash to Shopify's hash
@@ -88,6 +87,7 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
     // It's a match! All good
     console.log('Phew, it came from Shopify!')
     res.sendStatus(200)
+    next()
   } else {
     // No match! This request didn't originate from Shopify
     console.log('Danger! Not from Shopify!')
