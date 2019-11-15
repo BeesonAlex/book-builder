@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
             cover: coverResponse
           }
           console.log(responseObject)
-          res.send(responseObject)
+          res.send(JSON.parse(responseObject))
     })
     .catch(err => {
       console.log(err)
