@@ -9,7 +9,7 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 8080;
 const mongoose = require('mongoose');
-const bodyparser = require('body-parser');
+const bodyParser = require('body-parser');
 
 require('dotenv').config();
 
@@ -34,6 +34,7 @@ app.use(express.json());
 
 // // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
+
 
 app.use(bodyParser.json({
     type:'*/*',
