@@ -20,11 +20,12 @@ export class Header extends Component {
             axios
                 .post(`https://serene-journey-89429.herokuapp.com/pdf/`, this.state.activeBook)
                 .then(res => {
+                    const bookResponse = res.data.bookResponse
                     this.setState({
                         activeBook: {
                             id: this.state.activeBook.id,
                             title: this.state.activeBook.title,
-                            contentUrl: res.data.bookResponse,
+                            contentUrl: bookResponse,
                             coverUrl: 'https://drive.google.com/file/d/19SrfpNdKh9huLoABWeLYpC2PXyjs9Hj-/view?usp=sharing',
                             pages: this.state.activeBook.pages
                         }
@@ -36,7 +37,7 @@ export class Header extends Component {
                                 id: 31160253481057,
                                 properties: {
                                   title: this.state.activeBook.title,
-                                  contentUrl: this.state.activeBook.contentUrl,
+                                  contentUrl: bookResponse,
                                   coverUrl: 'https://drive.google.com/file/d/19SrfpNdKh9huLoABWeLYpC2PXyjs9Hj-/view?usp=sharing',
                                   author: this.state.loggedInUser.name,
                                   email: this.state.loggedInUser.email
