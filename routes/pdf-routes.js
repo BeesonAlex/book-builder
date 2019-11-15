@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     };
-    const title = req.body.title
+    const title = `"title": "${req.body.title}"`
     const book = req.body.pages
     let responseObject = {}
     let bookResponse = ''
