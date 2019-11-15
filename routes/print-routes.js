@@ -83,11 +83,6 @@ async function validateWebhook (req, res, next){
     .createHmac('sha256', process.env.SHOPIFY_WEBHOOK_SECRET)
     .update(body, 'utf8', 'hex')
     .digest('base64')
-  
-} catch (e) {
-    console.log('Something went wrong:')
-    console.log(e)
-}
 
   // Compare our hash to Shopify's hash
   if (hash === hmac) {
@@ -100,6 +95,10 @@ async function validateWebhook (req, res, next){
     console.log('Danger! Not from Shopify!')
     res.sendStatus(403)
   }
+} catch (e) {
+    console.log('Something went wrong:')
+    console.log(e)
+}
   }
 
 
