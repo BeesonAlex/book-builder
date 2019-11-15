@@ -28,7 +28,7 @@ router.post('/', async (req, res) => {
     .then(reso => { 
       bookResponse = reso.data.response
       console.log('completed interior pdf', bookResponse)
-          res.send(bookResponse)
+      res.send(bookResponse)
     })
     .catch(err => {
       console.log(err)

@@ -20,7 +20,9 @@ export class Header extends Component {
             axios
                 .post(`https://serene-journey-89429.herokuapp.com/pdf/`, this.state.activeBook)
                 .then(res => {
-                    const bookResponse = res.data.bookResponse
+                    const bookResponse = res.data
+                    console.log(res.data.bookResponse)
+                    console.log(res.data)
                     this.setState({
                         activeBook: {
                             id: this.state.activeBook.id,
