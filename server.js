@@ -40,7 +40,7 @@ app.use(bodyParser.json({
     type:'*/*',
     limit: '50mb',
     verify: function(req, res, buf) {
-        if (req.url.startsWith('/print/webhook/order')){
+        if (req.url.startsWith('/print/webhook')){
           req.rawbody = buf;
         }
     }

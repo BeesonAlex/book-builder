@@ -2,7 +2,6 @@ const { Router } = require('express');
 const router = Router();
 const axios = require('axios');
 const crypto = require('crypto');
-const getRawBody = require('raw-body')
 
 // Register Webhook to listen for new orders with custom books
 router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
@@ -69,18 +68,17 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
         }
   });
   
-  function validateWebhook (req, res, next){
+  function validateWebhook (req,res,next){
     generated_hash = crypto
         .createHmac('sha256', process.env.SHOPIFY_WEBHOOK_SECRET)
         .update(Buffer.from(req.rawbody))
         .digest('base64');
     if (generated_hash == req.headers['x-shopify-hmac-sha256']) {
-        console.log('successfully validated webhook')
         next()
     } else {
         res.sendStatus(403)
     }
-  }
+}
 
 
   async function fetchToken (req, res, next) {
