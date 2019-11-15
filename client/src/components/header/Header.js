@@ -24,8 +24,8 @@ export class Header extends Component {
                         activeBook: {
                             id: this.state.activeBook.id,
                             title: this.state.activeBook.title,
-                            contentUrl: res.data,
-                            coverUrl: this.state.activeBook.coverUrl,
+                            contentUrl: res.data.bookResponse,
+                            coverUrl: res.data.coverResponse,
                             pages: this.state.activeBook.pages
                         }
                     }, () => {
@@ -37,7 +37,7 @@ export class Header extends Component {
                                 properties: {
                                   title: this.state.activeBook.title,
                                   contentUrl: this.state.activeBook.contentUrl,
-                                  coverUrl: '',
+                                  coverUrl: this.state.activebook.coverUrl,
                                   author: this.state.loggedInUser.name,
                                   email: this.state.loggedInUser.email
                                 }

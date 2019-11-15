@@ -140,14 +140,14 @@ router.get('/', (req, res) => {
 
   // Storefront Routes
 
-    // Middleware to fetch the storefront's permanent token
+  // Middleware to fetch the storefront's permanent token
   async function fetchActiveToken(req, res, next) {
       shop = await Shop.findOne({shopName: `music-book.myshopify.com`}, function(err, obj) { console.log('returned token from api'); });
       res.token = shop.shopAccessToken
       next()
     }    
 
-    // Create a new customer when they save their book
+  // Create a new customer when they save their book
   router.post('/storefront/customers', fetchActiveToken, async (req, res) => {
     
     const shopRequestHeaders = {
@@ -169,12 +169,5 @@ router.get('/', (req, res) => {
       .catch(err => { console.log(err) })
 
   });
-
-// Register Webhook to listen for new orders with custom books
-// router.post('/storefront/order', (req, res) => {
-
-// });
-
-
 
   module.exports = router;

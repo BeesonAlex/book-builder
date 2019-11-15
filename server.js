@@ -4,6 +4,7 @@ const serverRoutes = require('./routes/server-routes');
 const lastFmRoutes = require('./routes/lastfm-routes');
 const shopifyRoutes = require('./routes/shopify-routes');
 const pdfRoutes = require('./routes/pdf-routes');
+const printRoutes = require('./routes/print-routes');
 const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 8080;
@@ -39,6 +40,7 @@ app.use('/users', serverRoutes);
 app.use('/data', lastFmRoutes);
 app.use('/shopify', shopifyRoutes);
 app.use('/pdf', pdfRoutes);
+app.use('/print', printRoutes);
 
 
 app.listen(port, () => {
