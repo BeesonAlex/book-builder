@@ -69,34 +69,17 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
         }
   });
   
-async function validateWebhook (req, res, next){
-console.log('Webhook Received')
-    // We'll compare the hmac to our own hash
-  const hmac = req.get('X-Shopify-Hmac-Sha256')
-
-  // Use raw-body to get the body (buffer)
-
-  const body = await getRawBody(req)
-
-  // Create a hash using the body and our key
-  const hash = crypto
-    .createHmac('sha256', process.env.SHOPIFY_WEBHOOK_SECRET)
-    .update(body, 'utf8', 'hex')
-    .digest('base64')
-
-  // Compare our hash to Shopify's hash
-  if (hash === hmac) {
-    // It's a match! All good
-    res.sendStatus(403)
-    console.log('Phew, it came from Shopify!')
-    res.order = JSON.parse(body.toString())
-    console.log(res.order)
-    next()
-  } else {
-    // No match! This request didn't originate from Shopify
-    console.log('Danger! Not from Shopify!')
-    res.sendStatus(403)
-  }
+  function validateWebhook (req, res, next){
+    const generated_hash = crypto
+        .createHmac('sha256', process.env.SHOPIFY_WEBHOOK_SECRET)
+        .update(Buffer.from(req.rawbody))
+        .digest('base64');
+    if (generated_hash == req.headers['x-shopify-hmac-sha256']) {
+        console.log('successfully validated webhook')
+        next()
+    } else {
+        res.sendStatus(403)
+    }
   }
 
 
@@ -147,3 +130,33 @@ console.log('Webhook Received')
 //         res.sendStatus(403)
 //     }
 //   }
+
+// async function validateWebhook (req, res, next){
+//     console.log('Webhook Received')
+//         // We'll compare the hmac to our own hash
+//       const hmac = req.get('X-Shopify-Hmac-Sha256')
+    
+//       // Use raw-body to get the body (buffer)
+    
+//       const body = await getRawBody(req)
+    
+//       // Create a hash using the body and our key
+//       const hash = crypto
+//         .createHmac('sha256', process.env.SHOPIFY_WEBHOOK_SECRET)
+//         .update(body, 'utf8', 'hex')
+//         .digest('base64')
+    
+//       // Compare our hash to Shopify's hash
+//       if (hash === hmac) {
+//         // It's a match! All good
+//         res.sendStatus(403)
+//         console.log('Phew, it came from Shopify!')
+//         res.order = JSON.parse(body.toString())
+//         console.log(res.order)
+//         next()
+//       } else {
+//         // No match! This request didn't originate from Shopify
+//         console.log('Danger! Not from Shopify!')
+//         res.sendStatus(403)
+//       }
+//       }
