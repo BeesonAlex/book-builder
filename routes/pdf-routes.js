@@ -27,17 +27,19 @@ router.post('/', async (req, res) => {
     let coverResponse = ''
     
     axios
-    .post(`https://us1.pdfgeneratorapi.com/api/v3/templates/${pageTemplate}/output?name=${title}?format=pdf&output=url`, book, { headers: pdfRequestHeaders })
+    .post(`https://us1.pdfgeneratorapi.com/api/v3/templates/${pageTemplate}/output?name=${encodeURIComponent(title)}?format=pdf&output=url`, book, { headers: pdfRequestHeaders })
     .then(reso => { 
       bookResponse = reso.data.response
+      console.log(bookResponse)
       axios
-      .post(`https://us1.pdfgeneratorapi.com/api/v3/templates/${coverTemplate}/output?name=${title}?format=pdf&output=url`, title, { headers: pdfRequestHeaders })
+      .post(`https://us1.pdfgeneratorapi.com/api/v3/templates/${coverTemplate}/output?name=${encodeURIComponent(title)}?format=pdf&output=url`, title, { headers: pdfRequestHeaders })
       .then(respond => {
           coverResponse = respond.data.response
           responseObject = {
             interior: bookResponse,
             cover: coverResponse
           }
+          console.log(responseObject)
           res.send(responseObject)
     })
     .catch(err => {
