@@ -3,6 +3,18 @@ const router = Router();
 const axios = require('axios');
 const crypto = require('crypto');
 
+function verifyHmac(data, hmac) {
+    if (!hmac) {
+      return false;
+    } else if (!data || typeof data !== 'object') {
+      return false;
+    }
+
+    const sharedSecret = config.SHOPIFY_SHARED_SECRET;
+    const calculatedSignature = crypto.createHmac('sha256', sharedSecret).update(data).digest('hex');
+    return calculatedSignature === hmac;
+}
+
 // Register Webhook to listen for new orders with custom books
 router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
 
@@ -69,15 +81,23 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
   });
   
   function validateWebhook (req,res,next){
-    generated_hash = crypto
-        .createHmac('sha256', process.env.SHOPIFY_WEBHOOK_SECRET)
-        .update(Buffer.from(req.rawbody))
-        .digest('base64');
-    if (generated_hash == req.headers['x-shopify-hmac-sha256']) {
-        next()
-    } else {
-        res.sendStatus(403)
-    }
+    let hmac;
+  let data;
+  try {
+    hmac = req.get('X-Shopify-Hmac-SHA256');
+    data = req.body;
+  } catch (e) {
+    console.log(`Webhook request failed from: ${req.get('X-Shopify-Shop-Domain')}`);
+    res.sendStatus(200);
+  }
+
+  if (verifyHmac(JSON.stringify(data), hmac)) {
+    req.topic = req.get('X-Shopify-Topic');
+    req.shop = req.get('X-Shopify-Shop-Domain');
+    return next();
+  }
+
+  return res.sendStatus(200);
 }
 
 

@@ -9,7 +9,6 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 8080;
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 
 require('dotenv').config();
 
@@ -34,18 +33,6 @@ app.use(express.json());
 
 // // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
-
-
-app.use(bodyParser.json({
-    type:'*/*',
-    limit: '50mb',
-    verify: function(req, res, buf) {
-        if (req.url.startsWith('/print/webhook')){
-          req.rawbody = buf;
-        }
-    }
-   })
-  );
 
 
 app.use('/users', serverRoutes);
