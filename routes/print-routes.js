@@ -70,7 +70,7 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
   });
   
   function validateWebhook (req, res, next){
-    const generated_hash = crypto
+    generated_hash = crypto
         .createHmac('sha256', process.env.SHOPIFY_WEBHOOK_SECRET)
         .update(Buffer.from(req.rawbody))
         .digest('base64');
@@ -119,7 +119,7 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
 
 
 //   function validateWebhook (req, res, next){
-//     const generated_hash = crypto
+//     generated_hash = crypto
 //         .createHmac('sha256', process.env.SHOPIFY_WEBHOOK_SECRET)
 //         .update(Buffer.from(req.rawbody))
 //         .digest('base64');
