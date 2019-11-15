@@ -75,7 +75,7 @@ res.status(200, 'Webhook Received')
   const hmac = req.get('X-Shopify-Hmac-Sha256')
 
   // Use raw-body to get the body (buffer)
-  try {
+
   const body = await getRawBody(req)
 
   // Create a hash using the body and our key
@@ -84,10 +84,13 @@ res.status(200, 'Webhook Received')
     .update(body, 'utf8', 'hex')
     .digest('base64')
 
+try {
   // Compare our hash to Shopify's hash
   if (hash === hmac) {
     // It's a match! All good
     console.log('Phew, it came from Shopify!')
+    res.order = JSON.parse(body.toString())
+    console.log(res.order)
     next()
   } else {
     // No match! This request didn't originate from Shopify
