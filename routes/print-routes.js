@@ -65,12 +65,12 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
               console.log(err)
           })
         } else {
-            console.log('no custom book found in order')
+            res.status(403, 'no custom book found in order')
         }
   });
   
 async function validateWebhook (req, res, next){
-
+res.status(200, 'Webhook Received')
     // We'll compare the hmac to our own hash
   const hmac = req.get('X-Shopify-Hmac-Sha256')
 
@@ -88,7 +88,6 @@ async function validateWebhook (req, res, next){
   if (hash === hmac) {
     // It's a match! All good
     console.log('Phew, it came from Shopify!')
-    res.sendStatus(200)
     next()
   } else {
     // No match! This request didn't originate from Shopify
