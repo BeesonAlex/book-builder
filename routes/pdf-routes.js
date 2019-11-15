@@ -11,7 +11,6 @@ const coverTemplate = 62076;
 
 
 router.post('/', async (req, res) => {
-    console.log('req.body', req.body)
     
     const pdfRequestHeaders = {
       'X-Auth-Key': apiKey,
@@ -20,8 +19,8 @@ router.post('/', async (req, res) => {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     };
-    const title = `"title": "${req.body.title}"`
-    const book = req.body.pages
+    const title = req.body.title;
+    const book = req.body.pages;
     let responseObject = {}
     let bookResponse = ''
     let coverResponse = ''
@@ -30,17 +29,18 @@ router.post('/', async (req, res) => {
     .post(`https://us1.pdfgeneratorapi.com/api/v3/templates/${pageTemplate}/output?name=${encodeURIComponent(title)}?format=pdf&output=url`, book, { headers: pdfRequestHeaders })
     .then(reso => { 
       bookResponse = reso.data.response
-      console.log(bookResponse)
+      console.log('book response', bookResponse)
       axios
       .post(`https://us1.pdfgeneratorapi.com/api/v3/templates/${coverTemplate}/output?name=${encodeURIComponent(title)}?format=pdf&output=url`, title, { headers: pdfRequestHeaders })
       .then(respond => {
-          coverResponse = respond.data.response
+        coverResponse = respond.data.response
+        console.log('cover response', coverResponse)
           responseObject = {
             interior: bookResponse,
             cover: coverResponse
           }
-          console.log(responseObject)
-          res.send(JSON.parse(responseObject))
+          console.log('response object', responseObject)
+          res.send(responseObject)
     })
     .catch(err => {
       console.log(err)
