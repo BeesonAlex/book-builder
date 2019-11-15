@@ -94,6 +94,7 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
   if (verifyHmac(JSON.stringify(data), hmac)) {
     req.topic = req.get('X-Shopify-Topic');
     req.shop = req.get('X-Shopify-Shop-Domain');
+    console.log(JSON.stringify(data))
     return next();
   }
 
