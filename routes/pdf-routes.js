@@ -20,25 +20,28 @@ router.post('/', async (req, res) => {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     };
-    const bookTitle = req.body.title
+    const title = req.body.title
     const book = req.body.pages
     let responseObject = {}
     let bookResponse = ''
     let coverResponse = ''
     
     axios
-    .post(`https://us1.pdfgeneratorapi.com/api/v3/templates/${pageTemplate}/output?name=${bookTitle}?format=pdf&output=url`, book, { headers: pdfRequestHeaders })
+    .post(`https://us1.pdfgeneratorapi.com/api/v3/templates/${pageTemplate}/output?name=${title}?format=pdf&output=url`, book, { headers: pdfRequestHeaders })
     .then(reso => { 
       bookResponse = reso.data.response
       axios
-      .post(`https://us1.pdfgeneratorapi.com/api/v3/templates/${coverTemplate}/output?name=${bookTitle}?format=pdf&output=url`, bookTitle, { headers: pdfRequestHeaders })
+      .post(`https://us1.pdfgeneratorapi.com/api/v3/templates/${coverTemplate}/output?name=${title}?format=pdf&output=url`, title, { headers: pdfRequestHeaders })
       .then(respond => {
           coverResponse = respond.data.response
           responseObject = {
-            bookResponse,
-            coverResponse
+            interior: bookResponse,
+            cover: coverResponse
           }
           res.send(responseObject)
+    })
+    .catch(err => {
+      console.log(err)
     })
   })
     .catch(err => { 
