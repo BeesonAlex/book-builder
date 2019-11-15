@@ -83,7 +83,7 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
 
   // Create a hash using the body and our key
   const hash = crypto
-    .createHmac('sha256', secretKey)
+    .createHmac('sha256', process.env.SHOPIFY_WEBHOOK_SECRET)
     .update(body, 'utf8', 'hex')
     .digest('base64')
 
