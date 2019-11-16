@@ -19,7 +19,7 @@ function verifyHmac(data, hmac) {
 router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
 
     const podPackage = '0850X1100FCPREPB080CW444MXX';
-    let purchasedBooks = req.body.line_items.filter(data => data.variant_id == '31160253481057');
+    let purchasedBooks = res.data.line_items.filter(data => data.variant_id == '31160253481057');
 
     var options = {
         method: 'POST',
@@ -31,7 +31,7 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
         },
         body: {
           "contact_email": `beeson.alexander@gmail.com`,
-          "external_id": `${req.body.order_number}`,
+          "external_id": `${res.data.order_number}`,
           "line_items": purchasedBooks.map(book => {
               return (
                 {
@@ -52,13 +52,13 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
           }),
           "production_delay": 120,
           "shipping_address": {
-              "city": `${req.body.shipping_address.city}`,
-              "country_code": `${req.body.shipping_address.country_code}`,
-              "name": `${req.body.shipping_address.name}`,
-              "phone_number": `${req.body.shipping_address.phone_number}`,
-              "postcode": `${req.body.shipping_address.zip}`,
-              "state_code": `${req.body.shipping_address.province_code}`,
-              "street1": `${req.body.shipping_address.address1}`
+              "city": `${res.data.shipping_address.city}`,
+              "country_code": `${res.data.shipping_address.country_code}`,
+              "name": `${res.data.shipping_address.name}`,
+              "phone_number": `${res.data.shipping_address.phone_number}`,
+              "postcode": `${res.data.shipping_address.zip}`,
+              "state_code": `${res.data.shipping_address.province_code}`,
+              "street1": `${res.data.shipping_address.address1}`
           },
           "shipping_level": "MAIL"
       },
@@ -94,10 +94,10 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
   if (verifyHmac(JSON.stringify(data), hmac)) {
     req.topic = req.get('X-Shopify-Topic');
     req.shop = req.get('X-Shopify-Shop-Domain');
+    res.data = data
     return next();
 }
 
-console.log(JSON.stringify(data))
   return res.sendStatus(200);
 }
 
