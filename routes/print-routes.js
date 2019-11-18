@@ -134,7 +134,7 @@ axios
         response = res.data
         if (response) {
             console.log('successfully fetched token')
-          res.token = token
+          res.token = response
           res.sendStatus(200)
           next()
           } else {
