@@ -21,7 +21,6 @@ let token = '';
 let order = {};
 // Register Webhook to listen for new orders with custom books
 router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
-    res.sendStatus(200)
     console.log('beginning to send print package')
     console.log(token)
     console.log(order.line_items[0].properties)
@@ -77,13 +76,12 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
           .post(`${options.url}`, options.body, { headers: options.headers })
           .then(reso => {
               console.log('new print order successfully created', reso.data)
-              res.status(200)
           })
           .catch(err => {
               console.log(err)
           })
         } else {
-            res.status(403, 'no custom book found in order')
+            console.log('no custom book found in order')
         }
   });
   
@@ -97,20 +95,19 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
 
     if (!hmac && !data) {
     console.log(`Webhook request failed from: ${req.get('X-Shopify-Shop-Domain')}`);
-    res.status(403);
+    return
     }
 
     else if (calculatedSignature === hmac) {
         req.topic = req.get('X-Shopify-Topic');
         req.shop = req.get('X-Shopify-Shop-Domain');
         order = JSON.parse(data.toString())
-        res.status(200)
         console.log('successfully validated hmac')
         return next();
     } else {
 
   console.log('Webhook request could not be verified')
-  return res.status(403);
+  return
     }
 }
 
@@ -139,11 +136,11 @@ axios
         token = resp.data
         if (token) {
             console.log('successfully fetched token')
-          res.status(200)
-          next()
+          
+          return next()
           } else {
               console.log('could not fetch token')
-              res.status(403)
+              return
           }
     })
     .catch(err => {
