@@ -81,24 +81,24 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
   });
   
   function validateWebhook (req,res,next){
-    let hmac;
-  let data;
-  try {
+
     hmac = req.get('X-Shopify-Hmac-SHA256');
     data = req.body;
-  } catch (e) {
+
+    if (!hmac && !data) {
     console.log(`Webhook request failed from: ${req.get('X-Shopify-Shop-Domain')}`);
     res.sendStatus(403);
-  }
+    }
 
-  if (verifyHmac(JSON.stringify(data), hmac)) {
+    let isVerified = verifyHmac(JSON.stringify(data), hmac)
+  if (isVerified) {
     req.topic = req.get('X-Shopify-Topic');
     req.shop = req.get('X-Shopify-Shop-Domain');
     res.data = data
     return next();
 }
-
-  return res.sendStatus(200);
+  console.log('Webhook request could not be verified')
+  return res.sendStatus(403);
 }
 
 
