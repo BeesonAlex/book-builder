@@ -21,19 +21,19 @@ const crypto = require('crypto');
 router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
     console.log('beginning to send print package')
     const podPackage = '0850X1100FCPREPB080CW444MXX';
-    let purchasedBooks = res.data.line_items.filter(data => data.variant_id == '31160253481057');
+    let purchasedBooks = data.line_items.filter(data => data.variant_id == '31160253481057');
 
     var options = {
         method: 'POST',
         url: 'https://api.sandbox.lulu.com/print-jobs/',
         headers: {
           'Cache-Control': 'no-cache',
-          'Authorization': `Bearer ${res.token.access_token}`,
+          'Authorization': `Bearer ${token.access_token}`,
           'Content-Type': 'application/json'
         },
         body: {
           "contact_email": `beeson.alexander@gmail.com`,
-          "external_id": `${res.data.order_number}`,
+          "external_id": `${data.order_number}`,
           "line_items": purchasedBooks.map(book => {
               return (
                 {
@@ -54,13 +54,13 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
           }),
           "production_delay": 120,
           "shipping_address": {
-              "city": `${res.data.shipping_address.city}`,
-              "country_code": `${res.data.shipping_address.country_code}`,
-              "name": `${res.data.shipping_address.name}`,
-              "phone_number": `${res.data.shipping_address.phone_number}`,
-              "postcode": `${res.data.shipping_address.zip}`,
-              "state_code": `${res.data.shipping_address.province_code}`,
-              "street1": `${res.data.shipping_address.address1}`
+              "city": `${data.shipping_address.city}`,
+              "country_code": `${data.shipping_address.country_code}`,
+              "name": `${data.shipping_address.name}`,
+              "phone_number": `${data.shipping_address.phone_number}`,
+              "postcode": `${data.shipping_address.zip}`,
+              "state_code": `${data.shipping_address.province_code}`,
+              "street1": `${data.shipping_address.address1}`
           },
           "shipping_level": "MAIL"
       },
@@ -97,7 +97,7 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
     else if (calculatedSignature === hmac) {
         req.topic = req.get('X-Shopify-Topic');
         req.shop = req.get('X-Shopify-Shop-Domain');
-        res.data = req.body
+        
         res.status(200)
         console.log('successfully validated hmac')
         return next();
@@ -127,14 +127,14 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
     'Authorization': `${process.env.PRINT_ENCODED_SECRET}`
   }
 
-let response = '';
+let token = '';
 axios
     .post(`${credentials.auth.tokenHost}`,'grant_type=client_credentials', { headers: httpOptions })
     .then(resp => {
-        response = resp.data
-        if (response) {
+        token = resp.data
+        if (token) {
             console.log('successfully fetched token')
-          res.token = response
+
           res.status(200)
           next()
           } else {
