@@ -88,7 +88,8 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
   });
   
   function validateWebhook (req,res,next) {
-
+    res.sendStatus(200)
+    res.send('received webhook')
     hmac = req.get('X-Shopify-Hmac-SHA256');
     data = req.body;
     const sharedSecret = process.env.SHOPIFY_WEBHOOK_SECRET;
