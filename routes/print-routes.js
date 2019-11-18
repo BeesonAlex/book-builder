@@ -12,6 +12,8 @@ function verifyHmac(data, hmac) {
 
     const sharedSecret = process.env.SHOPIFY_WEBHOOK_SECRET;
     const calculatedSignature = crypto.createHmac('sha256', sharedSecret).update(data).digest('hex');
+    console.log('calculatedSignature', calculatedSignature)
+    console.log('hmac', hmac)
     return calculatedSignature === hmac;
 }
 
@@ -84,8 +86,6 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
 
     hmac = req.get('X-Shopify-Hmac-SHA256');
     data = req.body;
-    console.log('hmac', hmac)
-    console.log('data', typeof data)
 
     if (!hmac && !data) {
     console.log(`Webhook request failed from: ${req.get('X-Shopify-Shop-Domain')}`);
