@@ -3,19 +3,19 @@ const router = Router();
 const axios = require('axios');
 const crypto = require('crypto');
 
-function verifyHmac(data, hmac) {
-    if (!hmac) {
-      return false;
-    } else if (!data || typeof data !== 'object') {
-      return false;
-    }
+// function verifyHmac(data, hmac) {
+//     if (!hmac) {
+//       return false;
+//     } else if (!data || typeof data !== 'object') {
+//       return false;
+//     }
 
-    const sharedSecret = process.env.SHOPIFY_WEBHOOK_SECRET;
-    const calculatedSignature = crypto.createHmac('sha256', sharedSecret).update(data).digest('hex');
-    console.log('calculatedSignature', calculatedSignature)
-    console.log('hmac', hmac)
-    return calculatedSignature === hmac;
-}
+//     const sharedSecret = process.env.SHOPIFY_WEBHOOK_SECRET;
+//     const calculatedSignature = crypto.createHmac('sha256', sharedSecret).update(data).digest('hex');
+//     console.log('calculatedSignature', calculatedSignature)
+//     console.log('hmac', hmac)
+//     return calculatedSignature === hmac;
+// }
 
 // Register Webhook to listen for new orders with custom books
 router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
@@ -82,26 +82,31 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
         }
   });
   
-  function validateWebhook (req,res,next){
+  function validateWebhook (req,res,next) {
 
     hmac = req.get('X-Shopify-Hmac-SHA256');
     data = req.body;
+    const sharedSecret = process.env.SHOPIFY_WEBHOOK_SECRET;
+    const calculatedSignature = crypto.createHmac('sha256', sharedSecret).update(data).digest('hex');
+    console.log('calculatedSignature', calculatedSignature)
+    console.log('hmac', hmac)
 
     if (!hmac && !data) {
     console.log(`Webhook request failed from: ${req.get('X-Shopify-Shop-Domain')}`);
     res.sendStatus(403);
     }
 
-    let isVerified = verifyHmac(JSON.stringify(data), hmac)
-    console.log('isVerified', isVerified)
-  if (isVerified) {
-    req.topic = req.get('X-Shopify-Topic');
-    req.shop = req.get('X-Shopify-Shop-Domain');
-    res.data = data
-    return next();
-}
+    else if (calculatedSignature === hmac) {
+        req.topic = req.get('X-Shopify-Topic');
+        req.shop = req.get('X-Shopify-Shop-Domain');
+        res.data = data
+        res.sendStatus(200)
+        return next();
+    } else {
+
   console.log('Webhook request could not be verified')
   return res.sendStatus(403);
+    }
 }
 
 
