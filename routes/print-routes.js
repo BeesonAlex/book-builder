@@ -22,6 +22,7 @@ let order = {};
 // Register Webhook to listen for new orders with custom books
 router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
     console.log('beginning to send print package')
+    console.log(token)
     console.log(order.line_items[0].properties)
     const podPackage = '0850X1100FCPREPB080CW444MXX';
     let purchasedBooks = order.line_items.filter(data => data.variant_id == '31160253481057');
@@ -30,7 +31,6 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
         method: 'POST',
         url: 'https://api.sandbox.lulu.com/print-jobs/',
         headers: {
-          'Cache-Control': 'no-cache',
           'Authorization': `Bearer ${token.access_token}`,
           'Content-Type': 'application/json'
         },
@@ -43,15 +43,15 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
                     "external_id": `${book.id}`,
                     "printable_normalization": {
                         "cover": {
-                            "source_url": `${book.properties.coverUrl}`
+                            "source_url": `${book.properties[2].value}`
                         },
                         "interior": {
-                            "source_url": `${book.properties.contentUrl}`
+                            "source_url": `${book.properties[1].value}`
                         },
                         "pod_package_id": `${podPackage}`
                     },
                     "quantity": book.quantity,
-                    "title": `${book.properties.title}`
+                    "title": `${book.properties[0].value}`
                 }
               )
           }),
@@ -73,7 +73,7 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
     
     if (purchasedBooks) {
         axios
-          .post(`${options.url}`, options.body, options.headers)
+          .post(`${options.url}`, options.body, { headers: options.headers })
           .then(reso => {
               console.log('new print order successfully created', reso.data)
           })
@@ -101,7 +101,6 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
         req.topic = req.get('X-Shopify-Topic');
         req.shop = req.get('X-Shopify-Shop-Domain');
         order = JSON.parse(data.toString())
-        console.log(order)
         res.status(200)
         console.log('successfully validated hmac')
         return next();
@@ -137,7 +136,6 @@ axios
         token = resp.data
         if (token) {
             console.log('successfully fetched token')
-            console.log(token)
           res.status(200)
           next()
           } else {
