@@ -132,21 +132,21 @@ axios
     .post(`${credentials.auth.tokenHost}`,'grant_type=client_credentials', { headers: httpOptions })
     .then(res => {
         response = res.data
-        console.log(response)
+        if (response) {
+            console.log('successfully fetched token')
+          res.token = token
+          res.sendStatus(200)
+          next()
+          } else {
+              console.log('could not fetch token')
+              res.sendStatus(403)
+          }
     })
     .catch(err => {
         console.log(err)
     })
 
-  if (response) {
-    console.log('successfully fetched token')
-  res.token = token
-  res.sendStatus(200)
-  next()
-  } else {
-      console.log('could not fetch token')
-      res.sendStatus(403)
-  }
+
 }
 
   module.exports = router;
