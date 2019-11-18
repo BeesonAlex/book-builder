@@ -85,9 +85,9 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
   function validateWebhook (req,res,next) {
 
     hmac = req.get('X-Shopify-Hmac-SHA256');
-    data = String(req.body);
+    data = req.body;
     const sharedSecret = process.env.SHOPIFY_WEBHOOK_SECRET;
-    const calculatedSignature = crypto.createHmac('sha256', sharedSecret).update(data).digest('hex');
+    const calculatedSignature = crypto.createHmac('sha256', sharedSecret).update(data, 'utf8', 'hex').digest('base64');
     console.log('calculatedSignature', calculatedSignature)
     console.log('hmac', hmac)
 
