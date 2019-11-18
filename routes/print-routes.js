@@ -21,6 +21,7 @@ let token = '';
 let order = {};
 // Register Webhook to listen for new orders with custom books
 router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
+    res.sendStatus(200)
     console.log('beginning to send print package')
     console.log(token)
     console.log(order.line_items[0].properties)
