@@ -91,20 +91,20 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
 
     if (!hmac && !data) {
     console.log(`Webhook request failed from: ${req.get('X-Shopify-Shop-Domain')}`);
-    res.sendStatus(403);
+    res.status(403);
     }
 
     else if (calculatedSignature === hmac) {
         req.topic = req.get('X-Shopify-Topic');
         req.shop = req.get('X-Shopify-Shop-Domain');
         res.data = req.body
-        res.sendStatus(200)
+        res.status(200)
         console.log('successfully validated hmac')
         return next();
     } else {
 
   console.log('Webhook request could not be verified')
-  return res.sendStatus(403);
+  return res.status(403);
     }
 }
 
@@ -135,11 +135,11 @@ axios
         if (response) {
             console.log('successfully fetched token')
           res.token = response
-          res.sendStatus(200)
+          res.status(200)
           next()
           } else {
               console.log('could not fetch token')
-              res.sendStatus(403)
+              res.status(403)
           }
     })
     .catch(err => {
