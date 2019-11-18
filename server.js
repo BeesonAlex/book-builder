@@ -28,7 +28,7 @@ db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('Connected to Book Builder Database'))
 
 
-app.use('/webhooks', bodyParser.raw({ type: 'application/json' }))
+app.use('/print/webhook/order', bodyParser.raw({ type: 'application/json' }))
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
