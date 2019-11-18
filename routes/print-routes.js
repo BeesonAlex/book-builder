@@ -76,6 +76,7 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
           .post(`${options.url}`, options.body, { headers: options.headers })
           .then(reso => {
               console.log('new print order successfully created', reso.data)
+              res.status(200)
           })
           .catch(err => {
               console.log(err)
