@@ -18,12 +18,13 @@ const crypto = require('crypto');
 // }
 
 let token = '';
+let order = {};
 // Register Webhook to listen for new orders with custom books
 router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
     console.log('beginning to send print package')
     console.log(req.body)
     const podPackage = '0850X1100FCPREPB080CW444MXX';
-    let purchasedBooks = req.body.line_items.filter(data => data.variant_id == '31160253481057');
+    let purchasedBooks = order.line_items.filter(data => data.variant_id == '31160253481057');
 
     var options = {
         method: 'POST',
@@ -35,7 +36,7 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
         },
         body: {
           "contact_email": `beeson.alexander@gmail.com`,
-          "external_id": `${req.body.order_number}`,
+          "external_id": `${order.order_number}`,
           "line_items": purchasedBooks.map(book => {
               return (
                 {
@@ -56,13 +57,13 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
           }),
           "production_delay": 120,
           "shipping_address": {
-              "city": `${req.body.shipping_address.city}`,
-              "country_code": `${req.body.shipping_address.country_code}`,
-              "name": `${req.body.shipping_address.name}`,
-              "phone_number": `${req.body.shipping_address.phone_number}`,
-              "postcode": `${req.body.shipping_address.zip}`,
-              "state_code": `${req.body.shipping_address.province_code}`,
-              "street1": `${req.body.shipping_address.address1}`
+              "city": `${order.shipping_address.city}`,
+              "country_code": `${order.shipping_address.country_code}`,
+              "name": `${order.shipping_address.name}`,
+              "phone_number": `${order.shipping_address.phone_number}`,
+              "postcode": `${order.shipping_address.zip}`,
+              "state_code": `${order.shipping_address.province_code}`,
+              "street1": `${order.shipping_address.address1}`
           },
           "shipping_level": "MAIL"
       },
@@ -99,7 +100,7 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
     else if (calculatedSignature === hmac) {
         req.topic = req.get('X-Shopify-Topic');
         req.shop = req.get('X-Shopify-Shop-Domain');
-        
+        order = JSON.parse(data.toString())
         res.status(200)
         console.log('successfully validated hmac')
         return next();
