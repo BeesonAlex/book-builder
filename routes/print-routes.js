@@ -22,7 +22,7 @@ let order = {};
 // Register Webhook to listen for new orders with custom books
 router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
     console.log('beginning to send print package')
-    console.log(req.body)
+    console.log(order)
     const podPackage = '0850X1100FCPREPB080CW444MXX';
     let purchasedBooks = order.line_items.filter(data => data.variant_id == '31160253481057');
 
@@ -101,6 +101,7 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
         req.topic = req.get('X-Shopify-Topic');
         req.shop = req.get('X-Shopify-Shop-Domain');
         order = JSON.parse(data.toString())
+        console.log(order)
         res.status(200)
         console.log('successfully validated hmac')
         return next();
@@ -136,7 +137,7 @@ axios
         token = resp.data
         if (token) {
             console.log('successfully fetched token')
-
+            console.log(token)
           res.status(200)
           next()
           } else {
