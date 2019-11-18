@@ -129,7 +129,7 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
 
 let response = '';
 axios
-    .post(`${credentials.auth.tokenHost}`,'grant_type=client_credentials', { httpOptions })
+    .post(`${credentials.auth.tokenHost}`,'grant_type=client_credentials', { headers: httpOptions })
     .then(res => {
         response = res.data
         console.log(response)
