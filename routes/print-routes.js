@@ -128,11 +128,18 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
     'Authorization': `${process.env.PRINT_ENCODED_SECRET}`
   }
 
-  let response = await axios.post(`${credentials.auth.tokenHost}`, { httpOptions })
-  console.log(response)
-  let token = await response.data
+let response = '';
+axios
+    .post(`${credentials.auth.tokenHost}`, { httpOptions })
+    .then(res => {
+        response = res.data
+        console.log(response)
+    })
+    .catch(err => {
+        console.log(err)
+    })
 
-  if (token) {
+  if (response) {
     console.log('successfully fetched token')
   res.token = token
   res.sendStatus(200)
