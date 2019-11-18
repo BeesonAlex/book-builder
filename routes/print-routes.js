@@ -22,7 +22,7 @@ let order = {};
 // Register Webhook to listen for new orders with custom books
 router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
     console.log('beginning to send print package')
-    console.log(order)
+    console.log(order.line_items[0].properties)
     const podPackage = '0850X1100FCPREPB080CW444MXX';
     let purchasedBooks = order.line_items.filter(data => data.variant_id == '31160253481057');
 
@@ -60,7 +60,7 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
               "city": `${order.shipping_address.city}`,
               "country_code": `${order.shipping_address.country_code}`,
               "name": `${order.shipping_address.name}`,
-              "phone_number": `${order.shipping_address.phone_number}`,
+              "phone_number": `${order.shipping_address.phone_number || '2892515533'}`,
               "postcode": `${order.shipping_address.zip}`,
               "state_code": `${order.shipping_address.province_code}`,
               "street1": `${order.shipping_address.address1}`
