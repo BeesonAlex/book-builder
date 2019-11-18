@@ -123,14 +123,13 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
   };
 
   const httpOptions = {
-    'grant_type': 'client_credentials',
     'Content-Type': 'application/x-www-form-urlencoded',
     'Authorization': `${process.env.PRINT_ENCODED_SECRET}`
   }
 
 let response = '';
 axios
-    .post(`${credentials.auth.tokenHost}`, { httpOptions })
+    .post(`${credentials.auth.tokenHost}`,'grant_type=client_credentials', { httpOptions })
     .then(res => {
         response = res.data
         console.log(response)
