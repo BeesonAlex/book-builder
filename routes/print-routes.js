@@ -19,7 +19,7 @@ const crypto = require('crypto');
 
 // Register Webhook to listen for new orders with custom books
 router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
-
+    console.log('beginning to send print package')
     const podPackage = '0850X1100FCPREPB080CW444MXX';
     let purchasedBooks = res.data.line_items.filter(data => data.variant_id == '31160253481057');
 
@@ -88,8 +88,6 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
     data = req.body;
     const sharedSecret = process.env.SHOPIFY_WEBHOOK_SECRET;
     const calculatedSignature = crypto.createHmac('sha256', sharedSecret).update(data, 'utf8', 'hex').digest('base64');
-    console.log('calculatedSignature', calculatedSignature)
-    console.log('hmac', hmac)
 
     if (!hmac && !data) {
     console.log(`Webhook request failed from: ${req.get('X-Shopify-Shop-Domain')}`);
@@ -101,6 +99,7 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
         req.shop = req.get('X-Shopify-Shop-Domain');
         res.data = req.body
         res.sendStatus(200)
+        console.log('successfully validated hmac')
         return next();
     } else {
 
@@ -112,6 +111,7 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
 
   async function fetchToken (req, res, next) {
     // Set the configuration settings
+    console.log('fetching token')
     const credentials = {
     client: {
       id: process.env.PRINT_CLIENT_KEY,
@@ -129,13 +129,16 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
   }
 
   let response = await axios.post(`${credentials.auth.tokenHost}`, { httpOptions })
+  console.log(response)
   let token = await response.data
 
   if (token) {
     console.log('successfully fetched token')
   res.token = token
+  res.sendStatus(200)
   next()
   } else {
+      console.log('could not fetch token')
       res.sendStatus(403)
   }
 }
