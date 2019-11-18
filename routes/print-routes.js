@@ -17,11 +17,13 @@ const crypto = require('crypto');
 //     return calculatedSignature === hmac;
 // }
 
+let token = '';
 // Register Webhook to listen for new orders with custom books
 router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
     console.log('beginning to send print package')
+    console.log(req.body)
     const podPackage = '0850X1100FCPREPB080CW444MXX';
-    let purchasedBooks = data.line_items.filter(data => data.variant_id == '31160253481057');
+    let purchasedBooks = req.body.line_items.filter(data => data.variant_id == '31160253481057');
 
     var options = {
         method: 'POST',
@@ -33,7 +35,7 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
         },
         body: {
           "contact_email": `beeson.alexander@gmail.com`,
-          "external_id": `${data.order_number}`,
+          "external_id": `${req.body.order_number}`,
           "line_items": purchasedBooks.map(book => {
               return (
                 {
@@ -54,13 +56,13 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
           }),
           "production_delay": 120,
           "shipping_address": {
-              "city": `${data.shipping_address.city}`,
-              "country_code": `${data.shipping_address.country_code}`,
-              "name": `${data.shipping_address.name}`,
-              "phone_number": `${data.shipping_address.phone_number}`,
-              "postcode": `${data.shipping_address.zip}`,
-              "state_code": `${data.shipping_address.province_code}`,
-              "street1": `${data.shipping_address.address1}`
+              "city": `${req.body.shipping_address.city}`,
+              "country_code": `${req.body.shipping_address.country_code}`,
+              "name": `${req.body.shipping_address.name}`,
+              "phone_number": `${req.body.shipping_address.phone_number}`,
+              "postcode": `${req.body.shipping_address.zip}`,
+              "state_code": `${req.body.shipping_address.province_code}`,
+              "street1": `${req.body.shipping_address.address1}`
           },
           "shipping_level": "MAIL"
       },
@@ -127,7 +129,6 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
     'Authorization': `${process.env.PRINT_ENCODED_SECRET}`
   }
 
-let token = '';
 axios
     .post(`${credentials.auth.tokenHost}`,'grant_type=client_credentials', { headers: httpOptions })
     .then(resp => {
