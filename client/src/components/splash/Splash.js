@@ -94,14 +94,14 @@ export class Splash extends Component {
                         this.state.isLoggedIn ? (
                         <form className="splash__form" onSubmit={this.onSubmitHandler}>
                         <input className="splash__form--email splash__form__input" type="text" name="book__title" placeholder="Enter a Title"></input>
-                        <button className="splash__form--button submit-button btn" type="submit">Create New Book</button>
+                        <button className="splash__form--button submit-button btn" type="submit"><img className="icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/plus-circle.svg?58" />Create New Book</button>
                         </form>
                     ) : (
                     <form className="splash__form" onSubmit={this.onSubmitHandler}>
                         <input className="splash__form--email splash__form__input" type="text" name="email__address" placeholder="Enter an e-Mail"></input>
                         <input className="splash__form--email splash__form__input" type="text" name="name" placeholder="Enter Your Name"></input>
                         <input className="splash__form--email splash__form__input" type="text" name="book__title" placeholder="Enter a Title"></input>
-                        <button className="splash__form--button submit-button btn" type="submit">Create Your First Book</button>
+                        <button className="splash__form--button submit-button btn" type="submit"><img className="icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/plus-circle.svg?58" />Create Your First Book</button>
                     </form>
                     )}
                 </div>
@@ -109,7 +109,7 @@ export class Splash extends Component {
                     {
                         this.state.isLoggedIn ?  
                         this.state.loggedInUser.books.map(book => {
-                            return <BookPreview key={book.id} id={book.id} title={book.title} pages={book.pages} onBookPreviewClick={this.onBookPreviewClick} numPages={book.pages.length()} />
+                            return <BookPreview key={book.id} id={book.id} title={book.title} pages={book.pages} onBookPreviewClick={this.onBookPreviewClick} numPages={book.pages.length} />
                         }) : 'No saved books!'
                         }
                 </div>
