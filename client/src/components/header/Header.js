@@ -80,6 +80,10 @@ onHomeHandler = () => {
         return (
             <div className="header">
                 <div className="header__left-wrapper">
+                    <img className="header__icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/book-open.svg?72" />
+                <h2 className="header__title"></h2>
+                </div>
+                <div className="header__right-wrapper">
                 <button onClick={this.onHomeHandler} className="header__button btn"><img className="header__complete-icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/home.svg?67"/>Home</button>
                 {
                     this.state.activeBook.id ? <button onClick={this.onCompleteHandler} className="header__button btn"><img className="header__complete-icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/shopping-cart.svg?67"/>Complete Book</button> : ''
