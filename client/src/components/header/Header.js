@@ -4,7 +4,7 @@ import './Header.scss';
 
 export class Header extends Component {
 
-    state= {
+    state={
         ...this.props.appState
     }
 
@@ -47,6 +47,7 @@ export class Header extends Component {
                                 }
                             })
                             .then(res => {
+                                this.props.history.push(`/cart`)
                                 console.log(res.data)
                             })
                             .catch(err => {
@@ -58,6 +59,10 @@ export class Header extends Component {
                     console.log(err)
                 })
         })
+    }
+
+onHomeHandler = () => {
+    this.props.history.push(`/tools/book-builder`)
     }
 
     static getDerivedStateFromProps(props, state) {
@@ -75,12 +80,9 @@ export class Header extends Component {
         return (
             <div className="header">
                 <div className="header__left-wrapper">
-                    <img className="header__icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/book-open.svg?65"/>
-                    <h1 className="header__title">Book Builder</h1>
-                </div>
-                <div className="header__right-wrapper">
+                <button onClick={this.onHomeHandler} className="header__button btn"><img className="header__complete-icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/home.svg?67"/>Home</button>
                 {
-                    this.state.activeBook.id ? <button onClick={this.onCompleteHandler} className="header__submit-button btn"><img className="header__icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/shopping-cart.svg?67"/>Complete Book</button> : ''
+                    this.state.activeBook.id ? <button onClick={this.onCompleteHandler} className="header__button btn"><img className="header__complete-icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/shopping-cart.svg?67"/>Complete Book</button> : ''
                 }
                 </div>
             </div>

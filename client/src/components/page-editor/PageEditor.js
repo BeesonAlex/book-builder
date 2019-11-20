@@ -108,7 +108,7 @@ onSubmitHandler = event => {
             <>
             <div className="header">
                 <div className="header__left-wrapper">
-                    <h1 className="header__title">Book Home</h1>
+                    <h1 className="header__title">{this.state.activeBook.title}</h1>
                 </div>
                 <div className="header__mid-wrapper">
                     <p className="header__left-button">Previous</p>
