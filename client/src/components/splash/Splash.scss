@@ -2,23 +2,30 @@
     padding: 0rem 3.4375rem 0rem 3.4375rem;
 
     &__content-header {
+        display: flex;
+        flex-wrap: wrap;
 
         .splash__title {
-
+            width: 99vw;
+            text-align: left;
         }
         .splash__form {
             display: flex;
             flex-direction: row;
-            justify-content: space-evenly;
+            justify-content: space-around;
         }
 
         .splash__form__input {
             border-radius: 5px;
+            margin-right: 1rem;
         }
     }
 
     &__user-books-wrapper {
         
+        .splash__user-books-wrapper__subtitle {
+            margin-bottom: 1rem;
+        }
 
         .bookpreview__wrapper {
             margin: 3rem 2rem 1rem 2rem;
@@ -29,19 +36,20 @@
 
             .bookpreview__icon {
                 margin-right: 1rem;
-                padding-bottom: 1.0938rem;
                 width: 1rem;
                 height: auto;
             }
 
             .bookpreview__title {
-                margin-right: 3rem;
+                margin-right: 4rem;
+                margin-bottom: 0rem;
             }
             .bookpreview__pages {
 
             }
             .bookpreview__edit-button {
-
+                display: flex;
+                align-content: center;
             }
         }
     }
