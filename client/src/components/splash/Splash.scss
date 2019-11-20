@@ -1,0 +1,42 @@
+.splash {
+
+    &__content-header {
+
+        .splash__title {
+
+        }
+        .splash__form {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+
+        .splash__form__input {
+            border-radius: 5px;
+        }
+    }
+
+    &__user-books-wrapper {
+
+        .bookpreview__wrapper {
+            margin: 3rem 2rem 1rem 2rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .bookpreview__icon {
+                margin-right: 1rem;
+            }
+
+            .bookpreview__title {
+
+            }
+            .bookpreview__pages {
+
+            }
+            .bookpreview__edit-button {
+
+            }
+        }
+    }
+}

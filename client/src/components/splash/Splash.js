@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import uuidv1 from 'uuid/v1';
 import BookPreview from './BookPreview';
+import './Splash.scss';
 
 export class Splash extends Component {
 
@@ -88,19 +89,19 @@ export class Splash extends Component {
         return (
             <div className="splash">
                 <div className="splash__content-header">
-                    <h1 className="splash__title">Welcome to the Book Editor!</h1>
+                    <h2 className="splash__title">Welcome to the Book Editor!</h2>
                     {
                         this.state.isLoggedIn ? (
                         <form className="splash__form" onSubmit={this.onSubmitHandler}>
-                        <input className="splash__form--email splash__form" type="text" name="book__title" placeholder="Enter a Title"></input>
-                        <button className="splash__form--button submit-button" type="submit">Create New Book</button>
+                        <input className="splash__form--email splash__form__input" type="text" name="book__title" placeholder="Enter a Title"></input>
+                        <button className="splash__form--button submit-button btn" type="submit">Create New Book</button>
                         </form>
                     ) : (
                     <form className="splash__form" onSubmit={this.onSubmitHandler}>
-                        <input className="splash__form--email splash__form" type="text" name="email__address" placeholder="Enter an e-Mail"></input>
-                        <input className="splash__form--email splash__form" type="text" name="name" placeholder="Enter Your Name"></input>
-                        <input className="splash__form--email splash__form" type="text" name="book__title" placeholder="Enter a Title"></input>
-                        <button className="splash__form--button submit-button" type="submit">Create Your First Book</button>
+                        <input className="splash__form--email splash__form__input" type="text" name="email__address" placeholder="Enter an e-Mail"></input>
+                        <input className="splash__form--email splash__form__input" type="text" name="name" placeholder="Enter Your Name"></input>
+                        <input className="splash__form--email splash__form__input" type="text" name="book__title" placeholder="Enter a Title"></input>
+                        <button className="splash__form--button submit-button btn" type="submit">Create Your First Book</button>
                     </form>
                     )}
                 </div>
@@ -108,7 +109,7 @@ export class Splash extends Component {
                     {
                         this.state.isLoggedIn ?  
                         this.state.loggedInUser.books.map(book => {
-                            return <BookPreview key={book.id} id={book.id} title={book.title} pages={book.pages} onBookPreviewClick={this.onBookPreviewClick} numPages={book.pages.length} />
+                            return <BookPreview key={book.id} id={book.id} title={book.title} pages={book.pages} onBookPreviewClick={this.onBookPreviewClick} numPages={book.pages.length()} />
                         }) : 'No saved books!'
                         }
                 </div>

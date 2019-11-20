@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import axios from 'axios'
+import React, { Component } from 'react';
+import axios from 'axios';
+import './Header.scss';
 
 export class Header extends Component {
 
@@ -74,6 +75,7 @@ export class Header extends Component {
         return (
             <div className="header">
                 <div className="header__left-wrapper">
+                    <img className="header__icon" src="../../assets/icons/book-open.svg"/>
                     <h1 className="header__title">Book Builder</h1>
                 </div>
                 <div className="header__right-wrapper">

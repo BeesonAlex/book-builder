@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PagePreview from './PagePreview';
 import uuidv1 from 'uuid/v1';
+import './BookHome.scss';
 
 export class BookHome extends Component {
 
@@ -84,11 +85,15 @@ export class BookHome extends Component {
         return (
             <div className="bookhome">
                 <div className="bookhome__information-wrapper">
+                    <div className="bookhome__title-wrapper">
                 <h1 className="bookhome__title">{this.state.activeBook.title}</h1>
                 <p className="bookhome__author">{this.state.loggedInUser.name}</p>
                 </div>
-                <button onClick={this.onClickHandler} className="bookhome__button--add-page">Add a Page</button>
-                <button onClick={this.onSaveHandler} className="bookhome__button--save-book">Save Book</button>
+                <div className="bookhome__button-wrapper">
+                <button onClick={this.onClickHandler} className="bookhome__button--add-page btn--secondary"><img className="icon" src="../../assets/icons/plus-circle.svg" />Add a Page</button>
+                <button onClick={this.onSaveHandler} className="bookhome__button--save-book btn--secondary"><img className="icon" src="../../assets/icons/save.svg" />Save Book</button>
+                </div>
+                </div>
                 <div className="bookhome__pages-wrapper">
                 { this.state.activeBook.pages ?
                     this.state.activeBook.pages.map(page => {

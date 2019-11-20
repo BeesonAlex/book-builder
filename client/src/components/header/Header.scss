@@ -1,0 +1,25 @@
+.header {
+    margin: 0rem 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &__left-wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .header__icon {
+            margin-right: 1rem;
+        }
+
+        .header__title {
+            
+        }
+    }
+    &__right-wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+}

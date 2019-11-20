@@ -1,0 +1,70 @@
+.bookhome {
+
+    &__information-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        margin: 2rem 4rem;
+
+        .bookhome__title-wrapper {
+
+
+        .bookhome__title {
+
+        }
+
+        .bookhome__author {
+
+        }
+        }
+    
+
+    .bookhome__button-wrapper {
+
+    .bookhome__button--add-page {
+        margin-right: 1rem;
+    }
+
+    .bookhome__button--save-book {
+
+    }
+    }
+}
+
+    &__pages-wrapper {
+
+        .pagepreview {
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: row;
+
+            &__song-title {
+                
+            }
+            &__song-artist {
+
+            }
+            &__page-number {
+
+            }
+            &__edit-button {
+
+            }
+            &__complete {
+                width: 1rem;
+                height: auto
+
+            }
+            &__incomplete {
+                width: 1rem;
+                height: auto
+            }
+        }
+    }
+}
+
+.icon {
+    width: 1rem;
+    height: auto;
+    margin-right: 1rem;
+}
