@@ -1,4 +1,5 @@
 .splash {
+    padding: 0rem 3.4375rem 0rem 3.4375rem;
 
     &__content-header {
 
@@ -17,6 +18,7 @@
     }
 
     &__user-books-wrapper {
+        
 
         .bookpreview__wrapper {
             margin: 3rem 2rem 1rem 2rem;
@@ -27,12 +29,13 @@
 
             .bookpreview__icon {
                 margin-right: 1rem;
+                padding-bottom: 1.0938rem;
                 width: 1rem;
                 height: auto;
             }
 
             .bookpreview__title {
-
+                margin-right: 3rem;
             }
             .bookpreview__pages {
 
