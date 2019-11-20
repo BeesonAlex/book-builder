@@ -34,11 +34,15 @@
 
         .header__button {
             margin-left: 1rem;
+            display: flex;
+            align-content: center;
+            align-items: center;
 
             .header__complete-icon {
                 width: 1rem;
                 height: auto;
                 margin-right: 1rem;
+                padding-bottom: 0.1875rem;
             }
         }
     }
