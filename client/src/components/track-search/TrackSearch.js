@@ -67,7 +67,7 @@ export class TrackSearch extends Component {
                         <h1 className="tracksearch__title">Choose a Song Below</h1>
                         <form className="tracksearch__form" onSubmit={this.onSubmitHandler}>
                         <input className="tracksearch__search" type="text" name="search__criteria" placeholder="Search"></input>
-                        <button type="submit">Search</button>
+                        <button className="btn" type="submit"><img className="icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/Icon-search.svg?67" />Search</button>
                         </form>
                 </div>
                 <div className="tracksearch__listings">
