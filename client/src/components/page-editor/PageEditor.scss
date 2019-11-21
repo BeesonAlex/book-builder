@@ -27,39 +27,41 @@
         .pageeditor__form {
             height: unset;
             
-            .pageeditor__text-wrapper {
-                margin: 2rem 2rem 1rem 2rem;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-
-                .pageeditor__song-title {
-                    
-                }
-
-                .pageeditor__artist-album-wrapper {
-                    display: flex;
-
-
-                
-                .pageeditor__artist-title {
-                    margin-right: 3rem;
-                }
-
-                .pageeditor__artist-album {
-
-                }
-            }
-
-                .pageeditor__thoughts {
-                    width: 80%;
-                    height: 500px;
-                }
-            }
+            
 
             .pageeditor__submit {
                 margin-bottom: 1rem;
             }
         }
+    }
+}
+
+.pageeditor--text-wrapper {
+    margin: 2rem 2rem 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .pageeditor__song-title {
+        
+    }
+
+    .pageeditor__artist-album-wrapper {
+        display: flex;
+
+
+    
+    .pageeditor__artist-title {
+        margin-right: 3rem;
+    }
+
+    .pageeditor__artist-album {
+
+    }
+}
+
+    .pageeditor__thoughts {
+        width: 80%;
+        height: 500px;
     }
 }
