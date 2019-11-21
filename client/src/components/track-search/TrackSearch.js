@@ -64,10 +64,10 @@ export class TrackSearch extends Component {
         return (
             <div className="tracksearch">
                 <div className="tracksearch__wrapper">
-                        <h1 className="tracksearch__title">Choose a Song Below</h1>
+                        <h2 className="tracksearch__title">Choose a Song Below:</h2>
                         <form className="tracksearch__form" onSubmit={this.onSubmitHandler}>
                         <input className="tracksearch__search" type="text" name="search__criteria" placeholder="Search"></input>
-                        <button className="btn" type="submit"><img className="icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/Icon-search.svg?67" />Search</button>
+                        <button className="tracksearch__submit btn" type="submit">Search</button>
                         </form>
                 </div>
                 <div className="tracksearch__listings">

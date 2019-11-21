@@ -1,5 +1,6 @@
 
 .tracksearch {
+    min-height: 75%;
 
     .tracksearch__wrapper {
         display: flex;
@@ -10,6 +11,9 @@
             font-size: 2rem;
         }
 
+        .tracksearch__form {
+            margin-top: 1rem;
+
         .tracksearch__search {
             height: 3rem;
             width: 15.3125rem;
@@ -18,8 +22,36 @@
             padding-left: 3rem;
             background: url('https://cdn.shopify.com/s/files/1/0262/0584/7649/files/Icon-search.svg?58') no-repeat;
             background-position: 1rem 50%;
-            background-color: lightgrey;
+            background-color: unset;
             color: black;
+        }
+
+        .tracksearch__submit {
+            margin-left: 1rem;
+        }
+    }
+    }
+
+    .tracksearch__listings {
+        display: flex;
+        flex-direction: column;
+
+        .tracklist-item {
+            display: flex;
+            height: 3.75rem;
+            align-items: center;
+
+            .tracklist__title {
+                margin: 0rem 1rem 0rem 0rem
+            }
+
+            .tracklist__artist {
+                margin: 0rem 1rem 0rem 0rem
+            }
+
+            .tracklist__button {
+
+            }
         }
     }
 }
