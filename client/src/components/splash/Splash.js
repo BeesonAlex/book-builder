@@ -94,7 +94,7 @@ export class Splash extends Component {
                         this.state.isLoggedIn ? (
                         <form className="splash__form" onSubmit={this.onSubmitHandler}>
                         <input className="splash__form--email splash__form__input" type="text" name="book__title" placeholder="Enter a Title"></input>
-                        <button className="splash__form--button submit-button btn" type="submit"><img className="icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/plus-circle.svg?58" />Create New Book</button>
+                        <button className="splash__form--button submit-button btn" type="submit"><img className="add--icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/plus-circle.svg?58" />Create New Book</button>
                         </form>
                     ) : (
                     <form className="splash__form" onSubmit={this.onSubmitHandler}>

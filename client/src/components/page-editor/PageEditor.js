@@ -115,8 +115,10 @@ onSubmitHandler = event => {
                     <form className="pageeditor__form" onSubmit={this.onSubmitHandler}>
                     <div className="pageditor__text-wrapper">
                         <h1 className="pageeditor__song-title">{this.state.trackDetails.name}</h1>
-                        <h2 className="pageeditor__artist-title">{this.state.trackDetails.artist}</h2>
-                        <h2 className="pageeditor__artist-album">{this.state.trackDetails.album}</h2>
+                        <div className="pageeditor__artist-album-wrapper">
+                        <h3 className="pageeditor__artist-title">{this.state.trackDetails.artist}</h3>
+                        <h3 className="pageeditor__artist-album">{this.state.trackDetails.album}</h3>
+                        </div>
                         <input className="pageeditor__thoughts" type="text" name="thoughts" placeholder="Write your thoughts..." defaultValue={this.state.activePage.thoughts}></input>
                     </div>
                     <button className="pageeditor__submit btn" type="submit">Save and Close</button>

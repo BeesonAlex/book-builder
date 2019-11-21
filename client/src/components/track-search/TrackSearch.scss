@@ -43,6 +43,7 @@
             align-items: center;
             width: 100%;
             margin-bottom: 1rem;
+            justify-content: center;
 
             .tracklist__icon {
                 width: 0.75rem;
@@ -66,7 +67,7 @@
             }
 
             .tracklist__button {
-                margin-left: 20%;
+                margin-left: 5%;
             }
         }
     }

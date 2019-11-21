@@ -1,9 +1,8 @@
 .pageeditor {
     margin: 2rem 3.4375rem 1rem 3.4375rem;
+    border: 1px solid grey;
 
     &__editor-wrapper {
-        width: 77vh;
-        height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -21,28 +20,41 @@
                 width: 54%;
                 height: auto;
                 border: 3px solid white;
+                margin: 3rem 0rem;
             }
         }
 
 
         .pageeditor__form {
+            height: unset;
             
             .pageeditor__text-wrapper {
+                margin: 2rem 2rem 1rem 2rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
 
                 .pageeditor__song-title {
                     
                 }
 
-                .pageeditor__artist-title {
+                .pageeditor__artist-album-wrapper {
+                    display: flex;
 
+
+                
+                .pageeditor__artist-title {
+                    margin-right: 3rem;
                 }
 
                 .pageeditor__artist-album {
 
                 }
+            }
 
                 .pageeditor__thoughts {
-
+                    width: 80%;
+                    height: 500px;
                 }
             }
 
