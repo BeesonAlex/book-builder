@@ -21,13 +21,17 @@
     
 
     .bookhome__button-wrapper {
+        display: flex;
 
     .bookhome__button--add-page {
         margin-right: 1rem;
+        display: flex;
+        align-items: center;
     }
 
     .bookhome__button--save-book {
-
+        display: flex;
+        align-items: center;
     }
     }
 }
@@ -62,7 +66,7 @@
                 text-align: left;
             }
             &__edit-button {
-                margin-left: 3rem;
+                margin-left: 20%;
             }
 
             &__completion-status {
@@ -81,7 +85,7 @@
                     margin-right: 1rem;
                 }
 
-                .pagepreview__completion text {
+                .pagepreview__completion-text {
                     font-size: 0.75rem;
                     margin: 0rem 0rem 0rem 0.5rem;
                 }
