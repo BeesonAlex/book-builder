@@ -113,7 +113,7 @@ onSubmitHandler = event => {
                     <img className="pageeditor__album-art" src={this.state.trackDetails.albumArt} alt="album-art" />
                     </div>
                     <form className="pageeditor__form" onSubmit={this.onSubmitHandler}>
-                    <div className="pageditor__text-wrapper">
+                    <div className="pageeditor--text-wrapper">
                         <h1 className="pageeditor__song-title">{this.state.trackDetails.name}</h1>
                         <div className="pageeditor__artist-album-wrapper">
                         <h3 className="pageeditor__artist-title">{this.state.trackDetails.artist}</h3>
