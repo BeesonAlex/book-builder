@@ -90,8 +90,8 @@ export class BookHome extends Component {
                 <p className="bookhome__author">{this.state.loggedInUser.name}</p>
                 </div>
                 <div className="bookhome__button-wrapper">
-                <button onClick={this.onClickHandler} className="bookhome__button--add-page btn--secondary-accent"><img className="header--icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/plus-circle.svg?58" />Add a Page</button>
-                <button onClick={this.onSaveHandler} className="bookhome__button--save-book btn--secondary-accent"><img className="header--icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/save.svg?58" />Save Book</button>
+                <button onClick={this.onClickHandler} className="bookhome__button--add-page btn--secondary-accent"><img className="header--icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/plus-circle.svg?58" alt="add-icon" />Add a Page</button>
+                <button onClick={this.onSaveHandler} className="bookhome__button--save-book btn--secondary-accent"><img className="header--icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/save.svg?58" alt="save-icon" />Save Book</button>
                 </div>
                 </div>
                 <div className="bookhome__pages-wrapper">
