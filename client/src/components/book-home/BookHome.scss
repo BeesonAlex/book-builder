@@ -32,6 +32,7 @@
 }
 
     &__pages-wrapper {
+        margin: 0rem 3.4375rem 0rem 3.4375rem;
 
         .pagepreview {
             margin-bottom: 1rem;
@@ -39,25 +40,29 @@
             flex-direction: row;
 
             &__song-title {
-                
+                font-size: 1.125rem;
+                margin-right: 2rem;
             }
             &__song-artist {
-
+                font-size: 0.875rem;
             }
             &__page-number {
-
+                font-size: 1.125rem;
+                margin-right: 1rem;
             }
             &__edit-button {
-
+                margin-left: 3rem
             }
             &__complete {
                 width: 1rem;
-                height: auto
+                height: auto;
+                margin-right: 1rem;
 
             }
             &__incomplete {
                 width: 1rem;
-                height: auto
+                height: auto;
+                margin-right: 1rem;
             }
         }
     }
