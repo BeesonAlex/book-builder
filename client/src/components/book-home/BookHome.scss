@@ -4,7 +4,8 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        margin: 2rem 4rem;
+        margin: 2rem 3.4375rem 3rem 3.4375rem;
+        align-items:center;
 
         .bookhome__title-wrapper {
             text-align: left;
@@ -42,32 +43,48 @@
 
             &__song-title {
                 font-size: 1.125rem;
-                margin-right: 2rem;
+                margin: 0rem 2rem 0rem 0rem;
                 width: 15.625rem;
                 overflow: hidden;
+                text-align: left;
             }
             &__song-artist {
-                font-size: 0.875rem;
+                font-size: 1rem;
                 width: 9.375rem;
                 overflow: hidden;
+                text-align: left;
+                margin: 0rem;
             }
             &__page-number {
                 font-size: 1.125rem;
-                margin-right: 1.5rem;
+                margin: 0rem 1.5rem 0rem 0rem;
+                width: 0.9375rem;
+                text-align: left;
             }
             &__edit-button {
                 margin-left: 3rem;
             }
-            &__complete {
-                width: 1rem;
-                height: auto;
-                margin-right: 1rem;
 
-            }
-            &__incomplete {
-                width: 1rem;
-                height: auto;
-                margin-right: 1rem;
+            &__completion-status {
+                display: flex;
+                align-items: center;
+
+                .pagepreview__complete {
+                    width: 1rem;
+                    height: auto;
+                    margin-right: 1rem;
+                }
+
+                .pagepreview__incomplete {
+                    width: 1rem;
+                    height: auto;
+                    margin-right: 1rem;
+                }
+
+                .pagepreview__completion text {
+                    font-size: 0.75rem;
+                    margin: 0rem 0rem 0rem 0.5rem;
+                }
             }
         }
     }
@@ -77,4 +94,10 @@
     width: 1rem;
     height: auto;
     margin: 0rem 1rem 0.25rem 0.5rem;
+}
+
+.header--icon {
+    width: 1rem;
+    height: auto;
+    margin: 0rem 1rem 0rem 0.5rem;
 }
