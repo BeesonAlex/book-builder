@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './PageEditor.scss';
 
 export class PageEditor extends Component {
 
@@ -106,26 +107,19 @@ onSubmitHandler = event => {
 
         return (
             <>
-            <div className="header">
-                <div className="header__left-wrapper">
-                    <h1 className="header__title">{this.state.activeBook.title}</h1>
-                </div>
-                <div className="header__mid-wrapper">
-                    <p className="header__left-button">Previous</p>
-                    <p className="header__page-number">{this.state.activePage.pageNumber}</p>
-                    <p className="header__right-button">Next</p>
-                </div>
-            </div>
             <div className="pageeditor">
-                <div className="pageeditor__editor-wrapper" style={{ backgroundImage: `url(${this.state.trackDetails.albumArt})`}}>
-                <form className="pageeditor__form" onSubmit={this.onSubmitHandler}>
+                <div className="pageeditor__editor-wrapper">
+                    <div className="pageeditor__album-wrapper">
+                    <img className="pageeditor__album-art" src={this.state.trackDetails.albumArt} alt="album-art" />
+                    </div>
+                    <form className="pageeditor__form" onSubmit={this.onSubmitHandler}>
                     <div className="pageditor__text-wrapper">
                         <h1 className="pageeditor__song-title">{this.state.trackDetails.name}</h1>
                         <h2 className="pageeditor__artist-title">{this.state.trackDetails.artist}</h2>
                         <h2 className="pageeditor__artist-album">{this.state.trackDetails.album}</h2>
                         <input className="pageeditor__thoughts" type="text" name="thoughts" placeholder="Write your thoughts..." defaultValue={this.state.activePage.thoughts}></input>
                     </div>
-                    <button type="submit">Save and Close</button>
+                    <button className="pageeditor__submit btn" type="submit">Save and Close</button>
                     </form>
                 </div>
             </div>

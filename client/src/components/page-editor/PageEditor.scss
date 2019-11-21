@@ -1,0 +1,54 @@
+.pageeditor {
+    margin: 2rem 3.4375rem 1rem 3.4375rem;
+
+    &__editor-wrapper {
+        width: 77vh;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-content: center;
+
+        .pageeditor__album-wrapper {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            width: 100%;
+
+            .pageeditor__album-art {
+                width: 54%;
+                height: auto;
+                border: 3px solid white;
+            }
+        }
+
+
+        .pageeditor__form {
+            
+            .pageeditor__text-wrapper {
+
+                .pageeditor__song-title {
+                    
+                }
+
+                .pageeditor__artist-title {
+
+                }
+
+                .pageeditor__artist-album {
+
+                }
+
+                .pageeditor__thoughts {
+
+                }
+            }
+
+            .pageeditor__submit {
+
+            }
+        }
+    }
+}
