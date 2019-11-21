@@ -12,7 +12,6 @@
         }
 
         .tracksearch__form {
-            margin-top: 1rem;
 
         .tracksearch__search {
             height: 3rem;
@@ -35,22 +34,33 @@
     .tracksearch__listings {
         display: flex;
         flex-direction: column;
+        margin: 2rem 3.4375rem 2rem 55px;
+        align-items: center;
 
         .tracklist-item {
             display: flex;
             height: 3.75rem;
             align-items: center;
+            width: 100%;
+            margin-bottom: 1rem;
 
             .tracklist__title {
-                margin: 0rem 1rem 0rem 0rem
+                margin: 0rem 1rem 0rem 0rem;
+                font-size: 1rem;
+                width: 300px;
+                text-align: left;
+                text-overflow: ellipsis;
             }
 
             .tracklist__artist {
-                margin: 0rem 1rem 0rem 0rem
+                margin: 0rem 1rem 0rem 0rem;
+                width: 200px;
+                text-align: left;
+                text-overflow: ellipsis;
             }
 
             .tracklist__button {
-
+                margin-left: 20%;
             }
         }
     }

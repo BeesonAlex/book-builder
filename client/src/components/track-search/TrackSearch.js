@@ -64,7 +64,7 @@ export class TrackSearch extends Component {
         return (
             <div className="tracksearch">
                 <div className="tracksearch__wrapper">
-                        <h2 className="tracksearch__title">Choose a Song Below:</h2>
+                        <h3 className="tracksearch__title">Choose a Song Below:</h3>
                         <form className="tracksearch__form" onSubmit={this.onSubmitHandler}>
                         <input className="tracksearch__search" type="text" name="search__criteria" placeholder="Search"></input>
                         <button className="tracksearch__submit btn" type="submit">Search</button>

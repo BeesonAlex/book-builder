@@ -89,7 +89,7 @@ export class Splash extends Component {
         return (
             <div className="splash">
                 <div className="splash__content-header">
-                    <h2 className="splash__title">Welcome to the Book Editor</h2>
+                    <h3 className="splash__title">Welcome to the Book Editor</h3>
                     {
                         this.state.isLoggedIn ? (
                         <form className="splash__form" onSubmit={this.onSubmitHandler}>
