@@ -3,14 +3,14 @@
     &__information-wrapper {
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
+        justify-content: space-between;
         margin: 2rem 4rem;
 
         .bookhome__title-wrapper {
-
+            text-align: left;
 
         .bookhome__title {
-
+            margin-bottom: 0px;
         }
 
         .bookhome__author {
@@ -38,20 +38,25 @@
             margin-bottom: 1rem;
             display: flex;
             flex-direction: row;
+            align-items: center;
 
             &__song-title {
                 font-size: 1.125rem;
                 margin-right: 2rem;
+                width: 15.625rem;
+                overflow: hidden;
             }
             &__song-artist {
                 font-size: 0.875rem;
+                width: 9.375rem;
+                overflow: hidden;
             }
             &__page-number {
                 font-size: 1.125rem;
-                margin-right: 1rem;
+                margin-right: 1.5rem;
             }
             &__edit-button {
-                margin-left: 3rem
+                margin-left: 3rem;
             }
             &__complete {
                 width: 1rem;
@@ -71,5 +76,5 @@
 .icon {
     width: 1rem;
     height: auto;
-    margin-right: 1rem;
+    margin: 0rem 1rem 0.25rem 0.5rem;
 }
