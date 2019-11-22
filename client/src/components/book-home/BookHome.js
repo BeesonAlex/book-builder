@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PagePreview from './PagePreview';
 import uuidv1 from 'uuid/v1';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './BookHome.scss';
 
 export class BookHome extends Component {
@@ -41,7 +43,7 @@ export class BookHome extends Component {
 
     onSaveHandler = event => {
         event.preventDefault();
-
+        toast('Saving...');    
     const userBooks = this.state.loggedInUser.books;
 
     const targetBook = userBooks.findIndex(book => {
@@ -63,9 +65,9 @@ export class BookHome extends Component {
                 books: userBooks,
             }
     }, () => {
-        this.props.saveUser(this.state.loggedInUser)
+        this.props.saveUser(this.state.loggedInUser).then(toast.success('Saved!'))
     });
-    }
+    }   
 
     onPagePreviewClick = (id) => {
         const targetPage = this.state.activeBook.pages.find(page => page.id === id)

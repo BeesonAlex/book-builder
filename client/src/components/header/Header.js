@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './Header.scss';
 
 export class Header extends Component {
@@ -25,6 +27,7 @@ export class Header extends Component {
         this.setState({
             ...this.props.appState
         }, () => {
+            toast('Compiling your Book...');
             axios
                 .post(`https://serene-journey-89429.herokuapp.com/pdf/`, this.state.activeBook)
                 .then(res => {
