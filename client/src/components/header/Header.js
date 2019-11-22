@@ -14,6 +14,13 @@ export class Header extends Component {
         })
     }
 
+    onHomeHandler = () => {
+        window.location.pathname = '/tools/book-builder';
+    }
+    onCartHandler = () => {
+        window.location.pathname = '/cart';
+    }
+
     onCompleteHandler = () => {
         this.setState({
             ...this.props.appState
@@ -22,7 +29,7 @@ export class Header extends Component {
                 .post(`https://serene-journey-89429.herokuapp.com/pdf/`, this.state.activeBook)
                 .then(res => {
                     const bookResponse = res.data
-                    console.log(res.data.bookResponse)
+                    console.log(bookResponse)
                     console.log(res.data)
                     this.setState({
                         activeBook: {
@@ -47,8 +54,8 @@ export class Header extends Component {
                                 }
                             })
                             .then(res => {
-                                this.props.history.push(`/cart`)
                                 console.log(res.data)
+                                this.onCartHandler()
                             })
                             .catch(err => {
                                 console.log(err)
@@ -59,10 +66,6 @@ export class Header extends Component {
                     console.log(err)
                 })
         })
-    }
-
-    onHomeHandler = () => {
-        window.location.pathname = '/tools/book-builder';
     }
 
     static getDerivedStateFromProps(props, state) {

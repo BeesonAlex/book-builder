@@ -29,7 +29,7 @@ export class PageEditor extends Component {
                 name: this.state.trackDetails.name,
                 artist: this.state.trackDetails.artist.name,
                 album: this.state.trackDetails.album.title,
-                albumArt: Object.values(this.state.trackDetails.album.image[3])[0].replace('300x300', '1200x1200')
+                albumArt: JSON.parse(Object.values(this.state.trackDetails.album.image[3])[0].replace('300x300', '1200x1200'))
             }
             this.setState({
                 trackDetails: {
