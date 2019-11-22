@@ -55,7 +55,7 @@ onSubmitHandler = event => {
             pageNumber: this.state.activeBook.pages.length + 1,
             track: `${this.state.trackDetails.name}`,
             album: `${this.state.trackDetails.album}`,
-            albumArt: JSON.parse(this.state.trackDetails.albumArt),
+            albumArt: this.state.trackDetails.albumArt.replace('"', ''),
             artist: `${this.state.trackDetails.artist}`,
             thoughts: event.target.thoughts.value,
             pageContentUrl: this.state.activePage.pageContentUrl,
