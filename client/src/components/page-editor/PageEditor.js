@@ -55,10 +55,10 @@ onSubmitHandler = event => {
             pageNumber: this.state.activeBook.pages.length + 1,
             track: `${this.state.trackDetails.name}`,
             album: `${this.state.trackDetails.album}`,
-            albumArt: this.state.trackDetails.albumArt.replace('"', ''),
+            albumArt: this.state.trackDetails.albumArt,
             artist: `${this.state.trackDetails.artist}`,
             thoughts: event.target.thoughts.value,
-            pageContentUrl: this.state.activePage.pageContentUrl,
+            pageContentUrl: this.state.activePage.pageContentUrl
         }
 
     }, () => {

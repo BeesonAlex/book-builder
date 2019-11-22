@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
       'Accept': 'application/json'
     };
     const title = req.body.title;
-    const book = req.body.pages;
+    const book = JSON.stringify(req.body.pages);
     let bookResponse = ''
     
     axios
