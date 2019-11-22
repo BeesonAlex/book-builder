@@ -61,6 +61,10 @@ export class Header extends Component {
         })
     }
 
+    onHomeHandler = () => {
+        window.location.pathname = '/tools/book-builder';
+    }
+
     static getDerivedStateFromProps(props, state) {
         // Any time the current user, page or book changes, re-spread appstate to this.state
         if (props.appState.activeBook.id !== state.activeBook.id || props.appState.activePage.id !== state.activePage.id || props.appState.loggedInUser.id !== state.loggedInUser.id) {
@@ -82,7 +86,7 @@ export class Header extends Component {
                 </a>
                 </div>
                 <div className="header__right-wrapper">
-                <button onClick="window.location.pathname = '/tools/book-builder';" className="header__button btn"><img className="header__complete-icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/home.svg?67" alt="home-icon" />Home</button>
+                <button onClick={this.onHomeHandler} className="header__button btn"><img className="header__complete-icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/home.svg?67" alt="home-icon" />Home</button>
                 {
                     this.state.activeBook.id ? <button onClick={this.onCompleteHandler} className="header__button btn"><img className="header__complete-icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/shopping-cart.svg?67" alt="shopping-cart-icon" />Complete Book</button> : ''
                 }
