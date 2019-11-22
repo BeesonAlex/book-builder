@@ -65,7 +65,8 @@ export class BookHome extends Component {
                 books: userBooks,
             }
     }, () => {
-        this.props.saveUser(this.state.loggedInUser).then(toast.success('Saved!'))
+        this.props.saveUser(this.state.loggedInUser)
+        toast.success('Saved!')
     });
     }   
 
