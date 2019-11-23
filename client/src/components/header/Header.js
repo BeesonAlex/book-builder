@@ -27,7 +27,7 @@ export class Header extends Component {
         this.setState({
             ...this.props.appState
         }, () => {
-            toast('Compiling your Book, You Will Be Redirected in Just a Moment!');
+            toast('Compiling your Book!', {autoClose: 5000});
             axios
                 .post(`https://serene-journey-89429.herokuapp.com/pdf/`, this.state.activeBook)
                 .then(res => {
