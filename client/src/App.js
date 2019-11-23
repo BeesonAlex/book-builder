@@ -6,7 +6,7 @@ import BookHome from "./components/book-home/BookHome";
 import TrackSearch from "./components/track-search/TrackSearch";
 import PageEditor from "./components/page-editor/PageEditor";
 import axios from 'axios';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
