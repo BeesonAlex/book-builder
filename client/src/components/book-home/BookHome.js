@@ -66,7 +66,6 @@ export class BookHome extends Component {
             }
     }, () => {
         this.props.saveUser(this.state.loggedInUser)
-        toast.success('Saved!')
     });
     }   
 

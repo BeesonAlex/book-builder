@@ -104,6 +104,7 @@ saveUser = (user) => {
         })
         .then(res => {
           console.log('successfully updated user')
+          toast.success('Saved!')
         })
         .catch(err => {
           console.log(err);
@@ -129,7 +130,7 @@ saveUser = (user) => {
                 email: newUser.email,
               })
               .then(res => {
-
+                toast.success(`Welcome, ${newUser.name}!`)
               })
               .catch(err => {
                 console.log(err)
@@ -164,7 +165,7 @@ updateAppState = (componentState) => {
       <Route path="/tools/:userid/book/:bookid/page/:pageid/editor" exact render={(props) => <PageEditor {...props} appState={this.state} saveUser={this.saveUser} updateAppState={this.updateAppState} />} />
       </Switch>
     </BrowserRouter>
-    <ToastContainer />
+    <ToastContainer hideProgressBar={true} />
     </div>
     )
     }
