@@ -12,7 +12,6 @@
         .splash__form {
             display: flex;
             flex-direction: row;
-            justify-content: space-around;
             width: 100%;
             flex-wrap: wrap;
             height: 6rem;
@@ -36,10 +35,17 @@
     }
 
     &__user-books-wrapper {
+        display: flex;
+        flex-direction: column;
         
         .splash__user-books-wrapper__subtitle {
-            margin: 2rem 0rem 0rem 0rem;
+            width: 100%;
+            margin: 2rem 0rem 2rem 0rem;
             text-align: left;
+        }
+
+        .splash__no-saved-books {
+            font-size: 1rem;
         }
 
         .bookpreview__wrapper {

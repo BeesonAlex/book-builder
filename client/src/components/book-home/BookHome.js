@@ -101,7 +101,7 @@ export class BookHome extends Component {
                     this.state.activeBook.pages.map(page => {
                                 return <PagePreview onPagePreviewClick={this.onPagePreviewClick} key={page.id} id={page.id} track={page.track} pageNumber={page.pageNumber} albumArt={page.albumArt} artist={page.artist} album={page.album} thoughts={page.thoughts} pageContentUrl={page.pageContentUrl} />
                             })
-                            : ''
+                            : <h3 className="bookhome__no-pages-found">Add a page to get started.</h3>
                             }
                 </div>
             </div>

@@ -111,7 +111,7 @@ export class Splash extends Component {
                         this.state.isLoggedIn ?  
                         this.state.loggedInUser.books.map(book => {
                             return <BookPreview key={book.id} id={book.id} title={book.title} pages={book.pages} onBookPreviewClick={this.onBookPreviewClick} numPages={book.pages.length} />
-                        }) : <p className="splash__saved-books">No saved books yet!</p>
+                        }) : <h3 className="splash__no-saved-books">No saved books yet!</h3>
                         }
                 </div>
             </div>

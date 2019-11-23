@@ -1,13 +1,17 @@
 .pageeditor {
     margin: 2rem 3.4375rem 1rem 3.4375rem;
-    border: 1px solid grey;
+    display: flex;
+    justify-content: center;
 
     &__editor-wrapper {
         display: flex;
         flex-direction: column;
         align-items: center;
         align-content: center;
+        width: 100%;
         max-width: 54.25rem;
+        border: 1px solid grey;
+
 
         .pageeditor__album-wrapper {
             background-color: black;

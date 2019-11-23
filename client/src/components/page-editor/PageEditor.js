@@ -119,7 +119,7 @@ onSubmitHandler = event => {
                         <h3 className="pageeditor__artist-title">{this.state.trackDetails.artist}</h3>
                         <h3 className="pageeditor__artist-album">{this.state.trackDetails.album}</h3>
                         </div>
-                        <input className="pageeditor__thoughts" type="text" name="thoughts" placeholder="Write your thoughts..." defaultValue={this.state.activePage.thoughts}></input>
+                        <input className="pageeditor__thoughts" type="textarea" name="thoughts" wrap="hard" cols="90" rows="20" placeholder="Write your thoughts..." defaultValue={this.state.activePage.thoughts}></input>
                     </div>
                     <button className="pageeditor__submit btn" type="submit">Save and Close</button>
                     </form>
