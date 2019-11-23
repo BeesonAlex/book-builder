@@ -124,13 +124,14 @@ saveUser = (user) => {
           .post(`https://serene-journey-89429.herokuapp.com/users/`, newUser)
           .then(res => {
             console.log('successfully created user')
+            toast.success(`Saved. Welcome, ${newUser.name}!`)
             axios
               .post(`https://serene-journey-89429.herokuapp.com/shopify/storefront/customers`, {
                 name: newUser.name,
                 email: newUser.email,
               })
               .then(res => {
-                toast.success(`Welcome, ${newUser.name}!`)
+                
               })
               .catch(err => {
                 console.log(err)
