@@ -39,7 +39,7 @@ export class Header extends Component {
                             id: this.state.activeBook.id,
                             title: this.state.activeBook.title,
                             contentUrl: bookResponse,
-                            coverUrl: 'https://drive.google.com/file/d/19SrfpNdKh9huLoABWeLYpC2PXyjs9Hj-/view?usp=sharing',
+                            coverUrl: 'https://us1.pdfgeneratorapi.com/share/6391/77954aa9680d5764c4867b3d767de438',
                             pages: this.state.activeBook.pages
                         }
                     }, () => {
@@ -51,7 +51,7 @@ export class Header extends Component {
                                 properties: {
                                   title: this.state.activeBook.title,
                                   contentUrl: bookResponse,
-                                  coverUrl: 'https://drive.google.com/file/d/19SrfpNdKh9huLoABWeLYpC2PXyjs9Hj-/view?usp=sharing',
+                                  coverUrl: 'https://us1.pdfgeneratorapi.com/share/6391/77954aa9680d5764c4867b3d767de438',
                                   author: this.state.loggedInUser.name,
                                   email: this.state.loggedInUser.email
                                 }
@@ -70,6 +70,7 @@ export class Header extends Component {
                 })
         })
     }
+
 
     static getDerivedStateFromProps(props, state) {
         // Any time the current user, page or book changes, re-spread appstate to this.state
