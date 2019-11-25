@@ -14,13 +14,13 @@
             flex-direction: row;
             width: 100%;
             flex-wrap: wrap;
-            height: 6rem;
             align-content: space-between;
         }
 
         .splash__form__input {
             border-radius: 5px;
             margin-right: 1rem;
+            margin-bottom: 1rem;
         }
 
         .splash__form--button {
@@ -37,6 +37,7 @@
     &__user-books-wrapper {
         display: flex;
         flex-direction: column;
+        min-height: 25vh;
         
         .splash__user-books-wrapper__subtitle {
             width: 100%;

@@ -122,7 +122,7 @@ onSubmitHandler = event => {
                         <img className="pageeditor__icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/user.svg?87" />
                         <h3 className="pageeditor__artist-title">{this.state.trackDetails.artist}</h3>
                         <img className="pageeditor__icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/disc.svg?87" />
-                        <h3 className="pageeditor__artist-album">{this.state.trackDetails.album}</h3>
+                        <p className="pageeditor__artist-album">{this.state.trackDetails.album}</p>
                         </div>
                         <textarea className="pageeditor__thoughts" type="textarea" name="thoughts" wrap="hard" placeholder="Write your thoughts..." defaultValue={this.state.activePage.thoughts}></textarea>
                     </div>

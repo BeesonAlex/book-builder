@@ -125,6 +125,7 @@ saveUser = (user) => {
           .then(res => {
             console.log('successfully created user')
             toast.success(`Saved. Welcome, ${newUser.name}!`)
+            toast(`An account email has been sent to, ${newUser.email}.`)
             axios
               .post(`https://serene-journey-89429.herokuapp.com/shopify/storefront/customers`, {
                 name: newUser.name,
