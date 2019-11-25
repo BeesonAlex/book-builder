@@ -52,7 +52,7 @@ onSubmitHandler = event => {
 
         activePage: {
             id: this.state.activePage.id,
-            pageNumber: this.state.activeBook.pages.length + 1,
+            pageNumber: this.state.activePage.pageNumber || this.state.activeBook.pages.length + 1,
             track: `${this.state.trackDetails.name}`,
             album: `${this.state.trackDetails.album}`,
             albumArt: this.state.trackDetails.albumArt,
@@ -114,9 +114,14 @@ onSubmitHandler = event => {
                     </div>
                     <form className="pageeditor__form" onSubmit={this.onSubmitHandler}>
                     <div className="pageeditor--text-wrapper">
+                        <div className="pageeditor__icon-wrapper">
+                            <img className="pageeditor__icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/music.svg?87" />
                         <h1 className="pageeditor__song-title">{this.state.trackDetails.name}</h1>
+                        </div>
                         <div className="pageeditor__artist-album-wrapper">
+                        <img className="pageeditor__icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/user.svg?87" />
                         <h3 className="pageeditor__artist-title">{this.state.trackDetails.artist}</h3>
+                        <img className="pageeditor__icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/disc.svg?87" />
                         <h3 className="pageeditor__artist-album">{this.state.trackDetails.album}</h3>
                         </div>
                         <textarea className="pageeditor__thoughts" type="textarea" name="thoughts" wrap="hard" placeholder="Write your thoughts..." defaultValue={this.state.activePage.thoughts}></textarea>
