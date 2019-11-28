@@ -120,7 +120,7 @@ onSubmitHandler = event => {
                         </div>
                         <div className="pageeditor__artist-album-wrapper">
                         <img className="pageeditor__icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/user.svg?87" />
-                        <h3 className="pageeditor__artist-title">{this.state.trackDetails.artist}</h3>
+                        <p className="pageeditor__artist-title">{this.state.trackDetails.artist}</p>
                         <img className="pageeditor__icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/disc.svg?87" />
                         <p className="pageeditor__artist-album">{this.state.trackDetails.album}</p>
                         </div>
@@ -129,6 +129,7 @@ onSubmitHandler = event => {
                     <button className="pageeditor__submit btn" type="submit">Save and Close</button>
                     </form>
                 </div>
+                <p className="pageeditor__disclaimer">Please Note: The current page is designed to scale with your browser. The printed page will be 8.5" x 11".</p>
             </div>
             </>
         )
