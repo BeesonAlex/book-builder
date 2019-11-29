@@ -2,6 +2,7 @@
     margin: 2rem 3.4375rem 1rem 3.4375rem;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 
     &__editor-wrapper {
         display: flex;
@@ -43,6 +44,7 @@
                 background-color: #fff;
             
                 .pageeditor__icon-wrapper {
+                    margin-top: 1rem;
                     display: flex;
                     align-items: center;
                     width: 80%;
@@ -80,6 +82,7 @@
                     height: 17.1875rem;
                     resize: none;
                     border: 1px dotted grey;
+                    margin-bottom: 1rem;
                 }
             }
 
