@@ -115,13 +115,13 @@ onSubmitHandler = event => {
                     <form className="pageeditor__form" onSubmit={this.onSubmitHandler}>
                     <div className="pageeditor--text-wrapper">
                         <div className="pageeditor__icon-wrapper">
-                            <img className="pageeditor__icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/music.svg?87" />
+                            <img className="pageeditor__icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/music.svg?87" alt="music-note" />
                         <h1 className="pageeditor__song-title">{this.state.trackDetails.name}</h1>
                         </div>
                         <div className="pageeditor__artist-album-wrapper">
-                        <img className="pageeditor__icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/user.svg?87" />
+                        <img className="pageeditor__icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/user.svg?87" alt="user-icon" />
                         <p className="pageeditor__artist-title">{this.state.trackDetails.artist}</p>
-                        <img className="pageeditor__icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/disc.svg?87" />
+                        <img className="pageeditor__icon" src="https://cdn.shopify.com/s/files/1/0262/0584/7649/files/disc.svg?87" alt="album-icon" />
                         <p className="pageeditor__artist-album">{this.state.trackDetails.album}</p>
                         </div>
                         <textarea className="pageeditor__thoughts" type="textarea" name="thoughts" wrap="hard" placeholder="Write your thoughts..." defaultValue={this.state.activePage.thoughts}></textarea>

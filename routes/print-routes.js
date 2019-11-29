@@ -24,12 +24,12 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
     console.log('beginning to send print package')
     console.log(token)
     console.log(order.line_items[0].properties)
-    const podPackage = '0850X1100FCPREPB080CW444MXX';
+    const podPackage = '0850X1100FCPRECW080CW444MXX';
     let purchasedBooks = order.line_items.filter(data => data.variant_id == '31160253481057');
 
     var options = {
         method: 'POST',
-        url: 'https://api.sandbox.lulu.com/print-jobs/',
+        url: 'https://api.lulu.com/print-jobs/',
         headers: {
           'Authorization': `Bearer ${token.access_token}`,
           'Content-Type': 'application/json'
@@ -120,7 +120,7 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
       secret: process.env.PRINT_CLIENT_SECRET
     },
     auth: {
-      tokenHost: 'https://api.sandbox.lulu.com/auth/realms/glasstree/protocol/openid-connect/token'
+      tokenHost: 'https://api.lulu.com/auth/realms/glasstree/protocol/openid-connect/token'
     }
   };
 
