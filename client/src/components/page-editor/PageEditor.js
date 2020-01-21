@@ -30,10 +30,9 @@ export class PageEditor extends Component {
             let editedTrackDetails = {
                 name: this.state.trackDetails.name,
                 artist: this.state.trackDetails.artist.name,
-                album: this.state.trackDetails.album.title || "",
+                album: this.state.trackDetails.album.title ? this.state.trackDetails.album.title : "",
                 albumArt: Object.values(this.state.trackDetails.album.image[3])[0].replace('300x300', '1200x1200')
             }
-            console.log(editedTrackDetails)
             this.setState({
                 trackDetails: {
                     ...editedTrackDetails

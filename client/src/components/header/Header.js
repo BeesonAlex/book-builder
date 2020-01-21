@@ -24,9 +24,13 @@ export class Header extends Component {
     }
 
     onCompleteHandler = () => {
+        
         this.setState({
             ...this.props.appState
         }, () => {
+
+            if (this.state.activeBook.pages.length >= 12) {
+
             toast('Compiling your Book!', {autoClose: 9000});
             axios
                 .post(`https://serene-journey-89429.herokuapp.com/pdf/`, this.state.activeBook)
@@ -66,7 +70,10 @@ export class Header extends Component {
                 .catch(err => {
                     console.log(err)
                 })
-        })
+    } else {
+        toast.error('The Page Minimum is 12 Pages')
+    }
+})
     }
 
 
