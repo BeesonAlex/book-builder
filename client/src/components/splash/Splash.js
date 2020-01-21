@@ -84,8 +84,6 @@ export class Splash extends Component {
 
 
     render() {
-        console.log(this.state)
-
         return (
             <div className="splash">
                 <div className="splash__content-header">

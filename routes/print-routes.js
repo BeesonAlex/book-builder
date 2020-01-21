@@ -65,7 +65,7 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
               "state_code": `${order.shipping_address.province_code}`,
               "street1": `${order.shipping_address.address1}`
           },
-          "shipping_level": "MAIL"
+          "shipping_level": "GROUND"
       },
         json: true,
         };
@@ -75,7 +75,7 @@ router.post('/webhook/order', validateWebhook, fetchToken, async (req, res) => {
         axios
           .post(`${options.url}`, options.body, { headers: options.headers })
           .then(reso => {
-              console.log('new print order successfully created', reso.data)
+              console.log('new print order successfully created')
           })
           .catch(err => {
               console.log(err)

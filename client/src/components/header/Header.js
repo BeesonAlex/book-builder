@@ -27,13 +27,12 @@ export class Header extends Component {
         this.setState({
             ...this.props.appState
         }, () => {
-            toast('Compiling your Book!', {autoClose: 5000});
+            toast('Compiling your Book!', {autoClose: 9000});
             axios
                 .post(`https://serene-journey-89429.herokuapp.com/pdf/`, this.state.activeBook)
                 .then(res => {
                     const bookResponse = res.data
-                    console.log(bookResponse)
-                    console.log(res.data)
+                    console.log('sending book to printer')
                     this.setState({
                         activeBook: {
                             id: this.state.activeBook.id,
@@ -57,7 +56,6 @@ export class Header extends Component {
                                 }
                             })
                             .then(res => {
-                                console.log(res.data)
                                 this.onCartHandler()
                             })
                             .catch(err => {
@@ -83,7 +81,6 @@ export class Header extends Component {
       }
 
     render() {
-        console.log(this.state)
         return (
             <div className="header">
                 <div className="header__left-wrapper">

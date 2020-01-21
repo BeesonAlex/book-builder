@@ -27,7 +27,6 @@ router.post('/', async (req, res) => {
     .post(`https://us1.pdfgeneratorapi.com/api/v3/templates/${pageTemplate}/output?name=${encodeURIComponent(title)}?format=pdf&output=url`, book, { headers: pdfRequestHeaders })
     .then(reso => { 
       bookResponse = reso.data.response
-      console.log(book)
       console.log('completed interior pdf', bookResponse)
       res.send(bookResponse)
     })

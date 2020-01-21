@@ -83,7 +83,6 @@ export class BookHome extends Component {
 
 
     render() {
-        console.log(this.state)
         return (
             <div className="bookhome">
                 <div className="bookhome__information-wrapper">

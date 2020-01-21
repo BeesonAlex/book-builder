@@ -60,7 +60,6 @@ export class TrackSearch extends Component {
 
 
     render() {
-        console.log(this.state)
         return (
             <div className="tracksearch">
                 <div className="tracksearch__wrapper">

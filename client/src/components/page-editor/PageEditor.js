@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './PageEditor.scss';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export class PageEditor extends Component {
 
@@ -42,6 +44,8 @@ export class PageEditor extends Component {
     })
     .catch(err => {
         console.log(err)
+        toast.error('An Error Occured with that Song');
+        this.props.history.push(`/tools/${this.state.loggedInUser.id}/book/${this.state.activeBook.id}`) 
     })
 }
 
@@ -100,7 +104,6 @@ onSubmitHandler = event => {
 }
 
     render() {
-        console.log(this.state)
         if (this.state.trackLoading) {
             return <p>loading...</p>
         } else {

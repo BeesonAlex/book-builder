@@ -93,7 +93,6 @@ console.log(shopifyUser)
 saveUser = (user) => {
   // get user - if they don't exist create one, if they do - update the user
       if (this.state.isLoggedIn === true) {
-        console.log(user.email, 'user exists')
         axios
           .patch(`https://serene-journey-89429.herokuapp.com/users/${user.email}`, {
             id: user.id,
@@ -103,7 +102,6 @@ saveUser = (user) => {
             books: user.books,
         })
         .then(res => {
-          console.log('successfully updated user')
           toast.success('Saved!')
         })
         .catch(err => {
@@ -111,7 +109,6 @@ saveUser = (user) => {
         })
 
       } else if (this.state.isLoggedIn === false) {
-        console.log(user.email, 'user does not exist')
         const newUser = {
           id: user.id,
           name: user.name,
@@ -123,7 +120,6 @@ saveUser = (user) => {
         axios
           .post(`https://serene-journey-89429.herokuapp.com/users/`, newUser)
           .then(res => {
-            console.log('successfully created user')
             toast.success(`Saved. Welcome, ${newUser.name}!`)
             toast(`An account email has been sent to, ${newUser.email}.`)
             axios
