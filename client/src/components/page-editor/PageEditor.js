@@ -23,6 +23,7 @@ export class PageEditor extends Component {
 
     axios.get(`https://serene-journey-89429.herokuapp.com/data/track/${artist}/${name}`)
     .then(res => {
+        console.log(res.data)
         this.setState({
             trackDetails: res.data,
         }, () => {
@@ -30,7 +31,7 @@ export class PageEditor extends Component {
             let editedTrackDetails = {
                 name: this.state.trackDetails.name,
                 artist: this.state.trackDetails.artist.name,
-                album: this.state.trackDetails.album.title || "",
+                album: this.state.trackDetails.album.title || " ",
                 albumArt: Object.values(this.state.trackDetails.album.image[3])[0].replace('300x300', '1200x1200')
             }
             this.setState({
