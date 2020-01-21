@@ -30,7 +30,7 @@ export class PageEditor extends Component {
             let editedTrackDetails = {
                 name: this.state.trackDetails.name,
                 artist: this.state.trackDetails.artist.name,
-                album: this.state.trackDetails.album.title,
+                album: this.state.trackDetails.album.title || "",
                 albumArt: Object.values(this.state.trackDetails.album.image[3])[0].replace('300x300', '1200x1200')
             }
             this.setState({
@@ -44,8 +44,7 @@ export class PageEditor extends Component {
     })
     .catch(err => {
         console.log(err)
-        toast.error('An Error Occured with that Song');
-        this.props.history.push(`/tools/${this.state.loggedInUser.id}/book/${this.state.activeBook.id}`) 
+        
     })
 }
 
