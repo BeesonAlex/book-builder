@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
     const title = req.body.title;
     const book = JSON.stringify(req.body.pages);
     let bookResponse = ''
-    
+    res.status(200)
     axios
     .post(`https://us1.pdfgeneratorapi.com/api/v3/templates/${pageTemplate}/output?name=${encodeURIComponent(title)}?format=pdf&output=url`, book, { headers: pdfRequestHeaders })
     .then(reso => { 

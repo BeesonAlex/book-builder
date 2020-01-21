@@ -31,7 +31,7 @@ export class Header extends Component {
 
             if (this.state.activeBook.pages.length >= 12) {
 
-            toast('Compiling your Book!', {autoClose: 9000});
+            toast('Compiling your Book!', {autoClose: 12000});
             axios
                 .post(`https://serene-journey-89429.herokuapp.com/pdf/`, this.state.activeBook)
                 .then(res => {
