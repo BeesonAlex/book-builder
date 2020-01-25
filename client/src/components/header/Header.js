@@ -42,7 +42,7 @@ export class Header extends Component {
                             id: this.state.activeBook.id,
                             title: this.state.activeBook.title,
                             contentUrl: bookResponse,
-                            coverUrl: 'https://us1.pdfgeneratorapi.com/share/6391/0a0ceaea094f74e8e0d0dc52dd98a79e',
+                            coverUrl: 'https://cdn.shopify.com/s/files/1/0262/0584/7649/files/Cover_Template_Titled.pdf?94',
                             pages: this.state.activeBook.pages
                         }
                     }, () => {
@@ -54,7 +54,7 @@ export class Header extends Component {
                                 properties: {
                                   title: this.state.activeBook.title,
                                   contentUrl: bookResponse,
-                                  coverUrl: 'https://us1.pdfgeneratorapi.com/share/6391/0a0ceaea094f74e8e0d0dc52dd98a79e',
+                                  coverUrl: 'https://cdn.shopify.com/s/files/1/0262/0584/7649/files/Cover_Template_Titled.pdf?94',
                                   author: this.state.loggedInUser.name,
                                   email: this.state.loggedInUser.email
                                 }
